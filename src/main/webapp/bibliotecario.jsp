@@ -194,7 +194,7 @@
     <a class="btn btn-ghost" href="revisarHistorial.jsp"><i class="fas fa-history"></i>Revisar historial</a>
     <form action="mostrarlibros" method="get">
         <input type="hidden" name="operacion" value="stocklibros">
-        <button type="submit" class="btn btn-ghost" href="administrarStok.jsp">Stock de libros</button>
+        <button type="submit" class="btn btn-ghost" href="mostrarlibros">Stock de libros</button>
     </form>
     <form action="AgregarLibroServlet" method="get">
         <input type="hidden" name="operacion" value="nuevolibro">

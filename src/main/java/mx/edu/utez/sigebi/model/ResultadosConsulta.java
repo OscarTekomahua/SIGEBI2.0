@@ -1,6 +1,7 @@
 package mx.edu.utez.sigebi.model;
 
 public class ResultadosConsulta {
+    private int id_libro;
     private String isbn;
     private String titulo;
     private String autor;
@@ -12,13 +13,22 @@ public class ResultadosConsulta {
 
     }
 
-    public ResultadosConsulta(String isbn, String titulo, String autor, String editorial, String categoria, int ejemplares) {
+    public ResultadosConsulta(int id_libro, String isbn, String titulo, String autor, String editorial, String categoria, int ejemplares) {
+        this.id_libro = id_libro;
         this.isbn = isbn;
         this.titulo = titulo;
         this.autor = autor;
         this.editorial = editorial;
         this.categoria = categoria;
         this.ejemplares = ejemplares;
+    }
+
+    public int getId_libro() {
+        return id_libro;
+    }
+
+    public void setId_libro(int id_libro) {
+        this.id_libro = id_libro;
     }
 
     public String getIsbn() {

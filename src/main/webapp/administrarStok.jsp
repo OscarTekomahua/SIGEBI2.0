@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -282,8 +283,15 @@
                     <td>${libro.categoria}</td>
                     <td>${libro.ejemplares}</td>
                     <td>
-                        <button type="button" class="btn btn-eliminar">Eliminar</button>
-                        <button type="button" class="btn btn-modificar">Modificar</button>
+
+
+                        <a class="btn btn-eliminar" href="${pageContext.request.contextPath}/deleteBook?id=${libro.id_libro}">Eliminar</a>
+
+                        <form action="modificar" method="get">
+                            <input type="hidden" name="operacion" value="modificar"/>
+                        <button type="submit" class="btn btn-modificar">Modificar</button>
+                        </form>
+
                     </td>
                 </tr>
                 </tbody>

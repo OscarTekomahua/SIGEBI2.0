@@ -90,12 +90,12 @@ public class LibroDao implements DaoLibro {
         List <ResultadosConsulta> tablalibros = new ArrayList<>();
 
         try {
-            String query = "SELECT l.titulo, l.autor, l.ejemplares, l.isbn, c.nombre_categoria AS categoria, e.nombre AS editorial FROM libro l JOIN librohascategoria lc ON l.id_libro = lc.id_libro JOIN categoria c ON lc.id_categoria = c.id_categoria JOIN librohaseditorial le ON l.id_libro = le.id_libro JOIN editorial e ON le.id_editorial = e.id_editorial";
+            String query = "SELECT l.id_libro, l.titulo, l.autor, l.ejemplares, l.isbn, c.nombre_categoria AS categoria, e.nombre AS editorial FROM libro l JOIN librohascategoria lc ON l.id_libro = lc.id_libro JOIN categoria c ON lc.id_categoria = c.id_categoria JOIN librohaseditorial le ON l.id_libro = le.id_libro JOIN editorial e ON le.id_editorial = e.id_editorial";
             PreparedStatement stmt = con.prepareStatement(query);
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-
+                int id = rs.getInt("id_libro");
                 String titulo = rs.getString("titulo");
                 String autor = rs.getString("autor");
                 int ejemplares = rs.getInt("ejemplares");
@@ -103,8 +103,9 @@ public class LibroDao implements DaoLibro {
                 String categoria = rs.getString("categoria");
                 String editorial = rs.getString("editorial");
 
-                ResultadosConsulta consulta = new ResultadosConsulta(isbn, titulo, autor, editorial, categoria, ejemplares);
+                ResultadosConsulta consulta = new ResultadosConsulta(id, isbn, titulo, autor, editorial, categoria, ejemplares);
                 tablalibros.add(consulta);
+
             }
 
         } catch (SQLException e) {
@@ -125,8 +126,22 @@ public class LibroDao implements DaoLibro {
     }
 
     @Override
-    public boolean delete(int id_libro) {
-        return false;
+    public boolean delete(int id) {
+        PreparedStatement stmt;
+        {
+            try {
+                stmt = con.prepareStatement("call ELIMINAR_LIBRO(?);");
+                stmt.setInt(1,id);
+                return stmt.executeUpdate() ==1;
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
     }
+
+
+
+
 
 }
