@@ -119,6 +119,7 @@ values (3, 3, '20223tn058@utez.edu.mx', sha2('alejandr0', 256), aes_encrypt('ale
 insert into usuario (id_persona, rol, correo_institucional, contraseña, codigo)
 values (4, 3, '20223tn047@utez.edu.mx', sha2('antoine', 256), aes_encrypt('ant0in3', 'secret_keyForPas'));
 select * from usuario;
+ALTER TABLE usuario ADD COLUMN multa DECIMAL(10, 2) DEFAULT 0;
 
 -- Insercion de datos en la tabla Libro --
 insert into libro (titulo, autor, ejemplares, isbn, imagen) 
@@ -193,6 +194,7 @@ values ('Sala 2', 10, "img");
 insert into sala (nombre, capacidad_maxima, imagen)
 values ('Sala 3', 10, "img");
 select * from sala;
+ALTER TABLE sala ADD COLUMN estado BOOLEAN DEFAULT true;
 
 -- Inserción de datos en la tabla PrestamoLibro --
 insert into prestamolibro (id_libro, id_usuario, fecha_prestamo, fecha_devolucion) 
@@ -204,6 +206,8 @@ values (3, 4, '2023-06-07', '2023-06-17');
 insert into prestamolibro (id_libro, id_usuario, fecha_prestamo, fecha_devolucion) 
 values (4, 4, '2023-07-12', '2023-07-22');
 select * from prestamolibro;
+ALTER TABLE prestamolibro ADD COLUMN estado_prestamo VARCHAR(40) DEFAULT 'Devuelto';
+ALTER TABLE prestamolibro ADD COLUMN multa DECIMAL(10, 2) DEFAULT 0;
 
 -- Insercion de datos en la tabla PrestamoSala --
 insert into prestamosala (id_sala, id_usuario, hora_inicio, hora_fin)
@@ -215,22 +219,8 @@ values (3, 4, '15:00:00', '16:00:00');
 insert into prestamosala (id_sala, id_usuario, hora_inicio, hora_fin)
 values (2, 4, '13:00:00', '15:00:00');
 select * from prestamosala;
+ALTER TABLE prestamosala ADD COLUMN estado VARCHAR(40) DEFAULT 'Devuelto'; 
+ALTER TABLE prestamosala ADD COLUMN extras VARCHAR(150);
 
-SELECT
-    l.titulo,
-    l.autor,
-    l.ejemplares,
-    l.isbn,
-    c.nombre_categoria AS categoria,
-    e.nombre AS editorial
-FROM
-    libro l
-JOIN
-    librohascategoria lc ON l.id_libro = lc.id_libro
-JOIN
-    categoria c ON lc.id_categoria = c.id_categoria
-JOIN
-    librohaseditorial le ON l.id_libro = le.id_libro
-JOIN
-    editorial e ON le.id_editorial = e.id_editorial;
+
 

@@ -9,18 +9,20 @@ public class Usuario implements Serializable {
     private String correo_institucional;
     private String contra;
     private String codigo;
+    private double multa;
 
     public Usuario() {
 
     }
 
-    public Usuario(int id_usuario, int id_persona, Rol rol, String correo_institucional, String contra, String codigo) {
+    public Usuario(int id_usuario, int id_persona, Rol rol, String correo_institucional, String contra, String codigo, double multa) {
         this.id_usuario = id_usuario;
         this.id_persona = id_persona;
         this.rol = rol;
         this.correo_institucional = correo_institucional;
         this.contra = contra;
         this.codigo = codigo;
+        this.multa = multa;
     }
 
     public int getId_usuario() {
@@ -69,5 +71,13 @@ public class Usuario implements Serializable {
 
     public void setCodigo(String codigo) {
         this.codigo = codigo;
+    }
+
+    public double getMulta() {
+        return multa;
+    }
+
+    public void setMulta(double multa) {
+        this.multa = multa;
     }
 }

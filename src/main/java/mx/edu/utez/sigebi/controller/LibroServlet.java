@@ -1,13 +1,8 @@
 package mx.edu.utez.sigebi.controller;
 
-import mx.edu.utez.sigebi.model.Categoria;
-import mx.edu.utez.sigebi.model.DAO.CategoriaDao;
-import mx.edu.utez.sigebi.model.DAO.EditorialDao;
-import mx.edu.utez.sigebi.model.DAO.LibroDao;
-import mx.edu.utez.sigebi.model.Editorial;
-import mx.edu.utez.sigebi.model.Libro;
-import mx.edu.utez.sigebi.model.ResultadosConsulta;
 
+import mx.edu.utez.sigebi.model.DAO.LibroDao;
+import mx.edu.utez.sigebi.model.ResultadosConsulta;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
