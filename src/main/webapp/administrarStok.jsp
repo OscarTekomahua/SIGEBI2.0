@@ -247,7 +247,7 @@
 </nav>
 <div class="sidebar hide">
     <ul>
-        <li><a href="#">Revisar Historial</a></li>
+        <li><a href="revisarHistorial.jsp">Revisar Historial</a></li>
         <li><a href="#">Administrar Stock</a></li>
         <li><a href="#">Revisar Usuarios</a></li>
         <li><a href="#">Cerrar Sesión</a></li>
