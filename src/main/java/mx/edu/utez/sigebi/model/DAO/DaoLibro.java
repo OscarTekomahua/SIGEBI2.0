@@ -1,7 +1,6 @@
 package mx.edu.utez.sigebi.model.DAO;
 
 import mx.edu.utez.sigebi.model.Libro;
-import mx.edu.utez.sigebi.model.ResultadosConsulta;
 
 import java.util.List;
 
@@ -10,6 +9,6 @@ public interface DaoLibro {
     Libro findOne(int id_libro);
     boolean update(Libro object);
     boolean delete (int id_libro);
-
+    
 }
 

@@ -95,6 +95,7 @@ public class LibroDao implements DaoLibro {
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
+
                 String titulo = rs.getString("titulo");
                 String autor = rs.getString("autor");
                 int ejemplares = rs.getInt("ejemplares");
