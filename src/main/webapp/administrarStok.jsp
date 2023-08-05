@@ -237,7 +237,6 @@
             <input id="searchInput" class="form-control mr-2" type="search" placeholder="Buscar" aria-label="Buscar">
             <button class="btn btn-outline-success" type="button" id="searchButton">Buscar</button>
         </form>
-
         <!-- Botón del menú -->
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidebarCollapse">
             <!-- Reemplazar el icono de tres líneas por uno de Font Awesome (fa-bars) -->
@@ -254,7 +253,10 @@
     </ul>
 </div>
 
-<button type="button" class="btn btn-agregar">Agregar Libro</button>
+<form action="AgregarLibroServlet" method="get">
+    <input type="hidden" name="operacion" value="nuevolibro">
+    <button type="submit" href="agregarlibro.jsp" class="btn btn-agregar">Agregar Libro</button>
+</form>
 
 <div class="container-fluid main-content">
     <div class="table-container">

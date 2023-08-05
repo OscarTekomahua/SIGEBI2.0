@@ -161,30 +161,21 @@
 
 <body style="display: flex; flex-direction: column; min-height: 100vh;">
 <nav class="navbar">
-    <a class="navbar-brand" href="index.jsp">
-        <img src="assets/img/sigebi%20logo2.png" alt="SIGEBI Logo">
-        Bienvenido Administrador
-    </a>
-    <form action="Libros" method="post" class="form-inline ml-auto d-flex">
-        <!-- ml-auto para alinear el formulario a la derecha y d-flex para flexbox -->
-        <input id="searchInput" class="form-control mr-2" type="search" placeholder="Buscar" aria-label="Buscar">
-        <button class="btn btn-outline-success" type="button" id="searchButton">Buscar</button>
-    </form>
-    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidebarCollapse">
-        <!-- Reemplazar el icono de tres líneas por uno de Font Awesome (fa-bars) -->
-        <i class="fas fa-bars"></i>
-    </button>
+    <div class="container">
+        <a class="navbar-brand" href="bibliotecario.jsp">
+            <img src="assets/img/sigebi%20logo2.png" alt="SIGEBI Logo">
+        </a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidebarCollapse">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
 </nav>
-
-
 <div class="sidebar hide">
     <ul>
-
-        <li><a href="">Revisar Historial</a></li>
-        <li><a href="#">Administrar Stock</a></li>
+        <li><a href="revisarHistorial.jsp">Revisar Historial</a></li>
+        <li><a href="administrarStok.jsp">Administrar Stock</a></li>
         <li><a href="#">Revisar Usuarios</a></li>
         <li><a href="#">Cerrar Sesión</a></li>
-        <!-- Agrega más opciones de menú aquí -->
     </ul>
 </div>
 <div class="container mt-5">

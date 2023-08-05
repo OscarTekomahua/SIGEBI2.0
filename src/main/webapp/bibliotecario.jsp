@@ -13,15 +13,11 @@
 
         body {
             font-family: 'Montserrat', sans-serif;
-            background-color: #ffffff;
-            color: #eee;
-            background-image: url("assets/img/bibliutez.png");
-            background-size: cover;
-            background-repeat: no-repeat;
+            background-color: #009475;
         }
 
         .navbar {
-            background-color: #009475 ;
+            background-color: #002E60 ;
             display: flex;
             align-items: center;
             justify-content: flex-start;
@@ -59,7 +55,7 @@
         }
 
         .navbar-nav .nav-link:hover {
-            color: #002E60;
+            color: #ffffff;
         }
 
         .dropdown-menu {
@@ -101,7 +97,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: rgba(0, 148, 117, 0.8);
+            background: rgba(0, 46, 96, 0.8);
             border-radius: 10px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             padding: 30px;
@@ -149,6 +145,16 @@
         .btn i {
             margin-right: 8px;
         }
+
+        .botonCerrarSesion {
+            background-image: url("assets/img/cerrarsesion.png");
+            background-size: cover;
+            background-color: #002E60;
+            width: 30px;
+            height: 30px;
+            border: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -164,33 +170,19 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="index.jsp">Iniciar sesion</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="inicio.jsp">Inicio</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                       data-bs-toggle="dropdown" aria-expanded="false">
-                        Servicios
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Solicitar Sala</a></li>
-                        <li><a class="dropdown-item" href="#">Solicitar Libro</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="vistalibro.jsp">Bibliotecas</a>
+                    <a class="nav-link" href="bibliotecario.jsp">Inicio</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="revisarUsuarios.jsp">Contacto</a>
                 </li>
             </ul>
+
         </div>
+        <button class="botonCerrarSesion" id="botonCerrarSesion"></button>
     </div>
 </nav>
 <div class="hero-text-box">
-    <h1>Sesión iniciada correctamente.<br>¿Qué acción desea realizar?</h1>
+    <h1>Bibliotecario</h1>
     <a class="btn btn-ghost" href="revisarHistorial.jsp"><i class="fas fa-history"></i>Revisar historial</a>
     <form action="mostrarlibros" method="get">
         <input type="hidden" name="operacion" value="stocklibros">

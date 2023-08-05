@@ -18,25 +18,23 @@
 
         body {
             font-family: 'Montserrat', sans-serif;
-            background-color: #ffffff;
-            color: #eee;
+            background-color: #009475;
         }
 
         .navbar {
-            background-color: #009475 ;
+            background-color: #002E60 ;
             display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            height: 60px;
+            flex-direction: row;
             padding-left: 20px;
             position: relative;
+            align-items: center;
+            text-align: center;
         }
         .navbar a {
             color: #eee;
             text-decoration: none;
             font-size: 18px;
             letter-spacing: 4px;
-            margin-right: 22px;
             transition: font-size 0.3s;
         }
         .navbar a:hover {
@@ -46,11 +44,11 @@
         .navbar-brand {
             font-size: 24px;
             color: #eee;
+            margin-left: 20px;
         }
 
         .navbar-brand img {
             height: 40px;
-            margin-right: 10px;
         }
 
         .navbar-nav .nav-link {
@@ -61,20 +59,9 @@
         }
 
         .navbar-nav .nav-link:hover {
-            color: #002E60;
+            color: #ffffff;
         }
 
-        .dropdown-menu {
-            background-color: #009475;
-            border: none;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            border-radius: 5px;
-            padding: 10px;
-            font-size: 16px;
-            color: #eee;
-            margin-top: 8px;
-            min-width: 200px;
-        }
 
         .dropdown-menu a {
             color: #eee;
@@ -88,13 +75,6 @@
             background-color: #74bbac;
         }
 
-
-        /* Cambiamos la dirección del ícono cuando el menú está desplegado */
-        .dropdown-toggle[aria-expanded="true"]::after {
-            transform: rotate(90deg);
-        }
-
-        /* Eliminamos el subrayado al pasar el cursor sobre el botón */
         .navbar-nav .nav-item .nav-link:hover {
             text-decoration: none;
         }
@@ -105,17 +85,16 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: rgba(0, 148, 117, 0.8); /* Use an RGBA color for a semi-transparent background */
+            background: rgba(0, 46, 96, 0.8);
             border-radius: 10px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             padding: 30px;
             text-align: center;
             color: #fff;
-            width: 100%; /* Adjust the width to your preference */
+            width: 100%;
             max-width: 600px;
         }
 
-        /* Style for the buttons */
         .btn {
             display: inline-block;
             margin: 10px;
@@ -127,20 +106,6 @@
             transition: background-color 0.3s, transform 0.3s;
         }
 
-        /* Primary button style */
-        .btn-full {
-            background-color: #fff;
-            color: #009475;
-            border: 2px solid #009475;
-        }
-
-        .btn-full:hover {
-            background-color: #009475;
-            color: #fff;
-            transform: scale(1.05); /* Add a slight scale animation on hover */
-        }
-
-        /* Secondary button style */
         .btn-ghost {
             background-color: transparent;
             color: #fff;
@@ -150,55 +115,39 @@
         .btn-ghost:hover {
             background-color: #fff;
             color: #009475;
-            transform: translateY(-3px); /* Add a slight vertical shift on hover */
+            transform: translateY(-3px);
         }
 
-        /* Style for the icon next to the buttons */
         .btn i {
             margin-right: 8px;
         }
+
+        .botonCerrarSesion {
+            background-image: url("assets/img/cerrarsesion.png");
+            background-size: cover;
+            background-color: #002E60;
+            width: 30px;
+            height: 30px;
+            border: none;
+            cursor: pointer;
+            margin-right: 80px;
+        }
+
+        .sigebi {
+            font-family: "Source Code Pro";
+            color: white;
+        }
+
     </style>
 </head>
-<body style="background-size: cover; background-repeat: no-repeat"  background="assets/img/bibliutez.png">
-<nav class="navbar navbar-expand-lg">
-    <div class="container">
-        <a class="navbar-brand" href="inicio.jsp">
-            <img src="assets/img/sigebi%20logo2.png" alt="SIGEBI Logo">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="index.jsp">Iniciar sesion</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="inicio.jsp">Inicio</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                       data-bs-toggle="dropdown" aria-expanded="false">
-                        Servicios
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Solicitar Sala</a></li>
-                        <li><a class="dropdown-item" href="#">Solicitar Libro</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="vistalibro.jsp">Bibliotecas</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="revisarUsuarios.jsp">Contacto</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<body>
+<div class="navbar">
+    <a class="navbar-brand" href="admin.jsp"><img src="assets/img/sigebi%20logo2.png"></a>
+    <h4 class="sigebi">Sistema de Gestión Bibliotecaria</h4>
+    <button class="botonCerrarSesion" id="botonCerrarSesion"></button>
+</div>
 <div class="hero-text-box">
-    <h1>Sesión iniciada correctamente.<br>¿Qué acción desea realizar?</h1>
+    <h1>Administrador</h1>
     <a class="btn btn-ghost" href="revisarHistorial.jsp"><i class="fas fa-history"></i>Revisar historial</a>
     <a class="btn btn-ghost" href="administrarStockAdmin.jsp"><i class="fas fa-box"></i>Administrar stock</a>
     <a class="btn btn-ghost" href="revisarUsuarios.jsp"><i class="fas fa-users"></i>Administrar usuarios</a>
