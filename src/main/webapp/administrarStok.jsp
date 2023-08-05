@@ -285,15 +285,11 @@
                     <td>${libro.categoria}</td>
                     <td>${libro.ejemplares}</td>
                     <td>
-
-
                         <a class="btn btn-eliminar" href="${pageContext.request.contextPath}/deleteBook?id=${libro.id_libro}">Eliminar</a>
-
                         <form action="modificar" method="get">
                             <input type="hidden" name="operacion" value="modificar"/>
                         <button type="submit" class="btn btn-modificar">Modificar</button>
                         </form>
-
                     </td>
                 </tr>
                 </tbody>

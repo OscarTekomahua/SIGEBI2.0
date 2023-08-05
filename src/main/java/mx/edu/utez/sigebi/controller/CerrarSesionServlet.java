@@ -12,16 +12,11 @@ import java.io.IOException;
 public class CerrarSesionServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String respuesta = "bibliotecario.jsp";
 
-        if (req.getParameter("operacion").equals("cerrarsesion")) {
-            respuesta = "index.jsp";
+        HttpSession session = req.getSession();
+        session.invalidate();
 
-            HttpSession sesion = req.getSession();
-            sesion.invalidate();
-        }
-
-        resp.sendRedirect(respuesta);
+        resp.sendRedirect("index.jsp");
 
     }
 

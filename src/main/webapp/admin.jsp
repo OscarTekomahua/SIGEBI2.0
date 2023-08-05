@@ -157,6 +157,18 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+<script>
 
+    document.getElementById("botonCerrarSesion").addEventListener("click", function () {
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "CloseSession", true);
+        xhr.send();
+
+        window.location.href = "index.jsp";
+
+    });
+
+</script>
 </c:if>
     </c:if>

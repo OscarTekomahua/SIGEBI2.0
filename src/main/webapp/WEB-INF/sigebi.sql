@@ -133,6 +133,29 @@ values ('Orgullo y Prejuicio', 'Jane Austen', 5, '456780', "img");
 insert into libro (titulo, autor, ejemplares, isbn, imagen) 
 values ('Yo, Robot', 'Isaac Asimov', 4, '902340', "img");
 select * from libro;
+DELIMITER $$
+CREATE PROCEDURE ELIMINAR_LIBRO(in id int )
+BEGIN
+    
+    DELETE FROM
+        librohascategoria
+    WHERE
+        id_libro = id;
+        delete from
+        librohaseditorial
+        where
+        id_libro = id;
+        delete from 
+        prestamoLibro
+        where
+        id_libro = id;
+        DELETE FROM
+        libro
+    WHERE
+        id_libro = id;
+END
+$$
+DELIMITER ;
 
 -- Insercion de datos en la tabla Categoria --
 insert into categoria (nombre_categoria) 
