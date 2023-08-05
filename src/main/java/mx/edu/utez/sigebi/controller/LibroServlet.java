@@ -28,13 +28,16 @@ public class LibroServlet extends HttpServlet {
                     req.setAttribute("tablalibros", listalibro);
                 }
 
+
                 req.getRequestDispatcher("administrarStok.jsp").forward(req, resp);
               break;
 
             case "/deleteBook":
-
-
-
+                 int id = Integer.parseInt(req.getParameter("id"));
+                    System.out.println(id);
+                    LibroDao dao2 = new LibroDao();
+                    dao2.delete(id);
+                    resp.sendRedirect("bibliotecario.jsp");
                 break;
         }
 
