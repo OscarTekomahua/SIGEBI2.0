@@ -149,9 +149,14 @@
 <div class="hero-text-box">
     <h1>Administrador</h1>
     <a class="btn btn-ghost" href="revisarHistorial.jsp"><i class="fas fa-history"></i>Revisar historial</a>
-    <a class="btn btn-ghost" href="administrarStockAdmin.jsp"><i class="fas fa-box"></i>Administrar stock</a>
-    <a class="btn btn-ghost" href="revisarUsuarios.jsp"><i class="fas fa-users"></i>Administrar usuarios</a>
-    <a class="btn btn-ghost" href="administrarStok.jsp"><i class="fas fa-book"></i>Gestionar libros</a>
+    <form action="mostrarlibrosadmin" method="get">
+        <input type="hidden" name="operacion" value="stocklibros">
+        <button type="submit" class="btn btn-ghost" href="mostrarlibros">Stock de libros</button>
+    </form>
+    <form action="AgregarLibroServlet" method="get">
+        <input type="hidden" name="operacion" value="nuevolibro">
+        <button type="submit" class="btn btn-ghost" href="agregarlibro.jsp">Gestionar Libros</button>
+    </form>
     <a class="btn btn-ghost" href="#"><i class="fas fa-door-open"></i>Gestionar salas</a>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>

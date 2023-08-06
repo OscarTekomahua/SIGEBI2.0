@@ -1,6 +1,5 @@
 package mx.edu.utez.sigebi.controller;
 
-
 import mx.edu.utez.sigebi.model.DAO.LibroDao;
 import mx.edu.utez.sigebi.model.ResultadosConsulta;
 import javax.servlet.ServletException;
@@ -11,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet (name = "LibroServlet", urlPatterns = {"/mostrarlibros", "/updateBook", "/deleteBook" })
+@WebServlet (name = "LibroServlet", urlPatterns = {"/mostrarlibros", "/updateBook", "/deleteBook", "/mostrarlibrosadmin" })
 public class LibroServlet extends HttpServlet {
 
 
@@ -31,6 +30,19 @@ public class LibroServlet extends HttpServlet {
 
                 req.getRequestDispatcher("administrarStok.jsp").forward(req, resp);
               break;
+
+            case "/mostrarlibrosadmin":
+                if (req.getParameter("operacion").equals("stocklibros")) {
+                    LibroDao dao = new LibroDao();
+
+                    List<ResultadosConsulta> listalibro = dao.getAllAttributes();
+
+                    req.setAttribute("tablalibros", listalibro);
+                }
+
+
+                req.getRequestDispatcher("administrarStockAdmin.jsp").forward(req, resp);
+                break;
 
             case "/deleteBook":
                  int id = Integer.parseInt(req.getParameter("id"));

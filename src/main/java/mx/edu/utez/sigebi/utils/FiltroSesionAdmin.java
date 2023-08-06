@@ -10,8 +10,8 @@ import java.io.IOException;
 @WebFilter(urlPatterns = {
         "/admin.jsp",
         "/administrarStockAdmin.jsp",
-        "/revisarHistorial.jsp",
-        "/revisarUsuarios.jsp",
+        //"/revisarHistorial.jsp",
+        //"/revisarUsuarios.jsp",
         "/Libro"
 })
 public class FiltroSesionAdmin implements Filter {

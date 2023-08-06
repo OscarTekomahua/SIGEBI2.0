@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="assets/css/estilos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css">
-    <title>Revisar Historial</title>
+    <title>Libros en el inventario</title>
 </head>
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400&display=swap');
@@ -230,7 +230,7 @@
 
 <nav class="navbar">
     <div class="container">
-        <a class="navbar-brand" href="inicio.jsp">
+        <a class="navbar-brand" href="bibliotecario.jsp">
             <img src="assets/img/sigebi%20logo2.png" alt="SIGEBI Logo">
         </a>
         <!-- Buscador -->
@@ -261,7 +261,7 @@
 
 <div class="container-fluid main-content">
     <div class="table-container">
-        <h2 class="text-center mb-4">Libros Disponibles</h2>
+        <h2 class="text-center mb-4">Stock de libros</h2>
 
         <table class="table table-bordered table-striped">
             <thead>

@@ -48,6 +48,7 @@ public class LibroDao implements DaoLibro {
                     }
 
                     return true;
+
                 }
             }
         } catch (SQLException e) {
@@ -90,7 +91,7 @@ public class LibroDao implements DaoLibro {
         List <ResultadosConsulta> tablalibros = new ArrayList<>();
 
         try {
-            String query = "SELECT l.id_libro, l.titulo, l.autor, l.ejemplares, l.isbn, c.nombre_categoria AS categoria, e.nombre AS editorial FROM libro l JOIN librohascategoria lc ON l.id_libro = lc.id_libro JOIN categoria c ON lc.id_categoria = c.id_categoria JOIN librohaseditorial le ON l.id_libro = le.id_libro JOIN editorial e ON le.id_editorial = e.id_editorial";
+            String query = "SELECT l.id_libro, l.titulo, l.autor, l.ejemplares, l.isbn, GROUP_CONCAT(DISTINCT c.nombre_categoria SEPARATOR ', ') AS categorias, GROUP_CONCAT(DISTINCT e.nombre SEPARATOR ', ') AS editoriales FROM libro l LEFT JOIN librohascategoria lc ON l.id_libro = lc.id_libro LEFT JOIN categoria c ON lc.id_categoria = c.id_categoria LEFT JOIN librohaseditorial le ON l.id_libro = le.id_libro LEFT JOIN editorial e ON le.id_editorial = e.id_editorial GROUP BY l.id_libro, l.titulo, l.autor, l.ejemplares, l.isbn";
             PreparedStatement stmt = con.prepareStatement(query);
             ResultSet rs = stmt.executeQuery();
 
@@ -100,8 +101,8 @@ public class LibroDao implements DaoLibro {
                 String autor = rs.getString("autor");
                 int ejemplares = rs.getInt("ejemplares");
                 String isbn = rs.getString("isbn");
-                String categoria = rs.getString("categoria");
-                String editorial = rs.getString("editorial");
+                String categoria = rs.getString("categorias");
+                String editorial = rs.getString("editoriales");
 
                 ResultadosConsulta consulta = new ResultadosConsulta(id, isbn, titulo, autor, editorial, categoria, ejemplares);
                 tablalibros.add(consulta);

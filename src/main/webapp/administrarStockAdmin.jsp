@@ -9,8 +9,8 @@
   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
   <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
   <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="css/estilos.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css">
@@ -212,7 +212,7 @@
 
 <body>
 <nav class="navbar">
-  <a class="navbar-brand" href="inicio.jsp">
+  <a class="navbar-brand" href="admin.jsp">
     <img src="assets/img/sigebi%20logo2.png" alt="SIGEBI Logo">
     Bienvenido Administrador
   </a>
@@ -245,44 +245,34 @@
     <table class="table table-bordered table-striped">
       <thead>
       <tr>
-        <th>Titulo</th>
         <th>ISBN</th>
+        <th>Titulo</th>
         <th>Autor</th>
+        <th>Editorial</th>
         <th>Categoria</th>
         <th>Stock</th>
-        <th>En Prestamo</th>
-        <th>En Biblioteca</th>
         <th>Acciones</th>
       </tr>
       </thead>
-      <tbody>
-      <tr>
-        <td>Libro 1</td>
-        <td>978-1234567890</td>
-        <td>Axel</td>
-        <td>Drama</td>
-        <td>5</td>
-        <td>2</td>
-        <td>3</td>
-        <td>
-          <button type="button" class="btn btn-eliminar">Eliminar</button>
-          <button type="button" class="btn btn-modificar" href="modificarLibro.jsp">Modificar</button>
-        </td>
-      </tr>
-      <tr>
-        <td>Libro 2</td>
-        <td>978-0987654321</td>
-        <td>Tekomahua</td>
-        <td>Ciencia Ficción</td>
-        <td>3</td>
-        <td>2</td>
-        <td>1</td>
-        <td>
-          <button type="button" class="btn btn-eliminar">Eliminar</button>
-          <button type="button" class="btn btn-modificar">Modificar</button>
-        </td>
-      </tr>
-      </tbody>
+      <c:forEach items="${tablalibros}" var="libro">
+        <tbody>
+        <tr>
+          <td>${libro.isbn}</td>
+          <td>${libro.titulo}</td>
+          <td>${libro.autor}</td>
+          <td>${libro.editorial}</td>
+          <td>${libro.categoria}</td>
+          <td>${libro.ejemplares}</td>
+          <td>
+            <a class="btn btn-eliminar" href="${pageContext.request.contextPath}/deleteBook?id=${libro.id_libro}">Eliminar</a>
+            <form action="modificar" method="get">
+              <input type="hidden" name="operacion" value="modificar"/>
+              <button type="submit" class="btn btn-modificar">Modificar</button>
+            </form>
+          </td>
+        </tr>
+        </tbody>
+      </c:forEach>
     </table>
   </div>
 </div>

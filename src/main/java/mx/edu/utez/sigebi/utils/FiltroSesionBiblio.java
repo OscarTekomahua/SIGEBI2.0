@@ -9,7 +9,7 @@ import java.io.IOException;
 @WebFilter(urlPatterns = {
         "/bibliotecario.jsp",
         "/administrarStok.jsp",
-        "/revisarHistorial.jsp",
+        //"/revisarHistorial.jsp",
         "/modificarLibro.jsp",
         "/agregarlibro.jsp"
 })
