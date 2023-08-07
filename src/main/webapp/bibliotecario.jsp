@@ -148,6 +148,14 @@
         <input type="hidden" name="operacion" value="stocklibros">
         <button type="submit" class="btn btn-ghost" href="mostrarlibros"><i class="fas fa-box-open"> Gestionar libros</i></button>
     </form>
+    <form action="readEditorial" method="get">
+        <input type="hidden" name="operacion" value="editoriales">
+        <button type="submit" class="btn btn-ghost" href="readEditorial"><i class="fas fa-box-open"> Editoriales</i></button>
+    </form>
+    <form action="readCategoria" method="get">
+        <input type="hidden" name="operacion" value="categorias">
+        <button type="submit" class="btn btn-ghost" href="readCategoria"><i class="fas fa-box-open"> Categorias</i></button>
+    </form>
     <a class="btn btn-ghost" href="#"><i class="fas fa-door-open"></i>Gestionar salas</a>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>

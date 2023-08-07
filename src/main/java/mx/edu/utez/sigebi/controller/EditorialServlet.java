@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
 
 @WebServlet (name = "EditorialServlet", urlPatterns = {"/createEditorial", "/readEditorial", "/updateEditorial", "/deleteEditorial"})
 public class EditorialServlet extends HttpServlet {
@@ -23,10 +25,6 @@ public class EditorialServlet extends HttpServlet {
 
                 EditorialDao editDao = new EditorialDao();
 
-                Editorial neweditorial = new Editorial();
-
-                neweditorial.setNombre(nuevaEditorial);
-
                 boolean editExiste = editDao.editorialExiste(nuevaEditorial);
 
                 if (editExiste) {
@@ -34,18 +32,36 @@ public class EditorialServlet extends HttpServlet {
                     req.getSession().setAttribute("error", mensajeError);
                     resp.sendRedirect("formularioeditorial.jsp");
                 } else {
+                    Editorial neweditorial = new Editorial();
+
+                    neweditorial.setNombre(nuevaEditorial);
+
                     boolean editorialRegistrada = editDao.insert(neweditorial);
 
                     if (editorialRegistrada) {
-                        resp.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-                        resp.setHeader("Pragma", "no-cache");
-                        resp.setDateHeader("Expires", 0);
+                        List<Editorial> listaeditoriales = editDao.findAll();
+                        req.getSession().setAttribute("editoriales", listaeditoriales);
+
+                        CategoriaDao catDao = new CategoriaDao();
+                        List<Categoria> listacategorias = catDao.findAll();
+                        req.getSession().setAttribute("categorias", listacategorias);
+
                         resp.sendRedirect("agregarlibro.jsp");
                     }
                 }
 
                 break;
             case "/readEditorial":
+                if (req.getParameter("operacion").equals("editoriales")) {
+
+                    EditorialDao editorialDao = new EditorialDao();
+
+                    List<Editorial> editoriales = editorialDao.findAll();
+
+                    req.setAttribute("editoriales", editoriales);
+                }
+
+                req.getRequestDispatcher("editoriales.jsp").forward(req, resp);
 
                 break;
             case "/updateEditorial":

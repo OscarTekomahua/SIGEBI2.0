@@ -6,6 +6,8 @@ import mx.edu.utez.sigebi.model.DAO.EditorialDao;
 import mx.edu.utez.sigebi.model.DAO.LibroDao;
 import mx.edu.utez.sigebi.model.Editorial;
 import mx.edu.utez.sigebi.model.Libro;
+import mx.edu.utez.sigebi.model.ResultadosConsulta;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,9 +38,6 @@ public class AgregarLibroServlet extends HttpServlet {
             List<Categoria> listacategorias = catDao.findAll();
             req.getSession().setAttribute("categorias", listacategorias);
         }
-        resp.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-        resp.setHeader("Pragma", "no-cache");
-        resp.setDateHeader("Expires", 0);
         resp.sendRedirect(respuesta);
 
     }
@@ -60,7 +59,13 @@ public class AgregarLibroServlet extends HttpServlet {
         boolean existo = libroDao.insert(newlibro, idEditoriales, idCategorias);
 
         if (existo) {
-            resp.sendRedirect("administrarStok.jsp");
+            LibroDao dao = new LibroDao();
+
+            List<ResultadosConsulta> listalibro = dao.getAllAttributes();
+
+            req.setAttribute("tablalibros", listalibro);
+
+            req.getRequestDispatcher("administrarStok.jsp").forward(req, resp);
         } else {
             resp.sendRedirect("revisarHistorial.jsp");
         }
