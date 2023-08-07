@@ -143,14 +143,10 @@
 </div>
 <div class="hero-text-box">
     <h1>Bibliotecario</h1>
-    <a class="btn btn-ghost" href="revisarHistorial.jsp"><i class="fas fa-history"></i>Revisar historial</a>
+    <a class="btn btn-ghost" href="usuarios.jsp"><i class="fas fa-users"></i>Revisar Usuarios</a>
     <form action="mostrarlibros" method="get">
         <input type="hidden" name="operacion" value="stocklibros">
-        <button type="submit" class="btn btn-ghost" href="mostrarlibros">Stock de libros</button>
-    </form>
-    <form action="AgregarLibroServlet" method="get">
-        <input type="hidden" name="operacion" value="nuevolibro">
-        <button type="submit" class="btn btn-ghost" href="agregarlibro.jsp">Gestionar Libros</button>
+        <button type="submit" class="btn btn-ghost" href="mostrarlibros"><i class="fas fa-box-open"> Gestionar libros</i></button>
     </form>
     <a class="btn btn-ghost" href="#"><i class="fas fa-door-open"></i>Gestionar salas</a>
 </div>

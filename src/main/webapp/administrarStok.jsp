@@ -17,36 +17,18 @@
     <title>Libros en el inventario</title>
 </head>
 <style>
+
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400&display=swap');
     body {
-        font-family: 'Montserrat', sans-serif; /* Agregamos la fuente Montserrat */
+        font-family: 'Montserrat', sans-serif;
+        background-color: #f2f2f2;
+        color: #333;
         margin: 0;
-        padding: 0;
     }
 
-    .container-fluid {
-        padding-left: 0;
-        padding-right: 0;
-    }
-
-    .table-container {
-        max-width: 100%;
-        overflow-x: auto;
-    }
-
-    .table {
-        min-width: 800px;
-        margin: 0 auto;
-    }
-
-    footer {
-        margin-top: 30px;
-    }
-
-    /* Ajustar el espacio del navbar */
     .navbar {
-        background-color: #009475;
-        min-height: 100px; /* Ajusta la altura del navbar para evitar que se descuadre */
+        background-color: #002E60;
+        height: 100px;
         display: flex;
         align-items: center;
         justify-content: flex-end;
@@ -68,10 +50,6 @@
         margin-right: 10px;
     }
 
-    /* Agregar un margen al contenedor principal para evitar que el navbar se superponga */
-    .main-content {
-        margin-top: 100px; /* Ajusta el valor según lo que necesites */
-    }
     .navbar-nav {
         display: flex;
         align-items: center;
@@ -93,21 +71,20 @@
         color: #002E60;
     }
 
-    /* Estilos del Menú Lateral */
     .sidebar {
         position: fixed;
         top: 0;
-        right: -250px; /* Posiciona el sidebar en el lado derecho (inicialmente oculto) */
+        right: -250px;
         height: 100%;
         width: 250px;
         background-color: rgba(255, 255, 255, 0.8);
         padding-top: 100px;
         transition: transform 0.3s;
-        z-index: 2; /* Asegura que el menú esté por encima del contenido */
+        z-index: 2;
     }
 
     .sidebar.show {
-        right: 0; /* Despliega el sidebar hacia la derecha cuando está abierto */
+        right: 0;
     }
 
     .sidebar ul {
@@ -121,7 +98,7 @@
     }
 
     .sidebar a {
-        color: #000000; /* Cambia el color del texto en el menú lateral a blanco */
+        color: #000000;
         text-decoration: none;
         font-size: 18px;
         display: block;
@@ -134,9 +111,9 @@
         color: #71dbca;
     }
 
-    /* Estilos de la tabla */
-    .container {
-        margin-left: 250px;
+    .container-tab {
+        margin-left: 10px;
+        margin-right: 10px;
         padding-top: 30px;
     }
 
@@ -148,8 +125,6 @@
     .table {
         width: 100%;
     }
-
-
 
     .table thead th {
         background-color: #009475;
@@ -166,7 +141,6 @@
         white-space: nowrap;
     }
 
-    /* Estilos de los botones */
     .btn-group {
         display: flex;
         justify-content: center;
@@ -186,29 +160,29 @@
 
     .btn-eliminar {
         background-color: #e74c3c;
+        color: #fff;
+        transition: background-color 0.3s;
     }
 
-    .btn-modificar {
-        background-color: #175bda;
+    .btn-eliminar:hover {
+        background-color: #F1948A;
     }
 
     .btn-agregar {
-        background-color: #175bda;
-        margin-top: 30px;
-        margin-left: 30px;
+        background-color: #009475;
     }
 
-    .btn-aceptar {
-        background-color: #2ecc71;
+    .btn-agregar:hover {
+        background-color: #2ECC71;
     }
 
-    .btn:hover {
-        opacity: 0.8;
-    }
-
-    /* Estilo para oscurecer el fondo cuando el sidebar esté abierto */
     .sidebar-open {
         overflow: hidden;
+    }
+
+    .sidebar-open .container-tab {
+        opacity: 0.6;
+        pointer-events: none;
     }
 
     .sidebar-open .container {
@@ -216,41 +190,44 @@
         pointer-events: none;
     }
 
-    .navbar-brand {
-        margin-right: 250px;
+    .btn-modificar {
+        background-color: #3498DB ;
+        color: #fff;
+        transition: background-color 0.3s;
     }
 
-    .form-inline {
-        margin-right: 700px;
+    .btn-modificar:hover {
+        background-color: #AED6F1 ;
     }
+
+    .buscador {
+        background-color: #009475;
+    }
+
 </style>
 </head>
-
 <body>
-
 <nav class="navbar">
-    <div class="container">
+    <div class="container d-flex justify-content-between align-items-center">
         <a class="navbar-brand" href="bibliotecario.jsp">
             <img src="assets/img/sigebi%20logo2.png" alt="SIGEBI Logo">
         </a>
-        <!-- Buscador -->
-        <form class="form-inline mx-auto">
-            <input id="searchInput" class="form-control mr-2" type="search" placeholder="Buscar" aria-label="Buscar">
-            <button class="btn btn-outline-success" type="button" id="searchButton">Buscar</button>
-        </form>
-        <!-- Botón del menú -->
+        <div class="nav-item">
+            <form class="d-flex">
+                <input id="searchInput" class="form-control mr-2" type="search" placeholder="Buscar" aria-label="Buscar">
+                <button class="btn btn-outline-success buscador" type="button" id="searchButton">Buscar</button>
+            </form>
+        </div>
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidebarCollapse">
-            <!-- Reemplazar el icono de tres líneas por uno de Font Awesome (fa-bars) -->
             <i class="fas fa-bars"></i>
         </button>
     </div>
 </nav>
 <div class="sidebar hide">
     <ul>
-        <li><a href="revisarHistorial.jsp">Revisar Historial</a></li>
-        <li><a href="administrarStok.jsp">Administrar Stock</a></li>
-        <li><a href="#">Revisar Usuarios</a></li>
-        <li><a href="#">Cerrar Sesión</a></li>
+        <li><a href="bibliotecario.jsp" class="fas fa-home"> Inicio</a></li>
+        <li><a href="#" class="fas fa-users"> Revisar Usuarios</a></li>
+        <li><a href="#" class="fas fa-sign-out-alt"> Cerrar Sesión</a></li>
     </ul>
 </div>
 
@@ -259,7 +236,7 @@
     <button type="submit" href="agregarlibro.jsp" class="btn btn-agregar">Agregar Libro</button>
 </form>
 
-<div class="container-fluid main-content">
+<div class="container-tab">
     <div class="table-container">
         <h2 class="text-center mb-4">Stock de libros</h2>
 

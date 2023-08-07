@@ -36,7 +36,9 @@ public class AgregarLibroServlet extends HttpServlet {
             List<Categoria> listacategorias = catDao.findAll();
             req.getSession().setAttribute("categorias", listacategorias);
         }
-
+        resp.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+        resp.setHeader("Pragma", "no-cache");
+        resp.setDateHeader("Expires", 0);
         resp.sendRedirect(respuesta);
 
     }

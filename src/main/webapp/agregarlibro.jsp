@@ -7,7 +7,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <title>Modificar Libro</title>
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/estilos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css">
+    <title>Agregar Libro</title>
 </head>
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400&display=swap');
@@ -19,14 +26,14 @@
     }
 
     .navbar {
-        background-color: #009475;
+        background-color: #002E60;
+        height: 100px;
         display: flex;
         align-items: center;
-        justify-content: flex-start;
-        height: 60px;
-        padding-left: 20px;
+        justify-content: flex-end;
+        padding: 0 20px;
         position: relative;
-        height: 100px;
+        z-index: 999;
     }
 
     .navbar a {
@@ -72,79 +79,6 @@
         color: #002E60;
     }
 
-    .carousel-img {
-        max-height: 500px;
-    }
-
-    .dropdown-menu {
-        background-color: #ffffff00;
-        color: #ffffff00;
-    }
-
-    .image-circles {
-        display: flex;
-        justify-content: center;
-        margin-top: 30px;
-    }
-
-    .circle-image {
-        width: 200px;
-        height: 200px;
-        border-radius: 50%;
-        overflow: hidden;
-        margin: 0 10px;
-        position: relative;
-    }
-
-    .circle-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    .circle-text {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        text-align: center;
-        color: #eee;
-        font-size: 14px;
-        font-weight: bold;
-        text-transform: uppercase;
-        padding: 10px;
-        background-color: rgba(0, 0, 0, 0.7);
-    }
-
-    .dropdown-menu {
-        background-color: #009475;
-        border: none;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        border-radius: 5px;
-        padding: 10px;
-        font-size: 16px;
-        color: #eee;
-        margin-top: 8px;
-        min-width: 200px;
-    }
-
-    .dropdown-menu a {
-        color: #eee;
-        text-decoration: none;
-        display: block;
-        padding: 8px 16px;
-        transition: background-color 0.3s ease;
-    }
-
-    .dropdown-menu a:hover {
-        background-color: #74bbac;
-    }
-
-
-    .dropdown-toggle[aria-expanded="true"]::after {
-        transform: rotate(90deg);
-    }
-
     .navbar-nav .nav-item .nav-link:hover {
         text-decoration: none;
     }
@@ -157,9 +91,94 @@
         background-color: #005ec9;
         margin-top: 20px;
     }
+
+    /* Estilos del Menú Lateral */
+    .sidebar {
+        position: fixed;
+        top: 0;
+        right: -250px;
+        height: 100%;
+        width: 250px;
+        background-color: rgba(255, 255, 255, 0.8);
+        padding-top: 100px;
+        transition: transform 0.3s;
+        z-index: 2;
+    }
+
+    .sidebar.show {
+        right: 0;
+    }
+
+    .sidebar ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .sidebar li {
+        padding: 10px;
+    }
+
+    .sidebar a {
+        color: #000000;
+        text-decoration: none;
+        font-size: 18px;
+        display: block;
+        padding: 10px;
+        letter-spacing: 1px;
+        transition: color 0.3s;
+    }
+
+    .sidebar a:hover {
+        color: #71dbca;
+    }
+
+    /* Estilo para oscurecer el fondo cuando el sidebar esté abierto */
+    .sidebar-open {
+        overflow: hidden;
+    }
+
+    .sidebar-open .container {
+        opacity: 0.6;
+        pointer-events: none;
+    }
+
+    .sidebar-open .container mt-5{
+        opacity: 0.6;
+        pointer-events: none;
+    }
+
+    .addNewCat {
+        background-color: #005ec9;
+        margin-top: 20px;
+        margin-left: 20px;
+        padding: 10px 20px;
+        margin: 5px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        color: #ffffff;
+        transition: background-color 0.3s;
+    }
+
+    .addNewEdit {
+        background-color: #005ec9;
+        margin-top: 20px;
+        margin-left: 20px;
+        padding: 10px 20px;
+        margin: 5px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        color: #ffffff;
+        transition: background-color 0.3s;
+    }
+
 </style>
 
-<body style="display: flex; flex-direction: column; min-height: 100vh;">
+<body>
 <nav class="navbar">
     <div class="container">
         <a class="navbar-brand" href="bibliotecario.jsp">
@@ -172,12 +191,13 @@
 </nav>
 <div class="sidebar hide">
     <ul>
-        <li><a href="revisarHistorial.jsp">Revisar Historial</a></li>
-        <li><a href="administrarStok.jsp">Administrar Stock</a></li>
-        <li><a href="#">Revisar Usuarios</a></li>
-        <li><a href="#">Cerrar Sesión</a></li>
+        <li><a href="bibliotecario.jsp" class="fas fa-home"> Inicio</a></li>
+        <li><a href="#" class="fas fa-users"> Revisar Usuarios</a></li>
+        <li><a href="#" class="fas fa-sign-out-alt"> Cerrar Sesión</a></li>
     </ul>
 </div>
+<a href="formulariocategoria.jsp"><button class="addNewCat">Agregar Nueva Categoria</button></a><br>
+<a href="formularioeditorial.jsp"><button class="addNewEdit">Agregar Nueva Editorial</button></a>
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-lg-6">
@@ -231,8 +251,31 @@
     </div>
 </div>
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script>
+
+    $(document).ready(function () {
+        // Función para mostrar/ocultar el menú lateral y el fondo con efecto de deslizamiento
+        $(".navbar-toggler").click(function () {
+            $(".sidebar").toggleClass("show hide");
+            $(".navbar-toggler").toggleClass("hidden"); // Agrega la clase 'hidden' al botón del icono
+            $("body").toggleClass("sidebar-open");
+        });
+
+        // Cierra el menú cuando se hace clic fuera del menú
+        $(document).click(function (event) {
+            if (!$(event.target).closest(".sidebar, .navbar-toggler").length) {
+                $(".sidebar").removeClass("show").addClass("hide");
+                $(".navbar-toggler").removeClass("hidden"); // Elimina la clase 'hidden' del botón del icono
+                $("body").removeClass("sidebar-open");
+            }
+        });
+    });
+
+</script>
 </html>

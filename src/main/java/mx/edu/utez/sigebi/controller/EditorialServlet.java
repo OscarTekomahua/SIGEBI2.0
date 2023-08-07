@@ -37,7 +37,10 @@ public class EditorialServlet extends HttpServlet {
                     boolean editorialRegistrada = editDao.insert(neweditorial);
 
                     if (editorialRegistrada) {
-                        resp.sendRedirect("administrarStok.jsp");
+                        resp.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+                        resp.setHeader("Pragma", "no-cache");
+                        resp.setDateHeader("Expires", 0);
+                        resp.sendRedirect("agregarlibro.jsp");
                     }
                 }
 

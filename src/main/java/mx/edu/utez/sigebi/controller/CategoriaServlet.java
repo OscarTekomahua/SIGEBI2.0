@@ -36,6 +36,9 @@ public class CategoriaServlet extends HttpServlet {
                     boolean catRegistrada = catDao.insert(newcategoria);
 
                     if (catRegistrada) {
+                        resp.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+                        resp.setHeader("Pragma", "no-cache");
+                        resp.setDateHeader("Expires", 0);
                         resp.sendRedirect("agregarlibro.jsp");
                     }
                 }
