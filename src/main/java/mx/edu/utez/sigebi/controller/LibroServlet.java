@@ -49,7 +49,7 @@ public class LibroServlet extends HttpServlet {
                     System.out.println(id);
                     LibroDao dao2 = new LibroDao();
                     dao2.delete(id);
-                    resp.sendRedirect("bibliotecario.jsp");
+                resp.sendRedirect(req.getContextPath() + "/mostrarlibros?operacion=stocklibros");
                 break;
         }
 
