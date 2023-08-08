@@ -9,9 +9,14 @@ import java.io.IOException;
 @WebFilter(urlPatterns = {
         "/bibliotecario.jsp",
         "/administrarStok.jsp",
-        //"/revisarHistorial.jsp",
         "/modificarLibro.jsp",
-        "/agregarlibro.jsp"
+        "/agregarlibro.jsp",
+        "/categorias.jsp",
+        "/editoriales.jsp",
+        "/salas.jsp",
+        "/formulariocategoria.jsp",
+        "/formularioeditorial.jsp",
+        "/usuarios.jsp"
 })
 public class FiltroSesionBiblio implements Filter {
     @Override

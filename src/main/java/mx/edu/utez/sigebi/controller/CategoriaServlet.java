@@ -14,20 +14,20 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-@WebServlet (name = "CategoriaServlet", urlPatterns = {"/createCategoria", "/readCategoria", "/updateCategoria", "/deleteCategoria"})
+@WebServlet (name = "CategoriaServlet", urlPatterns = {"/createCategoria", "/createCategoriaAdmin","/readCategoria", "/readCategoriaAdmin","/updateCategoria", "/deleteCategoria"})
 public class CategoriaServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String opcion = req.getServletPath();
 
+        String nombreCategoria = req.getParameter("categoria");
+
+        CategoriaDao catDao = new CategoriaDao();
+
+        boolean categoriaExiste = catDao.catExiste(nombreCategoria);
+
         switch (opcion) {
             case "/createCategoria":
-                String nombreCategoria = req.getParameter("categoria");
-
-                CategoriaDao catDao = new CategoriaDao();
-
-                boolean categoriaExiste = catDao.catExiste(nombreCategoria);
-
                 if (categoriaExiste) {
                     String mensajeError = "¡Ya existe una categoria " + nombreCategoria + "!";
                     req.getSession().setAttribute("error", mensajeError);
@@ -50,9 +50,48 @@ public class CategoriaServlet extends HttpServlet {
                         resp.sendRedirect("agregarlibro.jsp");
                     }
                 }
-
                 break;
+
+            case "/createCategoriaAdmin":
+                if (categoriaExiste) {
+                    String mensajeError = "¡Ya existe una categoria " + nombreCategoria + "!";
+                    req.getSession().setAttribute("error", mensajeError);
+                    resp.sendRedirect("formulariocategoriaAdmin.jsp");
+                } else {
+                    Categoria newcategoria = new Categoria();
+
+                    newcategoria.setNombre_categoria(nombreCategoria);
+
+                    boolean catRegistrada = catDao.insert(newcategoria);
+
+                    if (catRegistrada) {
+                        EditorialDao editDao = new EditorialDao();
+                        List<Editorial> listaeditoriales = editDao.findAll();
+                        req.getSession().setAttribute("editoriales", listaeditoriales);
+
+                        List<Categoria> listacategorias = catDao.findAll();
+                        req.getSession().setAttribute("categorias", listacategorias);
+
+                        resp.sendRedirect("agregarlibroAdmin.jsp");
+                    }
+                }
+                break;
+
+            case "/updateCategoria":
+                break;
+
+            case "/deleteCategoria":
+                break;
+        }
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String opcion = req.getServletPath();
+
+        switch (opcion) {
             case "/readCategoria":
+
                 if (req.getParameter("operacion").equals("categorias")) {
 
                     CategoriaDao categoriaDao = new CategoriaDao();
@@ -66,16 +105,21 @@ public class CategoriaServlet extends HttpServlet {
                 req.getRequestDispatcher("categorias.jsp").forward(req, resp);
 
                 break;
-            case "/updateCategoria":
-                break;
-            case "/deleteCategoria":
+
+            case "/readCategoriaAdmin":
+                if (req.getParameter("operacion").equals("categorias")) {
+
+                    CategoriaDao categoriaDao = new CategoriaDao();
+
+                    List<Categoria> categorias = categoriaDao.findAll();
+
+                    req.setAttribute("categorias", categorias);
+
+                }
+
+                req.getRequestDispatcher("categoriasAdmin.jsp").forward(req, resp);
                 break;
         }
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
     }
 
 }

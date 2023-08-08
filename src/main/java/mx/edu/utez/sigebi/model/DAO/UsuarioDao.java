@@ -3,6 +3,7 @@ package mx.edu.utez.sigebi.model.DAO;
 import mx.edu.utez.sigebi.model.Persona;
 import mx.edu.utez.sigebi.model.Rol;
 import mx.edu.utez.sigebi.model.Usuario;
+import mx.edu.utez.sigebi.model.UsuarioInter;
 import mx.edu.utez.sigebi.utils.EnviarCorreo;
 import mx.edu.utez.sigebi.utils.MysqlConector;
 import java.sql.*;
@@ -24,25 +25,29 @@ public class UsuarioDao implements DaoRepository {
     }
 
     @Override
-    public List findAll() {
+    public List<UsuarioInter> findAll() {
+        List<UsuarioInter> listausuarios = new ArrayList<>();
         try {
-            PreparedStatement stmt = con.prepareStatement("select * from usuario");
+            String query = "SELECT persona.id_persona, persona.nombres, persona.apellido1, persona.apellido2, usuario.correo_institucional, rol.tipo_usuario FROM persona INNER JOIN usuario ON persona.id_persona = usuario.id_persona INNER JOIN rol ON usuario.rol = rol.id_rol";
+            PreparedStatement stmt = con.prepareStatement(query);
             ResultSet res = stmt.executeQuery();
             while (res.next()) {
-                usr.setId_usuario(res.getInt("id_usuario"));
-                usr.setId_persona(res.getInt("id_persona"));
-                usr.setRol((Rol) (res.getObject("rol")));
-                usr.setCorreo_institucional(res.getString("correo_institucional"));
-                usr.setContra(res.getString("contraseña"));
-                usr.setCodigo(res.getString("codigo"));
-                listaUsuario.add(usr);
+                int idPersona = res.getInt("id_persona");
+                String nombres = res.getString("nombres");
+                String apellidoP = res.getString("apellido1");
+                String apellidoM = res.getString("apellido2");
+                String correo = res.getString("correo_institucional");
+                String tipo_usuario = res.getString("tipo_usuario");
+
+                UsuarioInter usuario = new UsuarioInter(idPersona, nombres, apellidoP, apellidoM, correo, tipo_usuario);
+                listausuarios.add(usuario);
             }
             res.close();
             con.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return listaUsuario;
+        return listausuarios;
     }
 
     @Override

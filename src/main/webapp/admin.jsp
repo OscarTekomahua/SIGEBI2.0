@@ -1,9 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<c:if test="${not empty sesion}">
-    <c:if test="${tipoUsuario == 'Administrador'}">
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -148,16 +144,26 @@
 </div>
 <div class="hero-text-box">
     <h1>Administrador</h1>
-    <a class="btn btn-ghost" href="revisarHistorial.jsp"><i class="fas fa-history"></i>Revisar historial</a>
+    <form action="readUsersAdmin" method="get">
+        <input type="hidden" name="operacion" value="usuarios">
+        <button type="submit" class="btn btn-ghost"><i class="fas fa-users"> Gestionar Usuarios</i></button>
+    </form>
     <form action="mostrarlibrosadmin" method="get">
         <input type="hidden" name="operacion" value="stocklibros">
-        <button type="submit" class="btn btn-ghost" href="mostrarlibros">Stock de libros</button>
+        <button type="submit" class="btn btn-ghost"><i class="fas fa-stream"> Gestionar libros</i></button>
     </form>
-    <form action="AgregarLibroServlet" method="get">
-        <input type="hidden" name="operacion" value="nuevolibro">
-        <button type="submit" class="btn btn-ghost" href="agregarlibro.jsp">Gestionar Libros</button>
+    <form action="readEditorialAdmin" method="get">
+        <input type="hidden" name="operacion" value="editoriales">
+        <button type="submit" class="btn btn-ghost"><i class="fas fa-solid fa-book"> Editoriales</i></button>
     </form>
-    <a class="btn btn-ghost" href="#"><i class="fas fa-door-open"></i>Gestionar salas</a>
+    <form action="readCategoriaAdmin" method="get">
+        <input type="hidden" name="operacion" value="categorias">
+        <button type="submit" class="btn btn-ghost"><i class="fas fa-solid fa-bars"> Categorias</i></button>
+    </form>
+    <form action="salasAdmin" method="get">
+        <input type="hidden" name="operacion" value="tablasalas">
+        <button type="submit" class="btn btn-ghost"><i class="fas fa-door-open"> Gestionar Salas</i></button>
+    </form>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>
@@ -175,5 +181,3 @@
     });
 
 </script>
-</c:if>
-    </c:if>

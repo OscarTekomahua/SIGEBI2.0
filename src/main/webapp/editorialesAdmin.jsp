@@ -1,20 +1,20 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
-<html lang="es">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
   <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
   <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/estilos.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css">
-  <title>Libros en el inventario</title>
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css"/>
+  <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="assets/css/estilos.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css" />
+  <title>Editoriales disponibles</title>
 </head>
+
 <style>
 
   @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400&display=swap');
@@ -204,8 +204,9 @@
   }
 
 </style>
-</head>
+
 <body>
+
 <nav class="navbar">
   <div class="container d-flex justify-content-between align-items-center">
     <a class="navbar-brand" href="admin.jsp">
@@ -229,37 +230,23 @@
     <li><a href="#" class="fas fa-sign-out-alt"> Cerrar Sesión</a></li>
   </ul>
 </div>
-
-<form action="addnewBookAdmin" method="get">
-  <input type="hidden" name="operacion" value="nuevolibro">
-  <button type="submit" href="agregarlibro.jsp" class="btn btn-agregar">Agregar Libro</button>
-</form>
-
 <div class="container-tab">
   <div class="table-container">
-    <h2 class="text-center mb-4">Stock de libros</h2>
+    <h2 class="text-center mb-4">Editoriales</h2>
 
     <table class="table table-bordered table-striped">
       <thead>
       <tr>
-        <th>ISBN</th>
-        <th>Titulo</th>
-        <th>Autor</th>
+        <th>ID Editorial</th>
         <th>Editorial</th>
-        <th>Categoria</th>
-        <th>Stock</th>
         <th>Acciones</th>
       </tr>
       </thead>
-      <c:forEach items="${tablalibros}" var="libro">
+      <c:forEach items="${editoriales}" var="e">
         <tbody>
         <tr>
-          <td>${libro.isbn}</td>
-          <td>${libro.titulo}</td>
-          <td>${libro.autor}</td>
-          <td>${libro.editorial}</td>
-          <td>${libro.categoria}</td>
-          <td>${libro.ejemplares}</td>
+          <td>${e.id_editorial}</td>
+          <td>${e.nombre}</td>
           <td>
             <a class="btn btn-eliminar" href="${pageContext.request.contextPath}/deleteBook?id=${libro.id_libro}">Eliminar</a>
             <form action="modificar" method="get">
@@ -316,5 +303,4 @@
   });
 </script>
 </body>
-
 </html>

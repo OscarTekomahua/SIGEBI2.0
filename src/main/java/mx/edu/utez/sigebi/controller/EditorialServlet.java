@@ -14,19 +14,20 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-@WebServlet (name = "EditorialServlet", urlPatterns = {"/createEditorial", "/readEditorial", "/updateEditorial", "/deleteEditorial"})
+@WebServlet (name = "EditorialServlet", urlPatterns = {"/createEditorial", "/createEditorialAdmin", "/readEditorial", "/readEditorialAdmin", "/updateEditorial", "/deleteEditorial"})
 public class EditorialServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String opcion = req.getServletPath();
+
+        String nuevaEditorial = req.getParameter("editorial");
+
+        EditorialDao editDao = new EditorialDao();
+
+        boolean editExiste = editDao.editorialExiste(nuevaEditorial);
+
         switch (opcion) {
             case "/createEditorial":
-                String nuevaEditorial = req.getParameter("editorial");
-
-                EditorialDao editDao = new EditorialDao();
-
-                boolean editExiste = editDao.editorialExiste(nuevaEditorial);
-
                 if (editExiste) {
                     String mensajeError = "¡Ya existe una editorial " + nuevaEditorial + "!";
                     req.getSession().setAttribute("error", mensajeError);
@@ -49,8 +50,51 @@ public class EditorialServlet extends HttpServlet {
                         resp.sendRedirect("agregarlibro.jsp");
                     }
                 }
+                break;
+
+            case "/createEditorialAdmin":
+                if (editExiste) {
+                    String mensajeError = "¡Ya existe una editorial " + nuevaEditorial + "!";
+                    req.getSession().setAttribute("error", mensajeError);
+                    resp.sendRedirect("formularioeditorialAdmin.jsp");
+                } else {
+                    Editorial neweditorial = new Editorial();
+
+                    neweditorial.setNombre(nuevaEditorial);
+
+                    boolean editorialRegistrada = editDao.insert(neweditorial);
+
+                    if (editorialRegistrada) {
+                        List<Editorial> listaeditoriales = editDao.findAll();
+                        req.getSession().setAttribute("editoriales", listaeditoriales);
+
+                        CategoriaDao catDao = new CategoriaDao();
+                        List<Categoria> listacategorias = catDao.findAll();
+                        req.getSession().setAttribute("categorias", listacategorias);
+
+                        resp.sendRedirect("agregarlibroAdmin.jsp");
+                    }
+                }
+                break;
+
+            case "/readEditorial":
+                break;
+
+            case "/updateEditorial":
 
                 break;
+
+            case "/deleteEditorial":
+
+                break;
+        }
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String opcion = req.getServletPath();
+
+        switch (opcion) {
             case "/readEditorial":
                 if (req.getParameter("operacion").equals("editoriales")) {
 
@@ -62,19 +106,21 @@ public class EditorialServlet extends HttpServlet {
                 }
 
                 req.getRequestDispatcher("editoriales.jsp").forward(req, resp);
-
                 break;
-            case "/updateEditorial":
 
-                break;
-            case "/deleteEditorial":
+            case "/readEditorialAdmin":
+                if (req.getParameter("operacion").equals("editoriales")) {
 
+                    EditorialDao editorialDao = new EditorialDao();
+
+                    List<Editorial> editoriales = editorialDao.findAll();
+
+                    req.setAttribute("editoriales", editoriales);
+                }
+
+                req.getRequestDispatcher("editorialesAdmin.jsp").forward(req, resp);
                 break;
         }
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
     }
 

@@ -1,6 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -231,7 +230,7 @@
     </ul>
 </div>
 
-<form action="AgregarLibroServlet" method="get">
+<form action="addnewBookBiblio" method="get">
     <input type="hidden" name="operacion" value="nuevolibro">
     <button type="submit" href="agregarlibro.jsp" class="btn btn-agregar">Agregar Libro</button>
 </form>

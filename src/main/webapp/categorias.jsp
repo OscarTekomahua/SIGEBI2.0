@@ -232,13 +232,14 @@
 </div>
 <div class="container-tab">
   <div class="table-container">
-    <h2 class="text-center mb-4">Stock de libros</h2>
+    <h2 class="text-center mb-4">Categorias</h2>
 
     <table class="table table-bordered table-striped">
       <thead>
       <tr>
         <th>ID Editorial</th>
-        <th>Nombre Editorial</th>
+        <th>Categoria</th>
+        <th>Acciones</th>
       </tr>
       </thead>
       <c:forEach items="${categorias}" var="c">

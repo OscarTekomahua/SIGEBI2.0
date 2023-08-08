@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="css/estilos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css">
-    <title>SIGEBI</title>
+    <title>SIGEBI Bibliotecario</title>
     <style>
 
         body {
@@ -138,7 +138,7 @@
 <body>
 <div class="navbar">
     <a class="navbar-brand" href="bibliotecario.jsp"><img src="assets/img/sigebi%20logo2.png"></a>
-    <h4 class="sigebi">Sistema de Gestión Bibliotecaria</h4>
+    <h4 class="sigebi">Sistema de Gestión Bibliotecaria UTEZ</h4>
     <button class="botonCerrarSesion" id="botonCerrarSesion"></button>
 </div>
 <div class="hero-text-box">
@@ -146,17 +146,20 @@
     <a class="btn btn-ghost" href="usuarios.jsp"><i class="fas fa-users"></i>Revisar Usuarios</a>
     <form action="mostrarlibros" method="get">
         <input type="hidden" name="operacion" value="stocklibros">
-        <button type="submit" class="btn btn-ghost" href="mostrarlibros"><i class="fas fa-box-open"> Gestionar libros</i></button>
+        <button type="submit" class="btn btn-ghost"><i class="fas fa-stream"> Gestionar libros</i></button>
     </form>
     <form action="readEditorial" method="get">
         <input type="hidden" name="operacion" value="editoriales">
-        <button type="submit" class="btn btn-ghost" href="readEditorial"><i class="fas fa-box-open"> Editoriales</i></button>
+        <button type="submit" class="btn btn-ghost"><i class="fas fa-solid fa-book"> Editoriales</i></button>
     </form>
     <form action="readCategoria" method="get">
         <input type="hidden" name="operacion" value="categorias">
-        <button type="submit" class="btn btn-ghost" href="readCategoria"><i class="fas fa-box-open"> Categorias</i></button>
+        <button type="submit" class="btn btn-ghost"><i class="fas fa-solid fa-bars"> Categorias</i></button>
     </form>
-    <a class="btn btn-ghost" href="#"><i class="fas fa-door-open"></i>Gestionar salas</a>
+    <form action="salasBiblio" method="get">
+        <input type="hidden" name="operacion" value="tablasalas">
+        <button type="submit" class="btn btn-ghost"><i class="fas fa-door-open"> Gestionar Salas</i></button>
+    </form>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>

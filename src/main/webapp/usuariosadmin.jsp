@@ -1,20 +1,20 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="assets/css/estilos.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css" />
-    <title>Editoriales disponibles</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/estilos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css">
+    <title>Libros en el inventario</title>
 </head>
-
 <style>
 
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400&display=swap');
@@ -204,12 +204,11 @@
     }
 
 </style>
-
+</head>
 <body>
-
 <nav class="navbar">
     <div class="container d-flex justify-content-between align-items-center">
-        <a class="navbar-brand" href="bibliotecario.jsp">
+        <a class="navbar-brand" href="admin.jsp">
             <img src="assets/img/sigebi%20logo2.png" alt="SIGEBI Logo">
         </a>
         <div class="nav-item">
@@ -225,34 +224,49 @@
 </nav>
 <div class="sidebar hide">
     <ul>
-        <li><a href="bibliotecario.jsp" class="fas fa-home"> Inicio</a></li>
+        <li><a href="admin.jsp" class="fas fa-home"> Inicio</a></li>
         <li><a href="#" class="fas fa-users"> Revisar Usuarios</a></li>
         <li><a href="#" class="fas fa-sign-out-alt"> Cerrar Sesión</a></li>
     </ul>
 </div>
+
+<form action="addnewBookBiblio" method="get">
+    <input type="hidden" name="operacion" value="nuevolibro">
+    <button type="submit" href="agregarlibro.jsp" class="btn btn-agregar">Registrar Nuevo Administrador</button>
+</form>
+
+<form action="addnewBookBiblio" method="get">
+    <input type="hidden" name="operacion" value="nuevolibro">
+    <button type="submit" href="agregarlibro.jsp" class="btn btn-agregar">Registrar Nuevo Bibliotecario</button>
+</form>
+
 <div class="container-tab">
     <div class="table-container">
-        <h2 class="text-center mb-4">Editoriales</h2>
+        <h2 class="text-center mb-4">Stock de libros</h2>
 
         <table class="table table-bordered table-striped">
             <thead>
             <tr>
-                <th>ID Editorial</th>
-                <th>Editorial</th>
+                <th>ID</th>
+                <th>Nombre(s)</th>
+                <th>Apellido Paterno</th>
+                <th>Apellido Materno</th>
+                <th>Correo Institucional</th>
+                <th>Rol</th>
                 <th>Acciones</th>
             </tr>
             </thead>
-            <c:forEach items="${editoriales}" var="e">
+            <c:forEach items="${users}" var="u">
                 <tbody>
                 <tr>
-                    <td>${e.id_editorial}</td>
-                    <td>${e.nombre}</td>
+                    <td>${u.id_persona}</td>
+                    <td>${u.nombres}</td>
+                    <td>${u.apellido1}</td>
+                    <td>${u.apellido2}</td>
+                    <td>${u.correo_institucional}</td>
+                    <td>${u.tipo_usuario}</td>
                     <td>
-                        <a class="btn btn-eliminar" href="${pageContext.request.contextPath}/deleteBook?id=${libro.id_libro}">Eliminar</a>
-                        <form action="modificar" method="get">
-                            <input type="hidden" name="operacion" value="modificar"/>
-                            <button type="submit" class="btn btn-modificar">Modificar</button>
-                        </form>
+                        <a class="btn btn-eliminar" href="${pageContext.request.contextPath}/deleteBook?id=${libro.id_libro}">Dar de baja Usuario</a>
                     </td>
                 </tr>
                 </tbody>
@@ -303,4 +317,5 @@
     });
 </script>
 </body>
+
 </html>
