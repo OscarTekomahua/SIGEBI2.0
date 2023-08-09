@@ -182,6 +182,21 @@ values ('Planeta');
 insert into editorial (nombre) 
 values ('Alba');
 select * from editorial;
+DELIMITER $$
+CREATE PROCEDURE ELIMINAR_EDITORIAL(in idEditorial int )
+BEGIN
+
+DELETE FROM
+    librohaseditorial
+WHERE
+        id_editorial = idEditorial;
+delete from
+    editorial
+where
+        id_editorial = idEditorial;
+END
+$$
+DELIMITER ;
 
 -- Insercion de datos en la tabla LibroHasEditorial --
 insert into librohaseditorial (id_editorial, id_libro) 

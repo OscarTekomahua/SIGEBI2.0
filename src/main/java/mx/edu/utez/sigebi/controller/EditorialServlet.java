@@ -3,6 +3,7 @@ package mx.edu.utez.sigebi.controller;
 import mx.edu.utez.sigebi.model.Categoria;
 import mx.edu.utez.sigebi.model.DAO.CategoriaDao;
 import mx.edu.utez.sigebi.model.DAO.EditorialDao;
+import mx.edu.utez.sigebi.model.DAO.LibroDao;
 import mx.edu.utez.sigebi.model.Editorial;
 
 import javax.servlet.ServletException;
@@ -15,7 +16,7 @@ import java.io.PrintWriter;
 import java.util.List;
 
 @WebServlet (name = "EditorialServlet", urlPatterns = {"/createEditorial", "/createEditorialAdmin", "/readEditorial", "/readEditorialAdmin", "/updateEditorial", "/deleteEditorial"})
-public class EditorialServlet extends HttpServlet {
+public class    EditorialServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String opcion = req.getServletPath();
@@ -84,9 +85,6 @@ public class EditorialServlet extends HttpServlet {
 
                 break;
 
-            case "/deleteEditorial":
-
-                break;
         }
     }
 
@@ -119,6 +117,14 @@ public class EditorialServlet extends HttpServlet {
                 }
 
                 req.getRequestDispatcher("editorialesAdmin.jsp").forward(req, resp);
+                break;
+
+            case "/deleteEditorial":
+                int idEditorial = Integer.parseInt(req.getParameter("idEditorial"));
+                System.out.println(idEditorial);
+                EditorialDao dao2 = new EditorialDao();
+                dao2.delete(idEditorial);
+                resp.sendRedirect(req.getContextPath() + "/readEditorial?operacion=editoriales");
                 break;
         }
 

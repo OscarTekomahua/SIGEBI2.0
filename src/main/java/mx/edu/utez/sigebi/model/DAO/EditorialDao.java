@@ -22,6 +22,7 @@ public class EditorialDao implements DaoEditorial {
         this.resp = false;
     }
 
+
     @Override
     public List<Editorial> findAll() {
 
@@ -57,9 +58,20 @@ public class EditorialDao implements DaoEditorial {
     }
 
     @Override
-    public boolean delete(int id_editorial) {
-        return false;
+    public boolean delete(int idEditorial) {
+        PreparedStatement stmt;
+        {
+            try {
+                stmt = con.prepareStatement("call ELIMINAR_EDITORIAL(?);");
+                stmt.setInt(1,idEditorial);
+                return stmt.executeUpdate() ==1;
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
+
+
 
     @Override
     public boolean insert(Editorial editorial) {
@@ -96,6 +108,7 @@ public class EditorialDao implements DaoEditorial {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
 
         return true;
     }
