@@ -10,6 +10,7 @@ import mx.edu.utez.sigebi.model.ResultadosConsulta;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,6 +28,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 @WebServlet (name = "AddNewBookAdmin", value = "/AddNewBookAdmin")
+@MultipartConfig
 public class AgregarNuevoLibroAdmin extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -104,7 +106,7 @@ public class AgregarNuevoLibroAdmin extends HttpServlet {
         return new ArrayList<>();
     }
 
-    private String getSubmittedFileName (Part part) {
+    private String getSubmittedFileName(Part part) {
         String header = part.getHeader("content-disposition");
         String[] elements = header.split(";");
         for (String element : elements) {
