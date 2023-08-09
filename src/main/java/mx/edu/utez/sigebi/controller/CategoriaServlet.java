@@ -122,10 +122,11 @@ public class CategoriaServlet extends HttpServlet {
 
             case "/deleteCategoria":
                 int idCategoria = Integer.parseInt(req.getParameter("idCategoria"));
-                System.out.println(idCategoria);
                 CategoriaDao dao2 = new CategoriaDao();
                 dao2.delete(idCategoria);
-                resp.sendRedirect(req.getContextPath() + "/readCategoria?operacion=categorias");
+
+                String referer = req.getHeader("referer");
+                resp.sendRedirect(referer);
                 break;
         }
     }
