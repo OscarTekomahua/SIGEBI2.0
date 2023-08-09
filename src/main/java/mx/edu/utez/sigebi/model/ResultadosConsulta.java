@@ -8,12 +8,13 @@ public class ResultadosConsulta {
     private String editorial;
     private String categoria;
     private int ejemplares;
+    private String imagen;
 
     public ResultadosConsulta() {
 
     }
 
-    public ResultadosConsulta(int id_libro, String isbn, String titulo, String autor, String editorial, String categoria, int ejemplares) {
+    public ResultadosConsulta(int id_libro, String isbn, String titulo, String autor, String editorial, String categoria, int ejemplares, String imagen) {
         this.id_libro = id_libro;
         this.isbn = isbn;
         this.titulo = titulo;
@@ -21,6 +22,7 @@ public class ResultadosConsulta {
         this.editorial = editorial;
         this.categoria = categoria;
         this.ejemplares = ejemplares;
+        this.imagen = imagen;
     }
 
     public int getId_libro() {
@@ -77,5 +79,13 @@ public class ResultadosConsulta {
 
     public void setEjemplares(int ejemplares) {
         this.ejemplares = ejemplares;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 }
