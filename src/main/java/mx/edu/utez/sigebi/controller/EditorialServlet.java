@@ -124,7 +124,9 @@ public class    EditorialServlet extends HttpServlet {
                 System.out.println(idEditorial);
                 EditorialDao dao2 = new EditorialDao();
                 dao2.delete(idEditorial);
-                resp.sendRedirect(req.getContextPath() + "/readEditorial?operacion=editoriales");
+
+                String referer = req.getHeader("referer");
+                resp.sendRedirect(referer);
                 break;
         }
 
