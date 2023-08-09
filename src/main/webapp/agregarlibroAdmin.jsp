@@ -204,7 +204,7 @@
       <div class="card">
         <div class="card-body">
           <h3 class="card-title text-center mb-4">Registro de Libros</h3>
-          <form method="post" action="AddNewBookAdmin">
+          <form method="post" action="AddNewBookAdmin" enctype="multipart/form-data">
             <div class="form-group">
             </div>
             <div class="form-group">
@@ -241,7 +241,7 @@
             </div>
             <div class="form-group">
               <label><strong>Imagen:</strong></label>
-              <input type="file" class="form-control" id="imagen" name="imagen">
+              <input type="file" class="form-control" id="imagen" name="imagen" accept="image/*">
             </div>
             <button type="submit" class="btn btn-agregar" name="accion ">Agregar Libro</button>
           </form>
