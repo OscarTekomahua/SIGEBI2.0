@@ -66,19 +66,22 @@ public class AgregarNuevoLibroAdmin extends HttpServlet {
             }
         }
 
+        String UPLOAD_DIRECTORY = req.getServletContext().getRealPath("/") + "assets/img";
         String filePath = "";
-        String UPLOAD_DIRECTORY = "assets/img/";
 
         try {
             Part filePart = req.getPart("imagen");
             String fileName = getSubmittedFileName(filePart);
 
-            String uniqueImageName = UUID.randomUUID().toString() + "_" + fileName;
+            // Generar nombre unico con UUID
+            String uniqueFileName = UUID.randomUUID().toString() + "_" + fileName;
 
-            filePath = UPLOAD_DIRECTORY + File.separator + uniqueImageName;
+            filePath = UPLOAD_DIRECTORY + File.separator + uniqueFileName;
             InputStream fileContent = filePart.getInputStream();
 
+            //una ves termine este proceso el archivo ya esta en assets
             Files.copy(fileContent, Paths.get(filePath));
+
         } catch (Exception e) {
             e.printStackTrace();
         }
