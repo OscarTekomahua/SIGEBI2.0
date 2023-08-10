@@ -204,7 +204,7 @@
             <div class="card">
                 <div class="card-body">
                     <h3 class="card-title text-center mb-4">Registro de Libros</h3>
-                    <form method="post" action="addnewBookBiblio" enctype="multipart/form-data">
+                    <form method="post" action="AddNewBookBiblio" enctype="multipart/form-data">
                         <div class="form-group">
                         </div>
                         <div class="form-group">

@@ -198,6 +198,22 @@ END
 $$
 DELIMITER ;
 
+DELIMITER $$
+CREATE PROCEDURE elimninarcategoria(in idCategoria int )
+BEGIN
+
+DELETE FROM
+    librohascategoria
+WHERE
+        id_categoria = idCategoria;
+delete from
+    categoria
+where
+        id_categoria = idCategoria;
+END
+$$
+DELIMITER ;
+
 -- Insercion de datos en la tabla LibroHasEditorial --
 insert into librohaseditorial (id_editorial, id_libro) 
 values (1, 1);

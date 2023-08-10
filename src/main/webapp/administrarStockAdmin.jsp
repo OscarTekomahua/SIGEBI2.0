@@ -230,7 +230,7 @@
   </ul>
 </div>
 
-<form action="addnewBookAdmin" method="get">
+<form action="AddNewBookAdmin" method="get">
   <input type="hidden" name="operacion" value="nuevolibro">
   <button type="submit" href="agregarlibro.jsp" class="btn btn-agregar">Agregar Libro</button>
 </form>
@@ -248,6 +248,7 @@
         <th>Editorial</th>
         <th>Categoria</th>
         <th>Stock</th>
+        <th>Imagen</th>
         <th>Acciones</th>
       </tr>
       </thead>
@@ -260,6 +261,7 @@
           <td>${libro.editorial}</td>
           <td>${libro.categoria}</td>
           <td>${libro.ejemplares}</td>
+          <td><img src="${libro.imagen}" alt="Imagen Ejemplo" height="100" width="70"></td>
           <td>
             <a class="btn btn-eliminar" href="${pageContext.request.contextPath}/deleteBook?id=${libro.id_libro}">Eliminar</a>
             <form action="modificar" method="get">
@@ -273,6 +275,7 @@
     </table>
   </div>
 </div>
+<img src="assets\img\imagen1.jpg">
 <div class="sidebar-overlay"></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>

@@ -58,10 +58,18 @@ public class CategoriaDao implements DaoCategoria {
     }
 
     @Override
-    public boolean delete(int id_categoria) {
-        return false;
+    public boolean delete(int idCategoria) {
+        PreparedStatement stmt;
+        {
+            try {
+                stmt = con.prepareStatement("call elimninarcategoria(?);");
+                stmt.setInt(1,idCategoria);
+                return stmt.executeUpdate() == 1;
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
-
     @Override
     public boolean insert(Categoria categoria) {
 

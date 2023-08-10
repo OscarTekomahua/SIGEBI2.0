@@ -119,7 +119,18 @@ public class CategoriaServlet extends HttpServlet {
 
                 req.getRequestDispatcher("categoriasAdmin.jsp").forward(req, resp);
                 break;
+
+            case "/deleteCategoria":
+                int idCategoria = Integer.parseInt(req.getParameter("idCategoria"));
+                CategoriaDao dao2 = new CategoriaDao();
+                dao2.delete(idCategoria);
+
+                String referer = req.getHeader("referer");
+                resp.sendRedirect(referer);
+                break;
         }
     }
 
 }
+
+//g
