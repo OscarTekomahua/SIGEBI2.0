@@ -246,13 +246,15 @@
                 <tbody>
                 <tr>
                     <td>${e.id_editorial}</td>
-                    <td>${e.nombre}</td>
+                    <td>${e.nombre}
+                        <form action="updateEditorial" method="post" class="mb-3">
+                            <input type="hidden" name="idEditorial" value="${e.id_editorial}">
+                            <input type="text" name="nuevoNombre" class="form-control" placeholder="Nuevo nombre">
+                            <button type="submit" class="btn btn-primary mt-2">Actualizar</button>
+                        </form>
+                    </td>
                     <td>
                         <a class="btn btn-eliminar" href="${pageContext.request.contextPath}/deleteEditorial?idEditorial=${e.id_editorial}">Eliminar</a>
-                        <form action="modificar" method="get">
-                            <input type="hidden" name="operacion" value="modificar"/>
-                            <button type="submit" class="btn btn-modificar">Modificar</button>
-                        </form>
                     </td>
                 </tr>
                 </tbody>

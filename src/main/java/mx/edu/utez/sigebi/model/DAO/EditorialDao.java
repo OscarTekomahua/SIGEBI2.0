@@ -54,7 +54,21 @@ public class EditorialDao implements DaoEditorial {
 
     @Override
     public boolean update(int id_editorial, Object object) {
-        return false;
+        if (!(object instanceof Editorial)) {
+            return false;
+        }
+
+        Editorial editorial = (Editorial) object;
+        PreparedStatement stmt;
+
+        try {
+            stmt = con.prepareStatement("UPDATE editorial SET nombre = ? WHERE id_editorial = ?");
+            stmt.setString(1, editorial.getNombre());
+            stmt.setInt(2, id_editorial);
+            return stmt.executeUpdate() == 1;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

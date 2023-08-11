@@ -27,6 +27,8 @@ public class    EditorialServlet extends HttpServlet {
 
         boolean editExiste = editDao.editorialExiste(nuevaEditorial);
 
+
+
         switch (opcion) {
             case "/createEditorial":
                 if (editExiste) {
@@ -81,8 +83,21 @@ public class    EditorialServlet extends HttpServlet {
             case "/readEditorial":
                 break;
 
-            case "/updateEditorial":
 
+            case "/updateEditorial":
+                int idEditorial = Integer.parseInt(req.getParameter("idEditorial"));
+                System.out.println(idEditorial);
+                String nuevoNombre = req.getParameter("nuevoNombre"); // Asegúrate de tener un campo en tu formulario con el nombre nuevo
+                editDao = new EditorialDao();
+                Editorial editorial = new Editorial(idEditorial, nuevoNombre);
+                boolean actualizado = editDao.update(idEditorial, editorial);
+                if (actualizado) {
+                    // Realiza las acciones necesarias después de la actualización
+                    resp.sendRedirect(req.getContextPath() + "/readEditorial?operacion=editoriales");
+                } else {
+                    // Manejo de error si la actualización falla
+                    // Redirecciona a una página de error o muestra un mensaje de error
+                }
                 break;
 
         }
@@ -128,6 +143,8 @@ public class    EditorialServlet extends HttpServlet {
                 String referer = req.getHeader("referer");
                 resp.sendRedirect(referer);
                 break;
+
+
         }
 
     }

@@ -248,10 +248,11 @@
           <td>${e.id_editorial}</td>
           <td>${e.nombre}</td>
           <td>
-            <a class="btn btn-eliminar" href="${pageContext.request.contextPath}/deleteEditorial?idEditorial=${e.id_editorial}">Eliminar</a>
-            <form action="modificar" method="get">
-              <input type="hidden" name="operacion" value="modificar"/>
-              <button type="submit" class="btn btn-modificar">Modificar</button>
+            <a class="btn btn-eliminar" href="${pageContext.request.contextPath}/deleteBook?id=${libro.id_libro}">Eliminar</a>
+            <form action="updateEditorial" method="post">
+              <input type="hidden" name="idEditorial" value="${e.id_editorial}">
+              <input type="text" name="nuevoNombre" placeholder="Nuevo nombre">
+              <button type="submit">Actualizar</button>
             </form>
           </td>
         </tr>
