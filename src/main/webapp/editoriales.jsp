@@ -251,7 +251,7 @@
                         <form action="updateEditorial" method="post" class="mb-3">
                             <input type="hidden" name="idEditorial" value="${e.id_editorial}">
                             <input type="text" id="nuevoNombre" name="nuevoNombre" class="form-control" placeholder="Nuevo nombre">
-                            <button type="submit" onclick="return validarNombre();" class="btn btn-primary mt-2">Actualizar</button>
+                            <button type="submit" onclick="return validarNombre(this.form);" class="btn btn-primary mt-2">Actualizar</button>
                         </form>
                     </td>
                     <td>
@@ -307,20 +307,27 @@
     });
 </script>
 <script type="text/javascript">
-    function validarNombre() {
-        var nuevoNombre = document.getElementById('nuevoNombre').value;
-        if (nuevoNombre.trim() === '') {
-            // Mostrar una alerta con diseño
-            var alertDiv = document.createElement('div');
-            alertDiv.className = 'alert alert-danger';
-            alertDiv.textContent = 'Por favor, complete todos los campos.';
-            document.getElementById('mensajeAlerta').appendChild(alertDiv);
+    function validarNombre(form) {
+    var nuevoNombre = form.nuevoNombre.value;
+    if (nuevoNombre.trim() === '') {
+        // Mostrar una alerta con diseño
+        var alertDiv = document.createElement('div');
+        alertDiv.className = 'alert alert-danger';
+        alertDiv.textContent = 'Por favor, complete todos los campos.';
+        document.getElementById('mensajeAlerta').appendChild(alertDiv);
 
-            // Resaltar el campo de entrada en rojo
-            document.getElementById('nuevoNombre').classList.add('is-invalid');
-            return false; // Detener el envío del formulario
-        }
+        // Resaltar el campo de entrada en rojo
+        form.nuevoNombre.classList.add('is-invalid');
+
+        setTimeout(function() {
+            document.getElementById('mensajeAlerta').removeChild(alertDiv);
+            form.nuevoNombre.classList.remove('is-invalid');
+        }, 3000);
+
+        return false; // Detener el envío del formulario
     }
+    return true; // Permitir el envío del formulario si el nombre no está vacío
+}
 </script>
 
 </body>
