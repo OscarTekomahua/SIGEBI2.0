@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -231,12 +232,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
 <div class="sidebar hide">
     <ul>
-        <!-- Agregamos los iconos de Font Awesome a las opciones del menú -->
         <li><a href="#"><i class="fas fa-history"></i> Revisar Historial</a></li>
         <li><a href="#"><i class="fas fa-box-open"></i> Administrar Stock</a></li>
         <li><a href="#"><i class="fas fa-users"></i> Revisar Usuarios</a></li>
         <li><a href="#"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
-        <!-- Agrega más opciones de menú aquí -->
     </ul>
 </div>
 <div class="container mt-5">
@@ -245,11 +244,16 @@
             <div class="card">
                 <div class="card-body">
                     <h3 class="card-title text-center mb-4">Solicitar Sala</h3>
-                    <form>
+                    <form method="post" action="PedirSalaServlet">
+                        <p>Valor de mi id de sala: ${id_sala}</p>
+                        <input type="hidden" name="id_sala" value="${id_sala}">
+                        <div class="form-control">
+                            <label for="id_usuario">ID de Usuario:</label>
+                            <input type="number" class="form-control" id="id_usuario" name="id_usuario" placeholder="Ingresa tu ID de Usuario">
+                        </div>
                         <div class="form-group">
                             <label for="nombre">Nombre(s):</label>
-                            <input type="text" class="form-control" id="nombre"
-                                   placeholder="Ingresa tu(s) Nombre(s)" name="nombre">
+                            <input type="text" class="form-control" id="nombre" placeholder="Ingresa tu(s) Nombre(s)" name="nombre">
                         </div>
                         <div class="form-group">
                             <label for="ape1">Apellido Paterno:</label>
@@ -274,8 +278,11 @@
                             <textarea class="form-control" id="extras" name="extras" placeholder="Añadir extras a la sala" rows="5" cols="15"></textarea>
                             </label><br>
                         </div>
-                        <button type="button" class="btn btn-solicitar">Solicitar Sala</button>
+                        <button type="submit" class="btn btn-solicitar">Solicitar Sala</button>
                     </form>
+                    <c:if test="${not empty mensaje}">
+                        <p>${mensaje}</p>
+                    </c:if>
                 </div>
             </div>
         </div>

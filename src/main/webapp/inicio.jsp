@@ -202,7 +202,7 @@
     <div class="sidebar hide">
         <ul>
             <li><a href="inicio.jsp"><i class="fas fa-home"></i> Inicio</a></li>
-            <li><a href="#"><i class="fas fa-calendar-alt"></i> Solicitar Sala</a></li>
+            <li><a id="salas" href="salasuser.jsp"><i class="fas fa-calendar-alt"></i> Solicitar Sala</a></li>
             <li><a href="libros.jsp"><i class="fas fa-book"></i> Solicitar Libro</a></li>
             <li><a href="#"><i class="fas fa-list"></i> Categorías</a></li>
             <li><a id="cerrarSesion" href="index.jsp"><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
@@ -237,7 +237,7 @@
             <h1 style="color: #ffffff; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;"><center>Categorias</center></h1>
         </div>
         <div class="image-circles" >
-            <div class="circle-image hvr-float"> <a href="catalogoLibros.jsp" style="position: fixed; margin-left: 55px; margin-top: 65px; display: inline-block; padding: 10px 20px; background-color: #009475; color: white; text-decoration: none; border-radius: 5px;">Entrar</a>
+            <div class="circle-image hvr-float"> <a id="mostrarLibros" href="${pageContext.request.contextPath}/mostrarlibrosvista" style="position: fixed; margin-left: 55px; margin-top: 65px; display: inline-block; padding: 10px 20px; background-color: #009475; color: white; text-decoration: none; border-radius: 5px;">Entrar</a>
                 <img src="assets/img/img.png" alt="Imagen 1">
                 <div class="circle-text">Ciencias Físico-Matemáticas e Ingenierías</div>
             </div>
@@ -286,6 +286,14 @@
 
                 window.location.href = "index.jsp";
 
+            });
+
+            document.getElementById("salas").addEventListener("click", function () {
+                var xhr = new XMLHttpRequest();
+                xhr.open("GET", "salasUser", true);
+                xhr.send();
+
+                window.location.href = "salasuser.jsp";
             });
 
         </script>

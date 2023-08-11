@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -140,23 +141,16 @@
 <div class="container">
     <h1>Libros disponibles</h1>
     <div id="bookList">
-        <div class="libros">
-            <img src="assets/img/book1.jpg" style="height: 120px; width: 80px;">
-            <a href="vistalibro.jsp">Harry Potter y la Piedra Filosofal</a>
-        </div>
-        <div class="libros">
-            <img src="assets/img/book2.jpg" style="height: 120px; width: 80px;">
-            <a href="vistalibro.jsp">El Señor de los Anillos: La Comunidad del Anillo</a>
-        </div>
-        <div class="libros">
-            <img src="assets/img/book3.jpg" style="height: 120px; width: 80px;">
-            <a href="vistalibro.jsp">Cien años de soledad</a>
-        </div>
-        <div class="libros">
-            <img src="assets/img/book4.jpg" style="height: 120px; width: 80px;">
-            <a href="vistalibro.jsp">1984</a>
-        </div>
-        <!-- Agrega más ejemplos de libros si lo deseas... -->
+        <c:forEach items="${tablalibros}" var="libro">
+            <div class="libros">
+                <img src="${libro.imagen}" style="height: 120px; width: 80px;">
+                <p>Titulo: ${libro.titulo}</p>
+                <p>Autor: ${libro.autor}</p>
+                <p>ISBN: ${libro.isbn}</p>
+                <p>Ejemplares: ${libro.ejemplares}</p>
+            </div>
+
+        </c:forEach>
     </div>
 </div>
 

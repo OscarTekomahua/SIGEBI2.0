@@ -8,11 +8,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet (name = "SalaServlet", urlPatterns = {"/salasBiblio", "/salasAdmin", "/updateBiblio", "/updateAdmin"})
+@WebServlet (name = "SalaServlet", urlPatterns = {"/salasBiblio", "/salasAdmin", "/salasUser"})
 public class SalaServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -41,6 +42,18 @@ public class SalaServlet extends HttpServlet {
                 }
 
                 req.getRequestDispatcher("salasAdmin.jsp").forward(req, resp);
+                break;
+
+            case "/salasUser":
+                HttpSession session = req.getSession();
+
+                SalaDao salaDao = new SalaDao();
+
+                List<Sala> listadesalas = salaDao.findAll();
+
+                session.setAttribute("tablasalas", listadesalas);
+
+                req.getRequestDispatcher("salasuser.jsp").forward(req, resp);
                 break;
         }
 
