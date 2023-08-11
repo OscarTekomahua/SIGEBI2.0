@@ -1,32 +1,32 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
-<html lang="es">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/estilos.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css">
-    <title>Libros en el inventario</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/estilos.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css" />
+    <title>Pedir Sala</title>
 </head>
-<style>
 
+<style>
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400&display=swap');
     body {
         font-family: 'Montserrat', sans-serif;
         background-color: #f2f2f2;
         color: #333;
         margin: 0;
+        background-size: auto;
     }
 
     .navbar {
-        background-color: #002E60;
+        background-color: #009475;
         height: 100px;
         display: flex;
         align-items: center;
@@ -113,7 +113,7 @@
     .container-tab {
         margin-left: 10px;
         margin-right: 10px;
-        padding-top: 30px;
+        padding-top: 50px;
     }
 
     .table-container {
@@ -140,41 +140,6 @@
         white-space: nowrap;
     }
 
-    .btn-group {
-        display: flex;
-        justify-content: center;
-        margin-top: 10px;
-    }
-
-    .btn {
-        padding: 10px 20px;
-        margin: 5px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 16px;
-        color: #ffffff;
-        transition: background-color 0.3s;
-    }
-
-    .btn-eliminar {
-        background-color: #e74c3c;
-        color: #fff;
-        transition: background-color 0.3s;
-    }
-
-    .btn-eliminar:hover {
-        background-color: #F1948A;
-    }
-
-    .btn-agregar {
-        background-color: #009475;
-    }
-
-    .btn-agregar:hover {
-        background-color: #2ECC71;
-    }
-
     .sidebar-open {
         overflow: hidden;
     }
@@ -189,89 +154,65 @@
         pointer-events: none;
     }
 
-    .btn-modificar {
-        background-color: #3498DB ;
+    .btn-solicitar {
+        background-color: #009475;
         color: #fff;
         transition: background-color 0.3s;
     }
 
-    .btn-modificar:hover {
-        background-color: #AED6F1 ;
+    .btn-solicitar:hover {
+        background-color: #2ECC71;
     }
-
-    .buscador {
-        background-color: #009475;
-    }
-
 </style>
-</head>
+
 <body>
+
 <nav class="navbar">
     <div class="container d-flex justify-content-between align-items-center">
-        <a class="navbar-brand" href="bibliotecario.jsp">
+        <a class="navbar-brand" href="inicio.jsp">
             <img src="assets/img/sigebi%20logo2.png" alt="SIGEBI Logo">
         </a>
         <div class="nav-item">
-            <form class="d-flex">
-                <input id="searchInput" class="form-control mr-2" type="search" placeholder="Buscar" aria-label="Buscar">
-                <button class="btn btn-outline-success buscador" type="button" id="searchButton">Buscar</button>
-            </form>
+
         </div>
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidebarCollapse">
             <i class="fas fa-bars"></i>
         </button>
     </div>
 </nav>
+
 <div class="sidebar hide">
     <ul>
-        <li><a href="bibliotecario.jsp" class="fas fa-home"> Inicio</a></li>
+        <li><a href="inicio.jsp" class="fas fa-home"> Inicio</a></li>
         <li><a href="#" class="fas fa-users"> Revisar Usuarios</a></li>
-        <li><a href="#" class="fas fa-sign-out-alt"> Cerrar Sesión</a></li>
+        <li><a id="cerrarSesion" href="index.jsp"><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
     </ul>
 </div>
 
-<form action="AddNewBookBiblio" method="get">
-    <input type="hidden" name="operacion" value="nuevolibro">
-    <button type="submit" href="agregarlibro.jsp" class="btn btn-agregar">Agregar Libro</button>
-</form>
-
 <div class="container-tab">
     <div class="table-container">
-        <h2 class="text-center mb-4">Stock de libros</h2>
+        <h2 class="text-center mb-4">Salas</h2>
 
         <table class="table table-bordered table-striped">
             <thead>
             <tr>
-                <th>ISBN</th>
-                <th>Titulo</th>
-                <th>Autor</th>
-                <th>Editorial</th>
-                <th>Categoria</th>
-                <th>Stock</th>
-                <th>Acciones</th>
+                <th>Sala</th>
+                <th>Capacidad Maxima</th>
+                <th>Estado</th>
+                <th>Solicitar sala</th>
             </tr>
             </thead>
-            <c:forEach items="${tablalibros}" var="libro">
+            <c:forEach items="${tablasalas}" var="s">
                 <tbody>
                 <tr>
-                    <td>${libro.isbn}</td>
-                    <td>${libro.titulo}</td>
-                    <td>${libro.autor}</td>
-                    <td>${libro.editorial}</td>
-                    <td>${libro.categoria}</td>
-                    <td>${libro.ejemplares}</td>
-                    <td>
-                        <a class="btn btn-eliminar" href="${pageContext.request.contextPath}/deleteBook?id=${libro.id_libro}">Eliminar</a>
-                        <form action="modificar" method="get">
-                            <input type="hidden" name="operacion" value="modificar"/>
-                        <button type="submit" class="btn btn-modificar">Modificar</button>
-                        </form>
-                    </td>
+                    <td>${s.nombre}</td>
+                    <td>${s.capacidad_maxima}</td>
+                    <td>${s.estadoTexto}</td>
+                    <td><a class="btn btn-solicitar" href="${pageContext.request.contextPath}/PedirSalaServlet?id=${s.id_sala}">Solicitar Sala</a></td>
                 </tr>
                 </tbody>
             </c:forEach>
         </table>
-
     </div>
 </div>
 <div class="sidebar-overlay"></div>
@@ -298,24 +239,17 @@
         });
     });
 
-    document.addEventListener("DOMContentLoaded", function () {
-        const searchInput = document.getElementById("searchInput");
-        const tableRows = document.querySelectorAll(".table tbody tr");
+    document.getElementById("cerrarSesion").addEventListener("click", function () {
 
-        function filterTable(event) {
-            const searchTerm = event.target.value.toLowerCase();
-            tableRows.forEach(row => {
-                const rowData = row.textContent.toLowerCase();
-                if (rowData.includes(searchTerm)) {
-                    row.style.display = "";
-                } else {
-                    row.style.display = "none";
-                }
-            });
-        }
-        searchInput.addEventListener("input", filterTable);
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "CloseSession", true);
+        xhr.send();
+
+        window.location.href = "index.jsp";
+
     });
-</script>
-</body>
 
+</script>
+
+</body>
 </html>
