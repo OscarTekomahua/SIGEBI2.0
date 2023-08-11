@@ -204,6 +204,23 @@
         background-color: #009475;
     }
 
+    .addNewEdit {
+        background-color: #005ec9;
+        margin-top: 20px;
+        margin-left: 20px;
+        padding: 10px 20px;
+        margin: 5px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        color: #ffffff;
+        transition: background-color 0.5s;
+    }
+
+    .addNewEdit:hover {
+        background-color: #0048a6; /* Cambia el color cuando pasas el cursor sobre el botón */
+    }
 </style>
 
 <body>
@@ -234,6 +251,9 @@
 <div class="container-tab">
     <div class="table-container">
         <h2 class="text-center mb-4">Editoriales</h2>
+        <a href="formularioeditorialmod.jsp">
+            <button class="addNewEdit">Agregar Nueva Editorial</button>
+        </a>
         <div id="mensajeAlerta"></div>
         <table class="table table-bordered table-striped">
             <thead>
