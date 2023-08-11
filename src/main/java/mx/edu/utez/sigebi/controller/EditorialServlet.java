@@ -88,6 +88,12 @@ public class    EditorialServlet extends HttpServlet {
                 int idEditorial = Integer.parseInt(req.getParameter("idEditorial"));
                 System.out.println(idEditorial);
                 String nuevoNombre = req.getParameter("nuevoNombre"); // Asegúrate de tener un campo en tu formulario con el nombre nuevo
+                if (nuevoNombre == null || nuevoNombre.trim().isEmpty()) {
+                    // Mostrar mensaje de error en caso de nombre vacío
+                    req.setAttribute("error", "Por favor, ingrese un nombre válido.");
+                    resp.sendRedirect(req.getContextPath() + "/readEditorial?operacion=editoriales");
+                    return;
+                }
                 editDao = new EditorialDao();
                 Editorial editorial = new Editorial(idEditorial, nuevoNombre);
                 boolean actualizado = editDao.update(idEditorial, editorial);

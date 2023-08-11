@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="assets/css/estilos.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css" />
     <title>Editoriales disponibles</title>
 </head>
@@ -233,7 +234,7 @@
 <div class="container-tab">
     <div class="table-container">
         <h2 class="text-center mb-4">Editoriales</h2>
-
+        <div id="mensajeAlerta"></div>
         <table class="table table-bordered table-striped">
             <thead>
             <tr>
@@ -249,8 +250,8 @@
                     <td>${e.nombre}
                         <form action="updateEditorial" method="post" class="mb-3">
                             <input type="hidden" name="idEditorial" value="${e.id_editorial}">
-                            <input type="text" name="nuevoNombre" class="form-control" placeholder="Nuevo nombre">
-                            <button type="submit" class="btn btn-primary mt-2">Actualizar</button>
+                            <input type="text" id="nuevoNombre" name="nuevoNombre" class="form-control" placeholder="Nuevo nombre">
+                            <button type="submit" onclick="return validarNombre();" class="btn btn-primary mt-2">Actualizar</button>
                         </form>
                     </td>
                     <td>
@@ -276,6 +277,7 @@
             var fila = $(this).closest("tr");
             fila.remove();
         });
+
 
         $(document).click(function (event) {
             if (!$(event.target).closest(".sidebar, .navbar-toggler").length) {
@@ -304,5 +306,22 @@
         searchInput.addEventListener("input", filterTable);
     });
 </script>
+<script type="text/javascript">
+    function validarNombre() {
+        var nuevoNombre = document.getElementById('nuevoNombre').value;
+        if (nuevoNombre.trim() === '') {
+            // Mostrar una alerta con diseño
+            var alertDiv = document.createElement('div');
+            alertDiv.className = 'alert alert-danger';
+            alertDiv.textContent = 'Por favor, complete todos los campos.';
+            document.getElementById('mensajeAlerta').appendChild(alertDiv);
+
+            // Resaltar el campo de entrada en rojo
+            document.getElementById('nuevoNombre').classList.add('is-invalid');
+            return false; // Detener el envío del formulario
+        }
+    }
+</script>
+
 </body>
 </html>
