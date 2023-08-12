@@ -1,14 +1,19 @@
 package mx.edu.utez.sigebi.controller;
 
 import mx.edu.utez.sigebi.model.DAO.PrestamoSalasDao;
+import mx.edu.utez.sigebi.model.DAO.SalaDao;
+import mx.edu.utez.sigebi.model.DAO.UsuarioDao;
 import mx.edu.utez.sigebi.model.PrestamoSalas;
+import mx.edu.utez.sigebi.model.Usuario;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.sql.Time;
 
 @WebServlet (name = "PedirSalaServlet", value = "/PedirSalaServlet")
@@ -37,14 +42,29 @@ public class PedirSalaServlet extends HttpServlet {
         PrestamoSalas prestamoSalas = new PrestamoSalas(0, id_sala, id_usuario, hora_inicio, hora_fin, estado, extras);
 
         PrestamoSalasDao prestamosDao = new PrestamoSalasDao();
-        boolean registrado = prestamosDao.registrarPrestamo(prestamoSalas);
+        UsuarioDao usrDao = new UsuarioDao();
 
-        if (registrado) {
-            resp.sendRedirect(req.getContextPath() + "/inicio.jsp");
+        boolean usrExists = usrDao.usuarioExiste(id_usuario);
+
+        if (usrExists) {
+            boolean registrado = prestamosDao.registrarPrestamo(prestamoSalas);
+            SalaDao salaDao = new SalaDao();
+
+            salaDao.update(id_sala, false);
+
+            if (registrado) {
+                prestamosDao.schedulePrestamoUpdate(id_sala);
+                resp.sendRedirect(req.getContextPath() + "/inicio.jsp");
+            } else {
+                req.getSession().setAttribute("error", "¡Hubo un problema con el registro de tu prestamo!");
+                resp.sendRedirect("/SIGEBI_war_exploded/PedirSalaServlet?id=" + id_sala);
+            }
+
         } else {
-            req.getSession().setAttribute("error", "Hubo un problema al registrar su prestamo :|");
-            resp.sendRedirect("solicitarsala.jsp");
+            req.getSession().setAttribute("error", "¡Usuario no encontrado!");
+            resp.sendRedirect("/SIGEBI_war_exploded/PedirSalaServlet?id=" + id_sala);
         }
 
     }
+
 }

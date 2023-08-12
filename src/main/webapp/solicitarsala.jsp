@@ -245,7 +245,6 @@
                 <div class="card-body">
                     <h3 class="card-title text-center mb-4">Solicitar Sala</h3>
                     <form method="post" action="PedirSalaServlet">
-                        <p>Valor de mi id de sala: ${id_sala}</p>
                         <input type="hidden" name="id_sala" value="${id_sala}">
                         <div class="form-control">
                             <label for="id_usuario">ID de Usuario:</label>
@@ -280,8 +279,8 @@
                         </div>
                         <button type="submit" class="btn btn-solicitar">Solicitar Sala</button>
                     </form>
-                    <c:if test="${not empty mensaje}">
-                        <p>${mensaje}</p>
+                    <c:if test="${not empty error}">
+                        <p>${error}</p>
                     </c:if>
                 </div>
             </div>

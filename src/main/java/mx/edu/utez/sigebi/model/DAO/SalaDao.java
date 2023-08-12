@@ -1,12 +1,8 @@
 package mx.edu.utez.sigebi.model.DAO;
 
-import mx.edu.utez.sigebi.model.Editorial;
 import mx.edu.utez.sigebi.model.Sala;
 import mx.edu.utez.sigebi.utils.MysqlConector;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,8 +54,17 @@ public class SalaDao implements DaoSala {
     }
 
     @Override
-    public boolean update(int id_sala, Object object) {
-        return false;
+    public void update(int id_sala, boolean updatedStatus) {
+        try {
+            String query = "UPDATE sala SET estado = ? WHERE id_sala = ?";
+            PreparedStatement stmt = con.prepareStatement(query);
+            stmt.setBoolean(1, updatedStatus);
+            stmt.setInt(2, id_sala);
+
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 }

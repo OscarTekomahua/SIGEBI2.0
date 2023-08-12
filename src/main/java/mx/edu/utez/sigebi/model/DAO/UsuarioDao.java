@@ -51,7 +51,33 @@ public class UsuarioDao implements DaoRepository {
     }
 
     @Override
-    public Object findOne(int id_usuario) {return null;}
+    public boolean findOne(int id_usuario) {
+        try {
+            String query = "SELECT * FROM usuario WHERE id_usuario = ?";
+            PreparedStatement stmt = con.prepareStatement(query);
+            stmt.setInt(1, id_usuario);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                usr.setId_usuario(rs.getInt("id_usuario"));
+                usr.setId_persona(rs.getInt("id_persona"));
+                usr.setCorreo_institucional(rs.getString("correo_institucional"));
+                usr.setContra(rs.getString("contraseña"));
+                usr.setCodigo(rs.getString("codigo"));
+                Rol rol = new Rol();
+                rol.setTipo_usuario(rs.getString("tipo_usuario"));
+                usr.setRol(rol);
+                usr.setMulta(rs.getDouble("multa"));
+            }
+            stmt.close();
+            rs.close();
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return true;
+    }
 
     public Object findOne(String correo, String contra) {
         try {
@@ -159,6 +185,26 @@ public class UsuarioDao implements DaoRepository {
             stmt.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+        return true;
+    }
+
+    public boolean usuarioExiste (int id_usuario) {
+        PreparedStatement statement = null;
+        ResultSet res = null;
+
+        try {
+            String query = "SELECT COUNT(*) FROM usuario WHERE id_usuario = ?";
+            statement = con.prepareStatement(query);
+            statement.setInt(1, id_usuario);
+            res = statement.executeQuery();
+
+            if (res.next()) {
+                int count = res.getInt(1);
+                return count > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return true;
     }

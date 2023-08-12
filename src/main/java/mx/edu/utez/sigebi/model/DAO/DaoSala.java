@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface DaoSala <Sala> {
     List<Sala> findAll();
-    boolean update(int id_sala, Sala object);
+    void update(int id_sala, boolean estadoActualizado);
 
 }
