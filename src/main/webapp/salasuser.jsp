@@ -208,7 +208,16 @@
                     <td>${s.nombre}</td>
                     <td>${s.capacidad_maxima}</td>
                     <td>${s.estadoTexto}</td>
-                    <td><a class="btn btn-solicitar" href="${pageContext.request.contextPath}/PedirSalaServlet?id=${s.id_sala}">Solicitar Sala</a></td>
+                    <td>
+                        <c:choose>
+                            <c:when test="${s.estadoTexto eq 'Ocupada'}">
+                                <a class="btn btn-solicitar disabled" href="#">Sala Ocupada</a>
+                            </c:when>
+                            <c:otherwise>
+                                <a class="btn btn-solicitar" href="${pageContext.request.contextPath}/PedirSalaServlet?id=${s.id_sala}">Solicitar Sala</a>
+                            </c:otherwise>
+                        </c:choose>
+                    </td>
                 </tr>
                 </tbody>
             </c:forEach>

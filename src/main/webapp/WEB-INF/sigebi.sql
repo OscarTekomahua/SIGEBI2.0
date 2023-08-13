@@ -276,5 +276,67 @@ select * from prestamosala;
 ALTER TABLE prestamosala ADD COLUMN estado VARCHAR(40) DEFAULT 'Devuelto'; 
 ALTER TABLE prestamosala ADD COLUMN extras VARCHAR(150);
 
+-- Trigger para Cambio Inmediato de Estado en 'PrestamoSala' --
+DELIMITER //
+CREATE TRIGGER tr_prestamo_estado
+    BEFORE INSERT ON PrestamoSala
+    FOR EACH ROW
+BEGIN
+    DECLARE v_hora_actual TIME;
+    DECLARE v_hora_inicio TIME;
+
+    SET v_hora_actual = CURRENT_TIME();
+    SET v_hora_inicio = NEW.hora_inicio;
+
+    IF v_hora_inicio <= v_hora_actual THEN
+        SET NEW.estado = 'Prestada';
+    ELSE
+        SET NEW.estado = 'Reservada';
+END IF;
+END;
+//
+DELIMITER ;
+
+-- Evento para Cambio de Estado en 'PrestamoSala' y 'Sala' al Tiempo de Inicio --
+DELIMITER //
+CREATE EVENT ev_cambio_estado
+ON SCHEDULE EVERY 1 MINUTE
+DO
+BEGIN
+    DECLARE v_hora_actual TIME;
+
+    SET v_hora_actual = CURRENT_TIME();
+
+UPDATE PrestamoSala
+SET estado = 'Prestada'
+WHERE estado = 'Reservada' AND hora_inicio <= v_hora_actual;
+
+UPDATE Sala
+SET estado = false
+WHERE id_sala IN (SELECT id_sala FROM PrestamoSala WHERE estado = 'Prestada' AND hora_inicio <= v_hora_actual);
+END;
+//
+DELIMITER ;
+
+-- Evento para Cambio de Estado en 'PrestamoSala' y 'Sala' al Tiempo de Fin --
+DELIMITER //
+CREATE EVENT ev_cambio_estado_fin
+ON SCHEDULE EVERY 1 MINUTE
+DO
+BEGIN
+    DECLARE v_hora_actual TIME;
+
+    SET v_hora_actual = CURRENT_TIME();
+
+UPDATE PrestamoSala
+SET estado = 'Devuelta'
+WHERE estado = 'Prestada' AND hora_fin <= v_hora_actual;
+
+UPDATE Sala
+SET estado = true
+WHERE id_sala IN (SELECT id_sala FROM PrestamoSala WHERE estado = 'Devuelta' AND hora_fin <= v_hora_actual);
+END;
+//
+DELIMITER ;
 
 

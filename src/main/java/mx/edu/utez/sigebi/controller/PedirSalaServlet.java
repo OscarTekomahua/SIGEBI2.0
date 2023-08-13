@@ -1,19 +1,14 @@
 package mx.edu.utez.sigebi.controller;
 
 import mx.edu.utez.sigebi.model.DAO.PrestamoSalasDao;
-import mx.edu.utez.sigebi.model.DAO.SalaDao;
 import mx.edu.utez.sigebi.model.DAO.UsuarioDao;
 import mx.edu.utez.sigebi.model.PrestamoSalas;
-import mx.edu.utez.sigebi.model.Usuario;
-
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.net.URLEncoder;
 import java.sql.Time;
 
 @WebServlet (name = "PedirSalaServlet", value = "/PedirSalaServlet")
@@ -36,7 +31,7 @@ public class PedirSalaServlet extends HttpServlet {
         String horaFinStr = req.getParameter("horaFinal");
         Time hora_inicio = Time.valueOf(horaInicioStr + ":00");
         Time hora_fin = Time.valueOf(horaFinStr + ":00");
-        String estado = "Prestada";
+        String estado = "";
         String extras = req.getParameter("extras");
 
         PrestamoSalas prestamoSalas = new PrestamoSalas(0, id_sala, id_usuario, hora_inicio, hora_fin, estado, extras);
@@ -48,12 +43,8 @@ public class PedirSalaServlet extends HttpServlet {
 
         if (usrExists) {
             boolean registrado = prestamosDao.registrarPrestamo(prestamoSalas);
-            SalaDao salaDao = new SalaDao();
-
-            salaDao.update(id_sala, false);
 
             if (registrado) {
-                prestamosDao.schedulePrestamoUpdate(id_sala);
                 resp.sendRedirect(req.getContextPath() + "/inicio.jsp");
             } else {
                 req.getSession().setAttribute("error", "¡Hubo un problema con el registro de tu prestamo!");
