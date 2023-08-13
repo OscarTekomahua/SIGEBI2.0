@@ -55,4 +55,33 @@ public class PrestamoSalasDao implements DaoPrestamosSalas {
         return false;
     }
 
+    public boolean existePrestamoEnHorario(int idSala, Time horaInicio, Time horaFin) {
+        try {
+            String query = "SELECT COUNT(*) AS count FROM prestamosala WHERE id_sala = ? " +
+                    "AND (estado = 'Prestada' OR estado = 'Reservada') " +
+                    "AND ((hora_inicio BETWEEN ? AND ?) OR (hora_fin BETWEEN ? AND ?))";
+            PreparedStatement stmt = con.prepareStatement(query);
+            stmt.setInt(1, idSala);
+            stmt.setTime(2, horaInicio);
+            stmt.setTime(3, horaFin);
+            stmt.setTime(4, horaInicio);
+            stmt.setTime(5, horaFin);
+
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                int count = rs.getInt("count");
+                return count > 0;
+            }
+
+            rs.close();
+            stmt.close();
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
 }

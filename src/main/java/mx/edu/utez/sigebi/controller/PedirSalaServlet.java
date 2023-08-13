@@ -40,21 +40,31 @@ public class PedirSalaServlet extends HttpServlet {
         UsuarioDao usrDao = new UsuarioDao();
 
         boolean usrExists = usrDao.usuarioExiste(id_usuario);
+        boolean salareservada = prestamosDao.existePrestamoEnHorario(id_sala, hora_inicio, hora_fin);
 
         if (usrExists) {
-            boolean registrado = prestamosDao.registrarPrestamo(prestamoSalas);
-
-            if (registrado) {
-                resp.sendRedirect(req.getContextPath() + "/inicio.jsp");
+            System.out.println(salareservada);
+            if (!salareservada) {
+                boolean registrado = prestamosDao.registrarPrestamo(prestamoSalas);
+                if (registrado) {
+                    resp.sendRedirect(req.getContextPath() + "/inicio.jsp");
+                } else {
+                    req.getSession().setAttribute("error", "¡Hubo un problema con el registro de tu prestamo!");
+                    resp.sendRedirect("/SIGEBI_war_exploded/PedirSalaServlet?id=" + id_sala);
+                }
             } else {
-                req.getSession().setAttribute("error", "¡Hubo un problema con el registro de tu prestamo!");
+                req.getSession().setAttribute("error", "¡La sala esta reservada para ese horario!");
                 resp.sendRedirect("/SIGEBI_war_exploded/PedirSalaServlet?id=" + id_sala);
             }
-
         } else {
             req.getSession().setAttribute("error", "¡Usuario no encontrado!");
             resp.sendRedirect("/SIGEBI_war_exploded/PedirSalaServlet?id=" + id_sala);
         }
+
+
+
+
+
 
     }
 
