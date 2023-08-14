@@ -297,4 +297,37 @@ public class UsuarioDao implements DaoRepository {
 
     }
 
+    public boolean registrarNuevoUsuario (Persona newperson, Usuario newuser, int idRol) {
+        try {
+            String generatedCode = generadorCodigo();
+
+            String query = "insert into persona (nombres, apellido1, apellido2) values (?, ?, ?)";
+            PreparedStatement stmt = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1, newperson.getNombre());
+            stmt.setString(2, newperson.getApellido1());
+            stmt.setString(3, newperson.getApellido2());
+            stmt.executeUpdate();
+            ResultSet rs = stmt.getGeneratedKeys();
+            if (rs.next()) {
+                int idPersona = rs.getInt(1);
+
+                String query2 = "insert into usuario (id_persona, rol, correo_institucional, contraseña, codigo)" +
+                        "values (?, ?, ?, sha2(?, 256), aes_encrypt(?, 'secret_keyForPas'))";
+                PreparedStatement stmt2 = con.prepareStatement(query2);
+                stmt2.setInt(1, idPersona);
+                stmt2.setInt(2, idRol);
+                stmt2.setString(3, newuser.getCorreo_institucional());
+                stmt2.setString(4, newuser.getContra());
+                stmt2.setString(5, generatedCode);
+                stmt2.executeUpdate();
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return true;
+    }
+
 }

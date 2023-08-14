@@ -1,10 +1,7 @@
 package mx.edu.utez.sigebi.model.DAO;
 
-import mx.edu.utez.sigebi.model.Categoria;
 import mx.edu.utez.sigebi.model.Editorial;
-import mx.edu.utez.sigebi.model.Libro;
 import mx.edu.utez.sigebi.utils.MysqlConector;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;

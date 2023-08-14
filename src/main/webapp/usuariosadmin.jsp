@@ -230,14 +230,9 @@
     </ul>
 </div>
 
-<form action="addnewBookBiblio" method="get">
-    <input type="hidden" name="operacion" value="nuevolibro">
-    <button type="submit" href="agregarlibro.jsp" class="btn btn-agregar">Registrar Nuevo Administrador</button>
-</form>
-
-<form action="addnewBookBiblio" method="get">
-    <input type="hidden" name="operacion" value="nuevolibro">
-    <button type="submit" href="agregarlibro.jsp" class="btn btn-agregar">Registrar Nuevo Bibliotecario</button>
+<form action="NewUserForAdmin" method="get">
+    <input type="hidden" name="operacion" value="nuevousuario">
+    <button type="submit" class="btn btn-agregar">Registrar Nuevo Usuario</button>
 </form>
 
 <div class="container-tab">

@@ -259,8 +259,8 @@
 <body>
 <nav class="navbar">
     <div class="container d-flex justify-content-between align-items-center"> <!-- Ajustamos el contenedor con Flexbox -->
-        <a class="navbar-brand" href="index.html">
-            <img src="../MCRI/img/sigebi logo2.png" alt="SIGEBI Logo">
+        <a class="navbar-brand" href="inicio.jsp">
+            <img src="assets/img/sigebi%20logo2.png" alt="SIGEBI Logo">
             <span class="d-none d-md-inline-block">Bienvenido Usuario Utez</span> <!-- Oculta el texto en pantallas pequeñas -->
         </a>
         <div class="nav-item">

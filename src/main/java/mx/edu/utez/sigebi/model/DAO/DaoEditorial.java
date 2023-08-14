@@ -1,7 +1,6 @@
 package mx.edu.utez.sigebi.model.DAO;
 
 import mx.edu.utez.sigebi.model.Editorial;
-import mx.edu.utez.sigebi.model.Libro;
 
 import java.util.List;
 
