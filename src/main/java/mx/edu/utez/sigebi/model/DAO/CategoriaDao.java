@@ -54,7 +54,21 @@ public class CategoriaDao implements DaoCategoria {
 
     @Override
     public boolean update(int id_categoria, Object object) {
-        return false;
+        if (!(object instanceof Categoria)) {
+            return false;
+        }
+
+        Categoria categoria = (Categoria) object;
+        PreparedStatement stmt;
+
+        try {
+            stmt = con.prepareStatement("UPDATE categoria SET nombre_categoria = ? WHERE id_categoria = ?");
+            stmt.setString(1, categoria.getNombre_categoria());
+            stmt.setInt(2, id_categoria);
+            return stmt.executeUpdate() == 1;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

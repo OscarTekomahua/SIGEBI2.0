@@ -203,6 +203,24 @@
     background-color: #009475;
   }
 
+  .addNewEdit {
+    background-color: #005ec9;
+    margin-top: 20px;
+    margin-left: 20px;
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #ffffff;
+    transition: background-color 0.5s;
+  }
+
+  .addNewEdit:hover {
+    background-color: #0048a6; /* Cambia el color cuando pasas el cursor sobre el botón */
+  }
+
   /* Estilos para el botón */
   .btnstock {
     background-color: transparent; /* Sin color de fondo */
@@ -260,27 +278,32 @@
 </div>
 <div class="container-tab">
   <div class="table-container">
-    <h2 class="text-center mb-4">Categorias</h2>
-
+    <h2 class="text-center mb-4">Editoriales</h2>
+    <a href="formularioeditorialmod.jsp">
+      <button class="addNewEdit">Agregar Nueva Editorial</button>
+    </a>
+    <div id="mensajeAlerta"></div>
     <table class="table table-bordered table-striped">
       <thead>
       <tr>
-        <th>ID Editorial</th>
+        <th>ID Categoria</th>
         <th>Categoria</th>
         <th>Acciones</th>
       </tr>
       </thead>
-      <c:forEach items="${categorias}" var="c">
+      <c:forEach items="${categorias}" var="e">
         <tbody>
         <tr>
-          <td>${c.id_categoria}</td>
-          <td>${c.nombre_categoria}</td>
-          <td>
-            <a class="btn btn-eliminar" href="${pageContext.request.contextPath}/deleteCategoria?idCategoria=${c.id_categoria}">Eliminar</a>
-            <form action="modificar" method="get">
-              <input type="hidden" name="operacion" value="modificar"/>
-              <button type="submit" class="btn btn-modificar">Modificar</button>
+          <td>${e.id_categoria}</td>
+          <td>${e.nombre_categoria}
+            <form action="updateCategoria" method="post" class="mb-3">
+              <input type="hidden" name="idCategoria" value="${e.id_categoria}">
+              <input type="text" id="nuevoNombre" name="nuevoNombre" class="form-control" placeholder="Nuevo nombre">
+              <button type="submit" onclick="return validarNombre(this.form);" class="btn btn-primary mt-2">Actualizar</button>
             </form>
+          </td>
+          <td>
+            <a class="btn btn-eliminar" href="${pageContext.request.contextPath}/deleteCategoria?idCategoria=${e.id_categoria}">Eliminar</a>
           </td>
         </tr>
         </tbody>
@@ -288,6 +311,7 @@
     </table>
   </div>
 </div>
+
 <div class="sidebar-overlay"></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
@@ -328,6 +352,39 @@
       });
     }
     searchInput.addEventListener("input", filterTable);
+  });
+</script>
+<script type="text/javascript">
+  function validarNombre(form) {
+    var nuevoNombre = form.nuevoNombre.value;
+    if (nuevoNombre.trim() === '') {
+      // Mostrar una alerta con diseño
+      var alertDiv = document.createElement('div');
+      alertDiv.className = 'alert alert-danger';
+      alertDiv.textContent = 'Por favor, complete todos los campos.';
+      document.getElementById('mensajeAlerta').appendChild(alertDiv);
+
+      // Resaltar el campo de entrada en rojo
+      form.nuevoNombre.classList.add('is-invalid');
+
+      setTimeout(function() {
+        document.getElementById('mensajeAlerta').removeChild(alertDiv);
+        form.nuevoNombre.classList.remove('is-invalid');
+      }, 3000);
+
+      return false; // Detener el envío del formulario
+    }
+    return true; // Permitir el envío del formulario si el nombre no está vacío
+  }
+
+  document.getElementById("botonCerrarSesion").addEventListener("click", function () {
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "CloseSession", true);
+    xhr.send();
+
+    window.location.href = "index.jsp";
+
   });
 </script>
 </body>

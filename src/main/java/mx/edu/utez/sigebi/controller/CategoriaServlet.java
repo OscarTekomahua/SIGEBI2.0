@@ -78,6 +78,25 @@ public class CategoriaServlet extends HttpServlet {
                 break;
 
             case "/updateCategoria":
+                int idCategoria = Integer.parseInt(req.getParameter("idCategoria"));
+                System.out.println(idCategoria);
+                String nuevoNombre = req.getParameter("nuevoNombre"); // Asegúrate de tener un campo en tu formulario con el nombre nuevo
+                if (nuevoNombre == null || nuevoNombre.trim().isEmpty()) {
+                    // Mostrar mensaje de error en caso de nombre vacío
+                    req.setAttribute("error", "Por favor, ingrese un nombre válido.");
+                    resp.sendRedirect(req.getContextPath() + "/readCategoria?operacion=categorias");
+                    return;
+                }
+                catDao = new CategoriaDao();
+                Categoria categoria = new Categoria(idCategoria, nuevoNombre);
+                boolean actualizado = catDao.update(idCategoria, categoria);
+                if (actualizado) {
+                    // Realiza las acciones necesarias después de la actualización
+                    resp.sendRedirect(req.getContextPath() + "/readCategoria?operacion=categorias");
+                } else {
+                    // Manejo de error si la actualización falla
+                    // Redirecciona a una página de error o muestra un mensaje de error
+                }
                 break;
 
             case "/deleteCategoria":
@@ -119,6 +138,7 @@ public class CategoriaServlet extends HttpServlet {
 
                 req.getRequestDispatcher("categoriasAdmin.jsp").forward(req, resp);
                 break;
+
 
             case "/deleteCategoria":
                 int idCategoria = Integer.parseInt(req.getParameter("idCategoria"));
