@@ -5,7 +5,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
   <title>Administrar Historial</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400&display=swap');
@@ -17,14 +17,12 @@
       margin: 0;
     }
 
-    /* Estilos del Navbar */
     .navbar {
-      background-color: #009475;
+      background-color: #002E60;
       height: 100px;
       display: flex;
       align-items: center;
       justify-content: flex-end;
-      /* Alinea los elementos del navbar a la derecha */
       padding: 0 20px;
       position: relative;
       z-index: 999;
@@ -64,24 +62,20 @@
       color: #002E60;
     }
 
-    /* Estilos del Menú Lateral */
     .sidebar {
       position: fixed;
       top: 0;
       right: -250px;
-      /* Posiciona el sidebar en el lado derecho (inicialmente oculto) */
       height: 100%;
       width: 250px;
       background-color: rgba(255, 255, 255, 0.8);
       padding-top: 100px;
       transition: transform 0.3s;
       z-index: 2;
-      /* Asegura que el menú esté por encima del contenido */
     }
 
     .sidebar.show {
       right: 0;
-      /* Despliega el sidebar hacia la derecha cuando está abierto */
     }
 
     .sidebar ul {
@@ -96,7 +90,6 @@
 
     .sidebar a {
       color: #000000;
-      /* Cambia el color del texto en el menú lateral a blanco */
       text-decoration: none;
       font-size: 18px;
       display: block;
@@ -170,7 +163,6 @@
       opacity: 0.8;
     }
 
-    /* Estilo para oscurecer el fondo cuando el sidebar esté abierto */
     .sidebar-open {
       overflow: hidden;
     }
@@ -185,7 +177,22 @@
       pointer-events: none;
     }
     .buscador {
-      width: 450px; /* Cambia este valor según tus preferencias */
+      width: 450px;
+    }
+
+    .btnstock {
+      background-color: transparent; /* Sin color de fondo */
+      color: #000;
+      border: none;
+      border-radius: 5px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    /* Estilos para el aclarado al pasar el mouse */
+    .btnstock:hover {
+      color: #009475; /* Color de letras ligeramente más claro */
     }
   </style>
 </head>
@@ -193,21 +200,17 @@
 <body>
 <nav class="navbar">
   <div class="container d-flex justify-content-between align-items-center">
-    <!-- Ajustamos el contenedor con Flexbox -->
     <a class="navbar-brand" href="bibliotecario.jsp">
       <img src="assets/img/sigebi%20logo2.png" alt="SIGEBI Logo">
-      <span class="d-none d-md-inline-block">Bienvenido Usuario Utez</span>
-      <!-- Oculta el texto en pantallas pequeñas -->
     </a>
     <div class="nav-item">
       <form class="d-flex" id="searchForm">
-        <input class="form-control me-2 buscador" type="search" placeholder="Buscar por Título, fecha, ISBN"
+        <input class="form-control me-2 buscador" type="search" placeholder="Buscar por Nombre, apellido, matrícula"
                aria-label="Buscar" id="searchInput">
         <button class="btn btn-outline-success" type="submit">Buscar</button>
       </form>
     </div>
     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidebarCollapse">
-      <!-- Reemplazar el icono de tres líneas por uno de Font Awesome (fa-bars) -->
       <i class="fas fa-bars"></i>
     </button>
   </div>
@@ -217,10 +220,19 @@
 <div class="sidebar hide">
   <ul>
     <!-- Agregamos los iconos de Font Awesome a las opciones del menú -->
-    <li><a href="#"><i class="fas fa-history"></i> Revisar Historial</a></li>
-    <li><a href="#"><i class="fas fa-box-open"></i> Administrar Stock</a></li>
-    <li><a href="#"><i class="fas fa-users"></i> Revisar Usuarios</a></li>
-    <li><a href="#"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+    <li><a href="bibliotecario.jsp"><i class="fas fa-home"></i> Inicio</a></li>
+    <li><a href="revisarHistorial.jsp"><i class="fas fa-history"></i> Revisar Historial</a></li>
+    <!-- Botón con el efecto de aclarado en las letras -->
+    <li>
+      <form action="mostrarlibros" method="get">
+        <input type="hidden" name="operacion" value="stocklibros">
+        <button type="submit" class="btnstock">
+          <i class="fas fa-stream"></i> Stock de libros
+        </button>
+      </form>
+    </li>
+    <li><a href="usuarios.jsp"><i class="fas fa-users"></i> Revisar Usuarios</a></li>
+    <li><a href="#" id="botonCerrarSesion"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
     <!-- Agrega más opciones de menú aquí -->
   </ul>
 </div>
@@ -316,6 +328,15 @@
         row.style.display = 'none';
       }
     }
+  });
+  document.getElementById("botonCerrarSesion").addEventListener("click", function () {
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "CloseSession", true);
+    xhr.send();
+
+    window.location.href = "index.jsp";
+
   });
 </script>
 </body>

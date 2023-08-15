@@ -241,11 +241,11 @@
                 <img src="assets/img/img.png" alt="Imagen 1">
                 <div class="circle-text">Ciencias Físico-Matemáticas e Ingenierías</div>
             </div>
-            <div class="circle-image hvr-float"> <a href="catalogoLibros.jsp" style="position: fixed; margin-left: 55px; margin-top: 65px; display: inline-block; padding: 10px 20px; background-color: #009475; color: white; text-decoration: none; border-radius: 5px;">Entrar</a>>
+            <div class="circle-image hvr-float"> <a id="mostrarLibros2" href="${pageContext.request.contextPath}/mostrarlibrosvista" style="position: fixed; margin-left: 55px; margin-top: 65px; display: inline-block; padding: 10px 20px; background-color: #009475; color: white; text-decoration: none; border-radius: 5px;">Entrar</a>
                 <img src="assets/img/img2.png" alt="Imagen 2">
                 <div class="circle-text">Ciencias Biológicas, Químicas y de la Salud</div>
             </div>
-            <div class="circle-image hvr-float"> <a href="catalogoLibros.jsp" style="position: fixed; margin-left: 55px; margin-top: 65px; display: inline-block; padding: 10px 20px; background-color: #009475; color: white; text-decoration: none; border-radius: 5px;">Entrar</a>
+            <div class="circle-image hvr-float"> <a id="mostrarLibros3" href="${pageContext.request.contextPath}/mostrarlibrosvista" style="position: fixed; margin-left: 55px; margin-top: 65px; display: inline-block; padding: 10px 20px; background-color: #009475; color: white; text-decoration: none; border-radius: 5px;">Entrar</a>
                 <img src="assets/img/img3.png" alt="Imagen 3">
                 <div class="circle-textciencias">Ciencias Sociales</div>
             </div>
