@@ -13,6 +13,8 @@
     <link rel="stylesheet" type="text/css" href="assets/css/estilos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <title>Libros en el inventario</title>
 </head>
 <style>
@@ -203,6 +205,21 @@
         background-color: #009475;
     }
 
+    .btnstock {
+        background-color: transparent; /* Sin color de fondo */
+        color: #000;
+        border: none;
+        border-radius: 5px;
+        font-size: 18px;
+        cursor: pointer;
+        transition: color 0.3s;
+    }
+
+    /* Estilos para el aclarado al pasar el mouse */
+    .btnstock:hover {
+        color: #009475; /* Color de letras ligeramente más claro */
+    }
+
 </style>
 </head>
 <body>
@@ -222,19 +239,26 @@
         </button>
     </div>
 </nav>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
 <div class="sidebar hide">
     <ul>
-        <li><a href="bibliotecario.jsp" class="fas fa-home"> Inicio</a></li>
-        <li><a href="#" class="fas fa-users"> Revisar Usuarios</a></li>
-        <li><a href="#" class="fas fa-sign-out-alt"> Cerrar Sesión</a></li>
+        <!-- Agregamos los iconos de Font Awesome a las opciones del menú -->
+        <li><a href="bibliotecario.jsp"><i class="fas fa-home"></i> Inicio</a></li>
+        <li><a href="revisarHistorial.jsp"><i class="fas fa-history"></i> Revisar Historial</a></li>
+        <!-- Botón con el efecto de aclarado en las letras -->
+        <li>
+            <form action="mostrarlibros" method="get">
+                <input type="hidden" name="operacion" value="stocklibros">
+                <button type="submit" class="btnstock">
+                    <i class="fas fa-stream"></i> Stock de libros
+                </button>
+            </form>
+        </li>
+        <li><a href="usuarios.jsp"><i class="fas fa-users"></i> Revisar Usuarios</a></li>
+        <li><a href="#" id="botonCerrarSesion"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+        <!-- Agrega más opciones de menú aquí -->
     </ul>
 </div>
-
-<form action="AddNewBookBiblio" method="get">
-    <input type="hidden" name="operacion" value="nuevolibro">
-    <button type="submit" href="agregarlibro.jsp" class="btn btn-agregar">Agregar Libro</button>
-</form>
-
 <div class="container-tab">
     <div class="table-container">
         <h2 class="text-center mb-4">Stock de libros</h2>
@@ -296,6 +320,17 @@
                 $("body").removeClass("sidebar-open");
             }
         });
+    });
+
+
+    document.getElementById("botonCerrarSesion").addEventListener("click", function () {
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "CloseSession", true);
+        xhr.send();
+
+        window.location.href = "index.jsp";
+
     });
 
     document.addEventListener("DOMContentLoaded", function () {

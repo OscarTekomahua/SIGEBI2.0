@@ -221,6 +221,22 @@
     .addNewEdit:hover {
         background-color: #0048a6; /* Cambia el color cuando pasas el cursor sobre el botón */
     }
+
+    /* Estilos para el botón */
+    .btnstock {
+        background-color: transparent; /* Sin color de fondo */
+        color: #000;
+        border: none;
+        border-radius: 5px;
+        font-size: 18px;
+        cursor: pointer;
+        transition: color 0.3s;
+    }
+
+    /* Estilos para el aclarado al pasar el mouse */
+    .btnstock:hover {
+        color: #009475; /* Color de letras ligeramente más claro */
+    }
 </style>
 
 <body>
@@ -241,13 +257,27 @@
         </button>
     </div>
 </nav>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
 <div class="sidebar hide">
     <ul>
-        <li><a href="bibliotecario.jsp" class="fas fa-home"> Inicio</a></li>
-        <li><a href="#" class="fas fa-users"> Revisar Usuarios</a></li>
-        <li><a href="#" class="fas fa-sign-out-alt"> Cerrar Sesión</a></li>
+        <!-- Agregamos los iconos de Font Awesome a las opciones del menú -->
+        <li><a href="bibliotecario.jsp"><i class="fas fa-home"></i> Inicio</a></li>
+        <li><a href="revisarHistorial.jsp"><i class="fas fa-history"></i> Revisar Historial</a></li>
+        <!-- Botón con el efecto de aclarado en las letras -->
+        <li>
+            <form action="mostrarlibros" method="get">
+                <input type="hidden" name="operacion" value="stocklibros">
+                <button type="submit" class="btnstock">
+                    <i class="fas fa-stream"></i> Stock de libros
+                </button>
+            </form>
+        </li>
+        <li><a href="usuarios.jsp"><i class="fas fa-users"></i> Revisar Usuarios</a></li>
+        <li><a href="#" id="botonCerrarSesion"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+        <!-- Agrega más opciones de menú aquí -->
     </ul>
 </div>
+
 <div class="container-tab">
     <div class="table-container">
         <h2 class="text-center mb-4">Editoriales</h2>

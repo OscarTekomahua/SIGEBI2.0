@@ -192,7 +192,21 @@
     .buscador {
       width: 450px;
     }
+    /* Estilos para el botón */
+    .btnstock {
+      background-color: transparent; /* Sin color de fondo */
+      color: #000;
+      border: none;
+      border-radius: 5px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
 
+    /* Estilos para el aclarado al pasar el mouse */
+    .btnstock:hover {
+      color: #009475; /* Color de letras ligeramente más claro */
+    }
   </style>
 </head>
 
@@ -220,10 +234,18 @@
   <ul>
     <!-- Agregamos los iconos de Font Awesome a las opciones del menú -->
     <li><a href="bibliotecario.jsp"><i class="fas fa-home"></i> Inicio</a></li>
-    <li><a href="#"><i class="fas fa-history"></i> Revisar Historial</a></li>
-    <li><a href="#"><i class="fas fa-box-open"></i> Administrar Stock</a></li>
-    <li><a href="#"><i class="fas fa-users"></i> Revisar Usuarios</a></li>
-    <li><a href="#"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+    <li><a href="revisarHistorial.jsp"><i class="fas fa-history"></i> Revisar Historial</a></li>
+    <!-- Botón con el efecto de aclarado en las letras -->
+    <li>
+      <form action="mostrarlibros" method="get">
+        <input type="hidden" name="operacion" value="stocklibros">
+        <button type="submit" class="btnstock">
+          <i class="fas fa-stream"></i> Stock de libros
+        </button>
+      </form>
+    </li>
+    <li><a href="usuarios.jsp"><i class="fas fa-users"></i> Revisar Usuarios</a></li>
+    <li><a href="#" id="botonCerrarSesion"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
     <!-- Agrega más opciones de menú aquí -->
   </ul>
 </div>
@@ -318,12 +340,22 @@
         }
       });
 
-      if (match) {
+        if (match) {
         row.style.display = 'table-row';
       } else {
         row.style.display = 'none';
       }
     }
+  });
+
+  document.getElementById("botonCerrarSesion").addEventListener("click", function () {
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "CloseSession", true);
+    xhr.send();
+
+    window.location.href = "index.jsp";
+
   });
 </script>
 </body>
