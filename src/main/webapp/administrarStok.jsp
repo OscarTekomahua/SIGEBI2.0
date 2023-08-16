@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <title>Libros en el inventario</title>
 </head>
@@ -296,6 +297,13 @@
             </c:forEach>
         </table>
 
+        <form style="text-align: center" action="AddNewBookBiblio" method="get">
+            <input type="hidden" name="operacion" value="nuevolibro">
+            <button type="submit" class="btn btn-agregar">
+                <i class="fas fa-book"></i> <!-- Icono de libro -->
+                <i class="fas fa-plus"></i> <!-- Icono de más -->
+            </button>
+        </form>
     </div>
 </div>
 <div class="sidebar-overlay"></div>
