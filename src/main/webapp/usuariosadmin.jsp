@@ -203,6 +203,21 @@
         background-color: #009475;
     }
 
+
+    .btnstock {
+        background-color: transparent; /* Sin color de fondo */
+        color: #000;
+        border: none;
+        border-radius: 5px;
+        font-size: 18px;
+        cursor: pointer;
+        transition: color 0.3s;
+    }
+
+    /* Estilos para el aclarado al pasar el mouse */
+    .btnstock:hover {
+        color: #009475; /* Color de letras ligeramente más claro */
+    }
 </style>
 </head>
 <body>
@@ -222,12 +237,25 @@
         </button>
     </div>
 </nav>
+
 <div class="sidebar hide">
-    <ul>
-        <li><a href="admin.jsp" class="fas fa-home"> Inicio</a></li>
-        <li><a href="#" class="fas fa-users"> Revisar Usuarios</a></li>
-        <li><a href="#" class="fas fa-sign-out-alt"> Cerrar Sesión</a></li>
-    </ul>
+<ul>
+    <!-- Agregamos los iconos de Font Awesome a las opciones del menú -->
+    <li><a href="admin.jsp"><i class="fas fa-home"></i> Inicio</a></li>
+    <li><a href="revisarHistorial.jsp"><i class="fas fa-history"></i> Revisar Historial</a></li>
+    <!-- Botón con el efecto de aclarado en las letras -->
+    <li>
+        <form action="mostrarlibros" method="get">
+            <input type="hidden" name="operacion" value="stocklibros">
+            <button type="submit" class="btnstock">
+                <i class="fas fa-stream"></i> Stock de libros
+            </button>
+        </form>
+    </li>
+    <li><a href="usuarios.jsp"><i class="fas fa-users"></i> Revisar Usuarios</a></li>
+    <li><a href="#" id="botonCerrarSesion"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+    <!-- Agrega más opciones de menú aquí -->
+</ul>
 </div>
 
 <form action="NewUserForAdmin" method="get">
@@ -237,7 +265,7 @@
 
 <div class="container-tab">
     <div class="table-container">
-        <h2 class="text-center mb-4">Stock de libros</h2>
+        <h2 class="text-center mb-4">Gestion usuarios</h2>
 
         <table class="table table-bordered table-striped">
             <thead>
@@ -309,6 +337,17 @@
             });
         }
         searchInput.addEventListener("input", filterTable);
+    });
+
+
+    document.getElementById("botonCerrarSesion").addEventListener("click", function () {
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "CloseSession", true);
+        xhr.send();
+
+        window.location.href = "index.jsp";
+
     });
 </script>
 </body>

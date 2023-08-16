@@ -323,6 +323,18 @@
     });
   });
 
+
+
+  document.getElementById("botonCerrarSesion").addEventListener("click", function () {
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "CloseSession", true);
+    xhr.send();
+
+    window.location.href = "index.jsp";
+
+  });
+
   document.addEventListener("DOMContentLoaded", function () {
     const searchInput = document.getElementById("searchInput");
     const tableRows = document.querySelectorAll(".table tbody tr");
