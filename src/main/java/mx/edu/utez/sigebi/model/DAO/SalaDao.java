@@ -77,7 +77,7 @@ public class SalaDao implements DaoSala {
 
             ResultSet resultSet = statement.executeQuery();
 
-            if (resultSet.next()) {
+            while (resultSet.next()) {
                 String salaname = resultSet.getString("sala_nombre");
                 int capacidad = resultSet.getInt("sala_capacidad");
                 String username = resultSet.getString("usuario_nombres");
