@@ -96,7 +96,7 @@ public class AgregarNuevoLibroAdmin extends HttpServlet {
 
             req.setAttribute("tablalibros", listalibro);
 
-            req.getRequestDispatcher("administrarStok.jsp").forward(req, resp);
+            req.getRequestDispatcher("administrarStockAdmin.jsp").forward(req, resp);
         } else {
             resp.sendRedirect("revisarHistorial.jsp");
         }
