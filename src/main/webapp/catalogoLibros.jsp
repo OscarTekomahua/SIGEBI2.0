@@ -279,13 +279,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
 <div class="sidebar hide">
     <ul>
-        <!-- Agregamos los iconos de Font Awesome a las opciones del menú -->
-        <li><a href="#"><i class="fas fa-home"></i> Inicio</a></li>
-        <li><a href="#"><i class="fas fa-calendar-alt"></i> Solicitar Sala</a></li>
-        <li><a href="#"><i class="fas fa-book"></i> Solicitar Libro</a></li>
-        <li><a href="#"><i class="fas fa-list"></i> Categorías</a></li>
-        <li><a href="#"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
-        <!-- Agrega más opciones de menú aquí -->
+        <li><a href="inicio.jsp"><i class="fas fa-home"></i> Inicio</a></li>
+        <li><a id="salas" href="salasuser.jsp"><i class="fas fa-calendar-alt"></i> Solicitar Sala</a></li>
+        <li><a href="${pageContext.request.contextPath}/mostrarlibrosvista" ><i class="fas fa-book"></i> Solicitar Libro</a></li>
+        <li><a id="cerrarSesion" href="index.jsp"><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
     </ul>
 </div>
 
@@ -356,6 +353,13 @@
             }
         }
     });
+    document.getElementById("cerrarSesion").addEventListener("click", function () {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "CloseSession", true);
+        xhr.send();
+        window.location.href = "index.jsp";
+    });
+
 
 
 </script>
