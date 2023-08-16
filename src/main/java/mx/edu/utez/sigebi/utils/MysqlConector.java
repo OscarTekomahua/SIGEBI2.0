@@ -8,7 +8,7 @@ public class MysqlConector {
 
     public Connection connect() {
         String dataSource =
-                String.format("jdbc:mysql://%s:3306/%s?user=%s&password=%s&serverTimezone=%s&useSSL=%s&allowPublicKeyRetrieval=%s&createDatabaseIfNotExist= %s", HOST, DBNAME, USER, PASSWORD, TIMEZONE, USESSL, PUBLICKEY, DDLAUTO);
+                String.format("jdbc:mysql://%s:3306/%s?user=%s&password=%s&serverTimezone=%s&useSSL=%s&allowPublicKeyRetrieval=%s&createDatabaseIfNotExist= %s&useUnicode=true&characterEncoding=utf8", HOST, DBNAME, USER, PASSWORD, TIMEZONE, USESSL, PUBLICKEY, DDLAUTO);
         try {
             DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
             return DriverManager.getConnection(dataSource);

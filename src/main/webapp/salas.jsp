@@ -233,24 +233,34 @@
 
 <div class="container-tab">
   <div class="table-container">
-    <h2 class="text-center mb-4">Salas</h2>
+    <h2 class="text-center mb-4">Préstamos de Salas</h2>
 
     <table class="table table-bordered table-striped">
       <thead>
       <tr>
-        <th>ID Sala</th>
         <th>Sala</th>
         <th>Capacidad Maxima</th>
+        <th>Nombre de usuario</th>
+        <th>Apellido Paterno</th>
+        <th>Apellido Materno</th>
         <th>Estado</th>
+        <th>Hora de inicio</th>
+        <th>Hora final</th>
+        <th>Extras</th>
       </tr>
       </thead>
       <c:forEach items="${tablasalas}" var="s">
         <tbody>
         <tr>
-          <td>${s.id_sala}</td>
-          <td>${s.nombre}</td>
-          <td>${s.capacidad_maxima}</td>
-          <td>${s.estadoTexto}</td>
+          <td>${s.nombreSala}</td>
+          <td>${s.capacidadMaxima}</td>
+          <td>${s.nombreUsuario}</td>
+          <td>${s.apellido1Usuario}</td>
+          <td>${s.apellido2Usuario}</td>
+          <td>${s.estado}</td>
+          <td>${s.hora_inicio}</td>
+          <td>${s.hora_fin}</td>
+          <td>${s.extras}</td>
         </tr>
         </tbody>
       </c:forEach>

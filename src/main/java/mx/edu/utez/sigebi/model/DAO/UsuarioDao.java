@@ -330,4 +330,30 @@ public class UsuarioDao implements DaoRepository {
         return true;
     }
 
+        public String getFullName (String correo, String contra) {
+            String nombreCompleto = "";
+
+            try {
+                String query = "SELECT p.nombres, p.apellido1, p.apellido2 FROM usuario u JOIN persona p ON u.id_persona = p.id_persona WHERE u.correo_institucional = ? AND u.contraseña = SHA2(?, 256)";
+                PreparedStatement stmt = con.prepareStatement(query);
+                stmt.setString(1, correo);
+                stmt.setString(2, contra);
+
+                ResultSet rs = stmt.executeQuery();
+
+                if (rs.next()) {
+                    String names = rs.getString("nombres");
+                    String apellidoP = rs.getString("apellido1");
+                    String apellidoM = rs.getString("apellido2");
+                    nombreCompleto = names + " " + apellidoP + " " + apellidoM;
+                }
+                rs.close();
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            return nombreCompleto;
+        }
+
 }

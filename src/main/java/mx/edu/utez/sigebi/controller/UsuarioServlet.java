@@ -3,7 +3,6 @@ package mx.edu.utez.sigebi.controller;
 import mx.edu.utez.sigebi.model.Rol;
 import mx.edu.utez.sigebi.model.Usuario;
 import mx.edu.utez.sigebi.model.DAO.UsuarioDao;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,7 +27,6 @@ public class UsuarioServlet extends HttpServlet {
             req.getSession().setAttribute("sesion",usr);
 
             Rol rol = new Rol();
-
             rol.setTipo_usuario(usr.getRol().getTipo_usuario());
             req.getSession().setAttribute("tipoUsuario", rol.getTipo_usuario());
 
@@ -38,7 +36,7 @@ public class UsuarioServlet extends HttpServlet {
             } else if (rol.getTipo_usuario().equals("Bibliotecario")) {
                 resp.sendRedirect("bibliotecario.jsp");
             } else if (rol.getTipo_usuario().equals("Usuario UTEZ")) {
-                resp.sendRedirect("inicio.jsp");
+                req.getRequestDispatcher("inicio.jsp").forward(req, resp);
             }
         } else {
             req.getSession().setAttribute("mensaje", "El usuario o la contraseña son incorrectos");

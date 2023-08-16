@@ -2,6 +2,7 @@ package mx.edu.utez.sigebi.controller;
 
 import mx.edu.utez.sigebi.model.DAO.SalaDao;
 import mx.edu.utez.sigebi.model.Sala;
+import mx.edu.utez.sigebi.model.SalaConsulta;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,7 +25,7 @@ public class SalaServlet extends HttpServlet {
                 if (req.getParameter("operacion").equals("tablasalas")) {
                     SalaDao salaDao = new SalaDao();
 
-                    List<Sala> listadesalas = salaDao.findAll();
+                    List<SalaConsulta> listadesalas = salaDao.salasBiblio();
 
                     req.setAttribute("tablasalas", listadesalas);
                 }
