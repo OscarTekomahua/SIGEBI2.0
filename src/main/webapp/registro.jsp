@@ -1,7 +1,7 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -274,17 +274,11 @@
 <body>
 <div class="wrapper fadeInDown">
     <div id="formContent">
-        <!-- Tabs Titles -->
         <h2 class="active">  Registro </h2>
-
-
-        <!-- Icon -->
         <div class="fadeIn first">
-
         </div>
         <br>
 
-        <!-- Login Form -->
         <form method="post" action="RegistrarUsuarioServlet" id="frm">
             <label for="nombre"><b>Nombre(s):</b></label>
             <input type="form" id="nombre" class="fadeIn second" name="nombre" placeholder="Nombre(s)" required>

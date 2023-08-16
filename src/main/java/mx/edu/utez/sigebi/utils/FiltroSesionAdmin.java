@@ -15,7 +15,12 @@ import java.io.IOException;
         "/salasAdmin.jsp",
         "/formulariocategoriaAdmin.jsp",
         "/formularioeditorialAdmin.jsp",
-        "/usuariosadmin.jsp"
+        "/usuariosadmin.jsp",
+        "/readEditorialAdmin",
+        "/createEditorialAdmin",
+        "/createCategoriaAdmin",
+        "/readCategoriaAdmin",
+        ""
 })
 public class FiltroSesionAdmin implements Filter {
 

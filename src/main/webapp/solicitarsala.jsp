@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <title>Modificar Libro</title>
+    <title>Solicitar Libro</title>
 </head>
 
 <body>
@@ -214,16 +214,8 @@
     <div class="container d-flex justify-content-between align-items-center"> <!-- Ajustamos el contenedor con Flexbox -->
         <a class="navbar-brand" href="inicio.jsp">
             <img src="assets/img/sigebi%20logo2.png" alt="SIGEBI Logo">
-            <span class="d-none d-md-inline-block">Bienvenido Usuario Utez</span> <!-- Oculta el texto en pantallas pequeñas -->
         </a>
-        <div class="nav-item">
-            <form class="d-flex" id="searchForm">
-                <input class="form-control me-2 buscador" type="search" placeholder="Buscar por Nombre, matrícula, correo" aria-label="Buscar" id="searchInput">
-                <button class="btn btn-outline-success" type="submit">Buscar</button>
-            </form>
-        </div>
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidebarCollapse">
-            <!-- Reemplazar el icono de tres líneas por uno de Font Awesome (fa-bars) -->
             <i class="fas fa-bars"></i>
         </button>
     </div>
@@ -246,31 +238,14 @@
                     <h3 class="card-title text-center mb-4">Solicitar Sala</h3>
                     <form method="post" action="PedirSalaServlet">
                         <input type="hidden" name="id_sala" value="${id_sala}">
-                        <div class="form-control">
-                            <label for="id_usuario">ID de Usuario:</label>
-                            <input type="number" class="form-control" id="id_usuario" name="id_usuario" placeholder="Ingresa tu ID de Usuario">
-                        </div>
-                        <div class="form-group">
-                            <label for="nombre">Nombre(s):</label>
-                            <input type="text" class="form-control" id="nombre" placeholder="Ingresa tu(s) Nombre(s)" name="nombre">
-                        </div>
-                        <div class="form-group">
-                            <label for="ape1">Apellido Paterno:</label>
-                            <input type="text" class="form-control" id="ape1"
-                                   placeholder="Ingresa tu Apellido Paterno" name="apellidop">
-                        </div>
-                        <div class="form-group">
-                            <label for="ape2">Apellido Materno:</label>
-                            <input type="text" class="form-control" id="ape2"
-                                   placeholder="Ingresa tu Apellido Materno" name="apellidom">
-                        </div>
+                        <input type="hidden" name="id_usuario" value="${id_usuario}">
                         <div class="form-group">
                             <label for="horaInicio">Hora de inicio del préstamo:</label>
-                            <input type="time" class="form-control" id="horaInicio" name="horaInicio">
+                            <input type="time" class="form-control" id="horaInicio" name="horaInicio" required>
                         </div>
                         <div class="form-group">
                             <label for="horaFinal">Hora de final del préstamo:</label>
-                            <input type="time" class="form-control" id="horaFinal" name="horaFinal">
+                            <input type="time" class="form-control" id="horaFinal" name="horaFinal" required>
                         </div>
                         <div class="form-group">
                             <label>Añadir extras a la sala:</label><br>

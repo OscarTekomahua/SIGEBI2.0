@@ -189,10 +189,9 @@
         <div class="container d-flex justify-content-between align-items-center"> <!-- Ajustamos el contenedor con Flexbox -->
             <a class="navbar-brand" href="inicio.jsp">
                 <img src="assets/img/sigebi%20logo2.png" alt="SIGEBI Logo">
-                <span class="d-none d-md-inline-block">Bienvenido a SIGEBI</span> <!-- Oculta el texto en pantallas pequeñas -->
+                <span class="d-none d-md-inline-block">Bienvenido ${nombreusuario}</span> <!-- Oculta el texto en pantallas pequeñas -->
             </a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidebarCollapse">
-                <!-- Reemplazar el icono de tres líneas por uno de Font Awesome (fa-bars) -->
                 <i class="fas fa-bars"></i>
             </button>
         </div>
