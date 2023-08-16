@@ -203,6 +203,21 @@
     background-color: #009475;
   }
 
+
+  .btnstock {
+    background-color: transparent; /* Sin color de fondo */
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+
+  /* Estilos para el aclarado al pasar el mouse */
+  .btnstock:hover {
+    color: #009475; /* Color de letras ligeramente más claro */
+  }
 </style>
 </head>
 <body>
@@ -224,12 +239,23 @@
 </nav>
 <div class="sidebar hide">
   <ul>
-    <li><a href="admin.jsp" class="fas fa-home"> Inicio</a></li>
-    <li><a href="#" class="fas fa-users"> Revisar Usuarios</a></li>
-    <li><a href="#" class="fas fa-sign-out-alt"> Cerrar Sesión</a></li>
+    <!-- Agregamos los iconos de Font Awesome a las opciones del menú -->
+    <li><a href="admin.jsp"><i class="fas fa-home"></i> Inicio</a></li>
+    <li><a href="revisarHistorial.jsp"><i class="fas fa-history"></i> Revisar Historial</a></li>
+    <!-- Botón con el efecto de aclarado en las letras -->
+    <li>
+      <form action="mostrarlibros" method="get">
+        <input type="hidden" name="operacion" value="stocklibros">
+        <button type="submit" class="btnstock">
+          <i class="fas fa-stream"></i> Stock de libros
+        </button>
+      </form>
+    </li>
+    <li><a href="usuarios.jsp"><i class="fas fa-users"></i> Revisar Usuarios</a></li>
+    <li><a href="#" id="botonCerrarSesion"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+    <!-- Agrega más opciones de menú aquí -->
   </ul>
 </div>
-
 <form action="AddNewBookAdmin" method="get">
   <input type="hidden" name="operacion" value="nuevolibro">
   <button type="submit" href="agregarlibro.jsp" class="btn btn-agregar">Agregar Libro</button>
