@@ -287,11 +287,12 @@
                xhr.open("GET", "CloseSession", true);
                xhr.send();
                window.location.href = "index.jsp";
+
             });
 
             document.getElementById("salas").addEventListener("click", function () {
                 var xhr = new XMLHttpRequest();
-                xhr.open("GET", "SalasUser", true);
+                xhr.open("GET", "salasUser", true);
                 xhr.send();
                 window.location.href = "salasuser.jsp";
 

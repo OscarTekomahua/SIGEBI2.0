@@ -143,22 +143,22 @@
 </div>
 <div class="hero-text-box">
     <h1>Bibliotecario</h1>
-    <a class="btn btn-ghost" href="usuarios.jsp"><i class="fas fa-users"></i>Revisar Usuarios</a>
+    <a class="btn btn-ghost" href="usuarios.jsp"><i class="fas fa-users"> </i>Revisar Usuarios</a>
     <form action="mostrarlibros" method="get">
         <input type="hidden" name="operacion" value="stocklibros">
-        <button type="submit" class="btn btn-ghost"><i class="fas fa-stream"> Gestionar libros</i></button>
-    </form>
-    <form action="readEditorial" method="get">
-        <input type="hidden" name="operacion" value="editoriales">
-        <button type="submit" class="btn btn-ghost"><i class="fas fa-solid fa-book"> Editoriales</i></button>
-    </form>
-    <form action="readCategoria" method="get">
-        <input type="hidden" name="operacion" value="categorias">
-        <button type="submit" class="btn btn-ghost"><i class="fas fa-solid fa-bars"> Categorias</i></button>
+        <button type="submit" class="btn btn-ghost"><i class="fas fa-stream"> </i>Gestionar libros</button>
     </form>
     <form action="salasBiblio" method="get">
         <input type="hidden" name="operacion" value="tablasalas">
-        <button type="submit" class="btn btn-ghost"><i class="fas fa-door-open"> Gestionar Salas</i></button>
+        <button type="submit" class="btn btn-ghost"><i class="fas fa-door-open"> </i>Gestionar Salas</button>
+    </form>
+    <form action="readEditorial" method="get">
+        <input type="hidden" name="operacion" value="editoriales">
+        <button type="submit" class="btn btn-ghost"><i class="fas fa-solid fa-book"> </i>Editoriales</button>
+    </form>
+    <form action="readCategoria" method="get">
+        <input type="hidden" name="operacion" value="categorias">
+        <button type="submit" class="btn btn-ghost"><i class="fas fa-solid fa-bars"> </i>Categorias</button>
     </form>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
