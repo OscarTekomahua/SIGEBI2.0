@@ -189,6 +189,32 @@
   .btnstock:hover {
     color: #009475; /* Color de letras ligeramente más claro */
   }
+
+  /* Ejemplo de Media Queries para ajustar el diseño en pantallas pequeñas */
+  @media (max-width: 768px) {
+    .navbar {
+      justify-content: space-between; /* Cambia la alineación en pantallas pequeñas */
+    }
+
+    .nav-item {
+      margin-top: 10px; /* Añade un poco de espacio en la parte superior en pantallas pequeñas */
+    }
+
+    .sidebar {
+      right: -100%; /* Oculta la barra lateral por defecto */
+    }
+
+    .sidebar.show {
+      right: 0;
+    }
+
+    /* Ajusta el tamaño del logo en pantallas pequeñas */
+    .navbar-brand img {
+      height: 30px;
+    }
+
+    /* Estilos adicionales para pantallas pequeñas */
+  }
 </style>
 
 <body>
@@ -231,9 +257,11 @@
   </ul>
 </div>
 
+
+<p/>
+<h2><center>Préstamos de Salas</center></h2>
 <div class="container-tab">
   <div class="table-container">
-    <h2 class="text-center mb-4">Préstamos de Salas</h2>
 
     <table class="table table-bordered table-striped">
       <thead>
