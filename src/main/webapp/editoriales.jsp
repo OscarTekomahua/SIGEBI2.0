@@ -355,6 +355,17 @@
         }
         searchInput.addEventListener("input", filterTable);
     });
+
+    document.getElementById("botonCerrarSesion").addEventListener("click", function () {
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "CloseSession", true);
+        xhr.send();
+
+        window.location.href = "index.jsp";
+
+    });
+
 </script>
 <script type="text/javascript">
     function validarNombre(form) {
