@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-@WebServlet (name = "EditorialServlet", urlPatterns = {"/createEditorial", "/createEditorialAdmin","/createEditorialMod", "/readEditorial", "/readEditorialAdmin", "/updateEditorial", "/deleteEditorial"})
+@WebServlet (name = "EditorialServlet", urlPatterns = {"/createEditorial", "/createEditorialAdmin","/createEditorialModAdmin","/createEditorialMod", "/readEditorial", "/readEditorialAdmin", "/updateEditorial", "/deleteEditorial"})
 public class    EditorialServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -75,7 +75,7 @@ public class    EditorialServlet extends HttpServlet {
                         List<Categoria> listacategorias = catDao.findAll();
                         req.getSession().setAttribute("categorias", listacategorias);
 
-                        resp.sendRedirect("agregarlibro.jsp");
+                        resp.sendRedirect("agregarlibroAdmin.jsp");
                     }
                 }
                 break;
@@ -101,6 +101,30 @@ public class    EditorialServlet extends HttpServlet {
                         req.getSession().setAttribute("categorias", listacategorias);
 
                         resp.sendRedirect("editoriales.jsp");
+                    }
+                }
+                break;
+            case "/createEditorialModAdmin":
+                if (editExiste) {
+                    String mensajeError = "¡Ya existe una editorial " + nuevaEditorial + "!";
+                    req.getSession().setAttribute("error", mensajeError);
+                    resp.sendRedirect("formularioeditorialmodAdmin.jsp");
+                } else {
+                    Editorial neweditorial = new Editorial();
+
+                    neweditorial.setNombre(nuevaEditorial);
+
+                    boolean editorialRegistrada = editDao.insert(neweditorial);
+
+                    if (editorialRegistrada) {
+                        List<Editorial> listaeditoriales = editDao.findAll();
+                        req.getSession().setAttribute("editoriales", listaeditoriales);
+
+                        CategoriaDao catDao = new CategoriaDao();
+                        List<Categoria> listacategorias = catDao.findAll();
+                        req.getSession().setAttribute("categorias", listacategorias);
+
+                        resp.sendRedirect("editorialesAdmin.jsp");
                     }
                 }
                 break;

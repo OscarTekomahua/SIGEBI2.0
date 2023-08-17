@@ -203,6 +203,23 @@
     background-color: #009475;
   }
 
+  .addNewEdit {
+    background-color: #005ec9;
+    margin-top: 20px;
+    margin-left: 20px;
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #ffffff;
+    transition: background-color 0.5s;
+  }
+
+  .addNewEdit:hover {
+    background-color: #0048a6; /* Cambia el color cuando pasas el cursor sobre el botón */
+  }
 </style>
 
 <body>
@@ -233,29 +250,25 @@
 <div class="container-tab">
   <div class="table-container">
     <h2 class="text-center mb-4">Editoriales</h2>
-
+    <a href="formularioeditorialmodAdmin.jsp">
+      <button class="addNewEdit">Agregar Nueva Editorial</button>
+    </a>
     <table class="table table-bordered table-striped">
       <thead>
       <tr>
-        <th>ID Editorial</th>
         <th>Editorial</th>
-        <th>Acciones</th>
       </tr>
       </thead>
       <c:forEach items="${editoriales}" var="e">
         <tbody>
         <tr>
-          <td>${e.id_editorial}</td>
-          <td>${e.nombre}</td>
-          <td>
-            <a class="btn btn-eliminar" href="${pageContext.request.contextPath}/deleteEditorial?idEditorial=${e.id_editorial}">Eliminar</a>
-            <form action="updateEditorial" method="post">
-              <input type="hidden" name="idEditorial" value="${e.id_editorial}">
-              <input type="text" name="nuevoNombre" placeholder="Nuevo nombre">
-              <button type="submit">Actualizar</button>
-            </form>
-          </td>
-        </tr>
+          <td>${e.nombre}
+          <form action="updateEditorial" method="post" class="mb-3">
+            <input type="hidden" name="idEditorial" value="${e.id_editorial}">
+            <input type="text" id="nuevoNombre" name="nuevoNombre" class="form-control" placeholder="Nuevo nombre">
+            <button type="submit" onclick="return validarNombre(this.form);" class="btn btn-primary mt-2">Actualizar</button>
+            <a class="btn btn-eliminar" style=""${pageContext.request.contextPath}/deleteEditorial?idEditorial=${e.id_editorial}">Eliminar</a>
+          </form>
         </tbody>
       </c:forEach>
     </table>
