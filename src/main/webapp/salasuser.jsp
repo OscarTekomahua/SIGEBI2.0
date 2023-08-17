@@ -82,34 +82,6 @@
         z-index: 2;
     }
 
-    .sidebar-menu.show {
-        right: 0;
-    }
-
-    .sidebar-menu ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    .sidebar-menu li {
-        padding: 10px;
-    }
-
-    .sidebar-menu a {
-        color: #000000;
-        text-decoration: none;
-        font-size: 18px;
-        display: block;
-        padding: 10px;
-        letter-spacing: 1px;
-        transition: color 0.3s;
-    }
-
-    .sidebar-menu a:hover {
-        color: #71dbca;
-    }
-
     .container-tab {
         margin-left: 10px;
         margin-right: 10px;
@@ -153,11 +125,62 @@
         opacity: 0.6;
         pointer-events: none;
     }
+    /* Estilo para oscurecer el fondo cuando el sidebar esté abierto */
+    .sidebar-open {
+        overflow: hidden;
 
-    .sidebar-open .navbar {
+    }
+
+    .sidebar-open .carousel {
         opacity: 0.6;
         pointer-events: none;
     }
+    .sidebar-open .container {
+        opacity: 0.6;
+        pointer-events: none;
+    }
+
+    /* Estilos del Menú Lateral */
+    .sidebar {
+        position: fixed;
+        top: 0;
+        right: -250px; /* Posiciona el sidebar en el lado derecho (inicialmente oculto) */
+        height: 100%;
+        width: 250px;
+        background-color: rgba(255, 255, 255, 0.8);
+        padding-top: 100px;
+        transition: transform 0.3s;
+        z-index: 2; /* Asegura que el menú esté por encima del contenido */
+    }
+
+    .sidebar.show {
+        right: 0; /* Despliega el sidebar hacia la derecha cuando está abierto */
+    }
+
+    .sidebar ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .sidebar li {
+        padding: 10px;
+    }
+
+    .sidebar a {
+        color: #000000; /* Cambia el color del texto en el menú lateral a blanco */
+        text-decoration: none;
+        font-size: 18px;
+        display: block;
+        padding: 10px;
+        letter-spacing: 1px;
+        transition: color 0.3s;
+    }
+
+    .sidebar a:hover {
+        color: #71dbca;
+    }
+
 
     .btn-solicitar {
         background-color: #009475;
@@ -174,12 +197,31 @@
         background-color: #009475;
     }
 
+    /* Estilo para los botones de pestañas */
     .tablink {
-        background-color: #f2f2f2;
-        float: left;
-        border: 1px solid gray;
-        padding: 10px 20px;
+        background-color: #009475;
+        color: #fff;
+        border: none;
+        outline: none;
         cursor: pointer;
+        padding: 10px 20px;
+        transition: background-color 0.3s, color 0.3s;
+        font-size: 16px;
+    }
+
+    /* Cambiar el color de fondo y el color del texto al pasar el mouse */
+    .tablink:hover {
+        background-color: #2ECC71;
+    }
+
+    /* Estilo para el botón de pestaña activa */
+    .active-tab {
+        background-color: #2ECC71;
+    }
+
+    /* Estilo para el botón de pestaña desactivada */
+    .inactive-tab {
+        background-color: #009475;
     }
 
     .tabcontent {
@@ -189,19 +231,17 @@
 
 <body>
 
-<div class="tabs">
-    <button class="tablink" onclick="openTab(event, 'Tab1')">Salas</button>
-    <button class="tablink" onclick="openTab(event, 'Tab2')">Disponibilidad de salas</button>
-</div>
-
 <div id="Tab1" class="tabcontent">
     <nav class="navbar">
         <div class="container d-flex justify-content-between align-items-center">
             <a class="navbar-brand" href="inicio.jsp">
                 <img src="assets/img/sigebi%20logo2.png" alt="SIGEBI Logo">
             </a>
+            <div class="tabs">
+                <button class="tablink active-tab" onclick="openTab(event, 'Tab1')">Salas</button>
+                <button class="tablink inactive-tab" onclick="openTab(event, 'Tab2')">Disponibilidad de salas</button>
+            </div>
             <div class="nav-item">
-
             </div>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidebarCollapse">
                 <i class="fas fa-bars"></i>
@@ -209,12 +249,10 @@
         </div>
     </nav>
 
-    <div class="sidebar-menu hide">
+    <div class="sidebar hide">
         <ul>
-            <li></li>
-            <li></li>
-            <li><a href="inicio.jsp" class="fas fa-home"> Inicio</a></li>
-            <li><a href="#" class="fas fa-users"> Revisar Usuarios</a></li>
+            <li><a href="inicio.jsp"><i class="fas fa-home"></i> Inicio</a></li>
+            <li><a href="${pageContext.request.contextPath}/mostrarlibrosvista" ><i class="fas fa-book"></i> Solicitar Libro</a></li>
             <li><a id="cerrarSesion" href="index.jsp"><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
         </ul>
     </div>
@@ -262,8 +300,11 @@
             <a class="navbar-brand" href="inicio.jsp">
                 <img src="assets/img/sigebi%20logo2.png" alt="SIGEBI Logo">
             </a>
+            <div class="tabs">
+                <button class="tablink active-tab" onclick="openTab(event, 'Tab1')">Salas</button>
+                <button class="tablink inactive-tab" onclick="openTab(event, 'Tab2')">Disponibilidad de salas</button>
+            </div>
             <div class="nav-item">
-
             </div>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidebarCollapse">
                 <i class="fas fa-bars"></i>
@@ -271,12 +312,10 @@
         </div>
     </nav>
 
-    <div class="sidebar-menu hide">
+    <div class="sidebar hide">
         <ul>
-            <li></li>
-            <li></li>
-            <li><a href="inicio.jsp" class="fas fa-home"> Inicio</a></li>
-            <li><a href="#" class="fas fa-users"> Revisar Usuarios</a></li>
+            <li><a href="inicio.jsp"><i class="fas fa-home"></i> Inicio</a></li>
+           <li><a href="${pageContext.request.contextPath}/mostrarlibrosvista" ><i class="fas fa-book"></i> Solicitar Libro</a></li>
             <li><a id="cerrarSesion2" href="index.jsp"><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
         </ul>
     </div>
@@ -323,19 +362,17 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 <script>
     $(document).ready(function () {
+        // Función para mostrar/ocultar el menú lateral y el fondo con efecto de deslizamiento
         $(".navbar-toggler").click(function () {
-            $(".sidebar-menu").toggleClass("show hide");
+            $(".sidebar").toggleClass("show hide");
             $(".navbar-toggler").toggleClass("hidden");
             $("body").toggleClass("sidebar-open");
         });
-        $(".btn-eliminar").click(function () {
-            var fila = $(this).closest("tr");
-            fila.remove();
-        });
 
+        // Cierra el menú cuando se hace clic fuera del menú
         $(document).click(function (event) {
-            if (!$(event.target).closest(".sidebar-menu, .navbar-toggler").length) {
-                $(".sidebar-menu").removeClass("show").addClass("hide");
+            if (!$(event.target).closest(".sidebar, .navbar-toggler").length) {
+                $(".sidebar").removeClass("show").addClass("hide");
                 $(".navbar-toggler").removeClass("hidden");
                 $("body").removeClass("sidebar-open");
             }
@@ -370,12 +407,20 @@
         }
         tablinks = document.getElementsByClassName("tablink");
         for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].style.backgroundColor = "#f2f2f2";
+            tablinks[i].style.backgroundColor = "#009475";
         }
         document.getElementById(tabName).style.display = "block";
-        evt.currentTarget.style.backgroundColor = "#ccc";
+        evt.currentTarget.style.backgroundColor = "#2ECC71";
     }
     document.getElementById("Tab1").style.display = "block";
+
+    document.getElementById("cerrarSesion").addEventListener("click", function () {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "CloseSession", true);
+        xhr.send();
+        window.location.href = "index.jsp";
+
+    });
 </script>
 
 </body>
