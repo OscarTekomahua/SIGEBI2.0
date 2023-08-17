@@ -14,11 +14,15 @@
 
         body {
             font-family: 'Montserrat', sans-serif;
-            background-color: #009475;
+            background-image: url("assets/img/bibli2.jpg"); /* Ruta de la imagen de fondo */
+            background-size: cover; /* Ajusta la imagen de fondo para cubrir todo el contenedor */
+            background-position: center; /* Centra la imagen de fondo */
+            background-repeat: no-repeat; /* Evita que la imagen se repita */
         }
 
         .navbar {
-            background-color: #002E60 ;
+            font-family: 'Montserrat', sans-serif;
+            background-color: rgba(0, 49, 124, 0.59);
             display: flex;
             flex-direction: row;
             padding-left: 20px;
@@ -80,7 +84,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: rgba(0, 46, 96, 0.8);
+            background: rgba(0, 49, 124, 0.59);
             border-radius: 10px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             padding: 30px;
@@ -109,7 +113,7 @@
 
         .btn-ghost:hover {
             background-color: #fff;
-            color: #009475;
+            color: #001365;
             transform: translateY(-3px);
         }
 
@@ -120,7 +124,7 @@
         .botonCerrarSesion {
             background-image: url("assets/img/cerrarsesion.png");
             background-size: cover;
-            background-color: #002E60;
+            background-color: rgba(7, 7, 7, 0);
             width: 30px;
             height: 30px;
             border: none;
@@ -129,18 +133,22 @@
         }
 
         .sigebi {
-            font-family: "Source Code Pro";
+            font-family: 'Montserrat', sans-serif;
             color: white;
         }
+
+
 
     </style>
 </head>
 <body>
 <div class="navbar">
-    <a class="navbar-brand" href="admin.jsp"><img src="assets/img/sigebi%20logo2.png"></a>
+    <a class="navbar-brand" href="admin.jsp"><img src="assets/img/logo%20sin%20letra.png"></a>
     <h4 class="sigebi">Sistema de Gestión Bibliotecaria UTEZ</h4>
     <button class="botonCerrarSesion" id="botonCerrarSesion"></button>
 </div>
+<br>
+<br>
 <div class="hero-text-box">
     <h1>Administrador</h1>
     <form action="readUsersAdmin" method="get">
