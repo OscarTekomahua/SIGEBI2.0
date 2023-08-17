@@ -67,7 +67,9 @@ public class AgregarNuevoLibroBiblio extends HttpServlet {
         }
 
         String UPLOAD_DIRECTORY = req.getServletContext().getRealPath("/") + "assets/img";
+        System.out.println(UPLOAD_DIRECTORY);
         String filePath = "";
+        String nombreImg = "";
 
         try {
             Part filePart = req.getPart("imagen");
@@ -75,19 +77,21 @@ public class AgregarNuevoLibroBiblio extends HttpServlet {
 
             // Generar nombre unico con UUID
             String uniqueFileName = UUID.randomUUID().toString() + "_" + fileName;
+            nombreImg = uniqueFileName;
 
             filePath = UPLOAD_DIRECTORY + File.separator + uniqueFileName;
             InputStream fileContent = filePart.getInputStream();
-
+            System.out.println(filePath);
             //una ves termine este proceso el archivo ya esta en assets
             Files.copy(fileContent, Paths.get(filePath));
+            System.out.println("aqui estamos despues del copy");
 
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         LibroDao libroDao = new LibroDao();
-        Libro newlibro = new Libro(0, titulo, autor, ejemplares, isbn, filePath);
+        Libro newlibro = new Libro(0, titulo, autor, ejemplares, isbn, "assets"+File.separator+"img"+File.separator+nombreImg);
         boolean existo = libroDao.insert(newlibro, idEditoriales, idCategorias);
         if (existo) {
             LibroDao dao = new LibroDao();

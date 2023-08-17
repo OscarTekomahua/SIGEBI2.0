@@ -278,7 +278,7 @@
 </div>
 <div class="container-tab">
   <div class="table-container">
-    <h2 class="text-center mb-4">Editoriales</h2>
+    <h2 class="text-center mb-4">Categorias</h2>
     <a href="formularioeditorialmod.jsp">
       <button class="addNewEdit">Agregar Nueva Editorial</button>
     </a>

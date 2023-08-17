@@ -104,7 +104,7 @@
     }
 
     .container-tab {
-      margin-left: 250px;
+      margin-left: 300px;
       padding-top: 30px;
     }
 
@@ -250,6 +250,8 @@
   </ul>
 </div>
 
+<p/>
+<h2 class="text-center mb-4"><ceter>Revisión de Usuarios</ceter></h2>
 <div class="container-tab">
   <div class="table-container">
     <table class="table">
