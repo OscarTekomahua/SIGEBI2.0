@@ -256,10 +256,6 @@
     <!-- Agrega más opciones de menú aquí -->
   </ul>
 </div>
-<form action="AddNewBookAdmin" method="get">
-  <input type="hidden" name="operacion" value="nuevolibro">
-  <button type="submit" href="agregarlibro.jsp" class="btn btn-agregar">Agregar Libro</button>
-</form>
 
 <div class="container-tab">
   <div class="table-container">
@@ -297,6 +293,12 @@
         </tbody>
       </c:forEach>
     </table>
+    <form style="text-align: center" action="AddNewBookAdmin" method="get">
+      <input type="hidden" name="operacion" value="nuevolibro">
+        <i class="fas fa-book"></i> <!-- Icono de libro -->
+        <i class="fas fa-plus"></i> <!-- Icono de más -->
+      </button>
+    </form>
   </div>
 </div>
 <div class="sidebar-overlay"></div>
