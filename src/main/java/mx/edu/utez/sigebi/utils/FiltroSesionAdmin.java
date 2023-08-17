@@ -20,6 +20,7 @@ import java.io.IOException;
         "/createEditorialAdmin",
         "/createCategoriaAdmin",
         "/readCategoriaAdmin",
+        "/formularioeditorialmodAdmin.jsp",
         ""
 })
 public class FiltroSesionAdmin implements Filter {

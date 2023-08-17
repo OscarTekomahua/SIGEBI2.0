@@ -121,7 +121,7 @@
 
             .image-circles {
                 display: flex;
-                justify-content: center;
+                justify-content: flex-end;
                 margin-top: 30px;
             }
             .carousel-img {
@@ -129,6 +129,11 @@
                 width: auto; /* Añadimos esta regla para que el ancho se ajuste automáticamente */
                 margin: 0 auto; /* Centramos la imagen horizontalmente */
             }
+            .carousel-inner .carousel-item img {
+                max-height: 300px; /* Ajusta este valor según tus necesidades */
+                width: auto;
+            }
+
             .circle-image {
                 width: 200px; /* Ajusta el tamaño del contenedor circular según tus necesidades */
                 height: 200px; /* Ajusta el tamaño del contenedor circular según tus necesidades */
@@ -143,6 +148,7 @@
                 height: 100%;
                 object-fit: cover;
             }
+
 
             .circle-text {
                 position: absolute;
@@ -197,9 +203,9 @@
             </a>
         </div>
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidebarCollapse">
-                <!-- Reemplazar el icono de tres líneas por uno de Font Awesome (fa-bars) -->
-                <i class="fas fa-bars"></i>
-            </button>
+            <!-- Reemplazar el icono de tres líneas por uno de Font Awesome (fa-bars) -->
+            <i class="fas fa-bars"></i>
+        </button>
         </div>
     </nav>
 
@@ -213,94 +219,124 @@
         </ul>
 
     </div>
-
     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="assets/img/morritautez.jpg" class="d-block w-100 carousel-img" alt="Imagen de proyectos Meccri">
+                <div class="d-flex justify-content-between">
+                    <img src="assets/img/carruselde.jpg" alt="Imagen izquierda" style="max-height: 300px; width: auto;">
+                    <img src="assets/img/carrusel1.jpg" class="d-block w-100 carousel-img" alt="Imagen de proyectos Meccri" style="max-height: 300px; width: auto;">
+                    <img src="assets/img/carruselde3.jpg" alt="Imagen derecha" style="max-height: 300px; width: auto;">
+                </div>
             </div>
             <div class="carousel-item">
-                <img src="assets/img/morrosutez.jpg" class="d-block w-100 carousel-img" alt="Imagen de proyectos Meccri">
+                <div class="d-flex justify-content-between align-items-center">
+                    <img src="assets/img/inge.jpg" alt="Imagen izquierda" class="carousel-img">
+                    <img src="assets/img/quimica.jpg" alt="Imagen de en medio" class="carousel-img">
+                    <img src="assets/img/cisco.jpeg" alt="Imagen derecha" class="carousel-img">
+                </div>
             </div>
             <div class="carousel-item">
-                <img src="assets/img/bibliutez.png" class="d-block w-100 carousel-img" alt="Imagen de proyectos Meccri">
+                <div class="d-flex justify-content-between align-items-center">
+                    <img src="assets/img/it.jpg" alt="Imagen de proyectos Meccri" class="carousel-img">
+                    <img src="assets/img/imagen1.jpg" alt="Imagen derecha" class="carousel-img">
+                    <img src="assets/img/orgullo.jpg" alt="Imagen del medio" class="carousel-img">
+                </div>
             </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
-                data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Anterior</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
-                data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Siguiente</span>
-        </button>
-        <br>
-        <div style="background-color: #009475;">
-            <h1 style="color: #ffffff; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;"><center>Categorias</center></h1>
+        <div class="carousel-controls">
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                    data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                    data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Siguiente</span>
+            </button>
         </div>
-        <div class="image-circles" >
-            <div class="circle-image hvr-float"> <a id="mostrarLibros" href="${pageContext.request.contextPath}/mostrarlibrosvista" style="position: fixed; margin-left: 55px; margin-top: 65px; display: inline-block; padding: 10px 20px; background-color: #009475; color: white; text-decoration: none; border-radius: 5px;">Entrar</a>
-                <img src="assets/img/img.png" alt="Imagen 1">
-                <div class="circle-text">Ciencias Físico-Matemáticas e Ingenierías</div>
-            </div>
-            <div class="circle-image hvr-float"> <a href="catalogoLibros.jsp" style="position: fixed; margin-left: 55px; margin-top: 65px; display: inline-block; padding: 10px 20px; background-color: #009475; color: white; text-decoration: none; border-radius: 5px;">Entrar</a>>
-                <img src="assets/img/img2.png" alt="Imagen 2">
-                <div class="circle-text">Ciencias Biológicas, Químicas y de la Salud</div>
-            </div>
-            <div class="circle-image hvr-float"> <a href="catalogoLibros.jsp" style="position: fixed; margin-left: 55px; margin-top: 65px; display: inline-block; padding: 10px 20px; background-color: #009475; color: white; text-decoration: none; border-radius: 5px;">Entrar</a>
-                <img src="assets/img/img3.png" alt="Imagen 3">
-                <div class="circle-textciencias">Ciencias Sociales</div>
+    </div>
+    <br>
+    <div style="background-color: #002E60;">
+        <h1 style="color: #ffffff; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;"><center>Biblioteca escolar </center></h1>
+    </div>
+    <div style="background-color: #002E60; padding: 20px; margin-top: 30px;">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h2 style="color: #ffffff; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">Objetivo</h2>
+                    <p style="color: #ffffff; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; text-align: justify;">El objetivo de nuestra biblioteca escolar es proporcionar recursos educativos y de información a los estudiantes, profesores y personal escolar en general. Su principal función es apoyar el proceso de enseñanza y aprendizaje en el entorno escolar.</p>
+                </div>
+                <div class="col-md-6 text-center">
+                    <img src="assets/img/morritautez.jpg" alt="Imagen de la derecha" class="img-fluid" style="max-height: 200px; width: auto;">
+                </div>
+                <div class="col-md-6">
+                    <h2 style="color: #ffffff; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">Servicios</h2>
+                    <p style="color: #ffffff; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; text-align: justify;">Descripción de los servicios de la biblioteca escolar.</p>
+                </div>
+                <div class="col-md-6 text-center">
+                    <img src="assets/img/morrosutez.jpg" alt="Imagen de la derecha" class="img-fluid" style="max-height: 200px; width: auto;">
+                </div>
             </div>
         </div>
+    </div>
+    <div class="image-circles" style="justify-content: flex-end;">
+        <div class="circle-image hvr-float">
+            <a id="mostrarLibros" href="${pageContext.request.contextPath}/mostrarlibrosvista"
+               style="position: absolute; margin-top: 65px; right: 15px; display: inline-block; padding: 10px 20px; background-color: #009475; color: white; text-decoration: none; border-radius: 5px;">Entrar</a>
+            <img src="assets/img/libros1.jpg" alt="Imagen 1">
+            <div class="circle-text">Libros <br> disponibles</div>
+        </div>
+    </div>
 
-        <script src="assets/js/bootstrap.js"></script>
-        <script src="assets/js/bootstrap.bundle.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        <!-- Agrega Font Awesome para tener acceso a los iconos -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
 
-        <script>
-            $(document).ready(function () {
-                // Función para mostrar/ocultar el menú lateral y el fondo con efecto de deslizamiento
-                $(".navbar-toggler").click(function () {
-                    $(".sidebar").toggleClass("show hide");
-                    $(".navbar-toggler").toggleClass("hidden");
-                    $("body").toggleClass("sidebar-open");
-                });
+    <script src="assets/js/bootstrap.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Agrega Font Awesome para tener acceso a los iconos -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
 
-                // Cierra el menú cuando se hace clic fuera del menú
-                $(document).click(function (event) {
-                    if (!$(event.target).closest(".sidebar, .navbar-toggler").length) {
-                        $(".sidebar").removeClass("show").addClass("hide");
-                        $(".navbar-toggler").removeClass("hidden");
-                        $("body").removeClass("sidebar-open");
-                    }
-                });
+    <script>
+        $(document).ready(function () {
+            // Función para mostrar/ocultar el menú lateral y el fondo con efecto de deslizamiento
+            $(".navbar-toggler").click(function () {
+                $(".sidebar").toggleClass("show hide");
+                $(".navbar-toggler").toggleClass("hidden");
+                $("body").toggleClass("sidebar-open");
             });
 
-            document.getElementById("cerrarSesion").addEventListener("click", function () {
-               var xhr = new XMLHttpRequest();
-               xhr.open("GET", "CloseSession", true);
-               xhr.send();
-               window.location.href = "index.jsp";
-
+            // Cierra el menú cuando se hace clic fuera del menú
+            $(document).click(function (event) {
+                if (!$(event.target).closest(".sidebar, .navbar-toggler").length) {
+                    $(".sidebar").removeClass("show").addClass("hide");
+                    $(".navbar-toggler").removeClass("hidden");
+                    $("body").removeClass("sidebar-open");
+                }
             });
+        });
 
-            document.getElementById("salas").addEventListener("click", function () {
-                var xhr = new XMLHttpRequest();
-                xhr.open("GET", "salasUser", true);
-                xhr.send();
-                window.location.href = "salasuser.jsp";
+        document.getElementById("cerrarSesion").addEventListener("click", function () {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "CloseSession", true);
+            xhr.send();
+            window.location.href = "index.jsp";
+        });
+
+        document.getElementById("salas").addEventListener("click", function () {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "salasUser", true);
+            xhr.send();
+            window.location.href = "salasuser.jsp";
 
 
-            });
+        });
 
-        </script>
+    </script>
+    </div>
     </body>
+
     </html>
 
 </c:if>
