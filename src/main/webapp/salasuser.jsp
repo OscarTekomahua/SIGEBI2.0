@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="assets/css/estilos.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css" />
-    <title>Pedir Sala</title>
+    <title>Salas</title>
 </head>
 
 <style>
@@ -328,27 +328,18 @@
                 <thead>
                 <tr>
                     <th>Sala</th>
-                    <th>Capacidad Maxima</th>
-                    <th>Estado</th>
-                    <th>Solicitar sala</th>
+                    <th>Disponibilidad</th>
+                    <th>Hora de inicio</th>
+                    <th>Hora de fin</th>
                 </tr>
                 </thead>
-                <c:forEach items="${tablasalas}" var="s">
+                <c:forEach items="${salashorarios}" var="sh">
                     <tbody>
                     <tr>
-                        <td>${s.nombre}</td>
-                        <td>${s.capacidad_maxima}</td>
-                        <td>${s.estadoTexto}</td>
-                        <td>
-                            <c:choose>
-                                <c:when test="${s.estadoTexto eq 'Ocupada'}">
-                                    <a class="btn btn-solicitar disabled" href="#">Sala Ocupada</a>
-                                </c:when>
-                                <c:otherwise>
-                                    <a class="btn btn-solicitar" href="${pageContext.request.contextPath}/PedirSalaServlet?id=${s.id_sala}">Solicitar Sala</a>
-                                </c:otherwise>
-                            </c:choose>
-                        </td>
+                        <td>${sh.nombreSala}</td>
+                        <td>${sh.estado}</td>
+                        <td>${sh.hora_inicio}</td>
+                        <td>${sh.hora_fin}</td>
                     </tr>
                     </tbody>
                 </c:forEach>

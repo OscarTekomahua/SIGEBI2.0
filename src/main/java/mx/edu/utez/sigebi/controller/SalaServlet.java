@@ -50,8 +50,10 @@ public class SalaServlet extends HttpServlet {
                 SalaDao salaDao = new SalaDao();
 
                 List<Sala> listadesalas = salaDao.findAll();
+                List<SalaConsulta> salasDisponibles = salaDao.salasBiblio();
 
                 session.setAttribute("tablasalas", listadesalas);
+                session.setAttribute("salashorarios", salasDisponibles);
 
                 req.getRequestDispatcher("salasuser.jsp").forward(req, resp);
                 break;
