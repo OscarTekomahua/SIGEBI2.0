@@ -262,24 +262,34 @@
     </div>
     <div style="background-color: #002E60; padding: 20px; margin-top: 30px;">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-6">
-                    <h2 style="color: #ffffff; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">Objetivo</h2>
-                    <p style="color: #ffffff; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; text-align: justify;">El objetivo de nuestra biblioteca escolar es proporcionar recursos educativos y de información a los estudiantes, profesores y personal escolar en general. Su principal función es apoyar el proceso de enseñanza y aprendizaje en el entorno escolar.</p>
+            <div class="row">
+                <div class="col-md-6 d-flex justify-content-center">
+                    <div style="background-color: #003E70; padding: 20px; border-radius: 10px; text-align: center;">
+                        <h2 style="color: #ffffff; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">Objetivo</h2>
+                        <p style="color: #ffffff; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; text-align: justify;">El objetivo de nuestra biblioteca escolar es proporcionar recursos educativos y de información a los estudiantes, profesores y personal escolar en general. Su principal función es apoyar el proceso de enseñanza y aprendizaje en el entorno escolar.</p>
+                        <img src="assets/img/morritautez.jpg" alt="Imagen de la derecha" class="img-fluid" style="max-height: 200px; width: auto; margin-top: 20px;">
+                    </div>
                 </div>
-                <div class="col-md-6 text-center">
-                    <img src="assets/img/morritautez.jpg" alt="Imagen de la derecha" class="img-fluid" style="max-height: 200px; width: auto;">
-                </div>
-                <div class="col-md-6">
-                    <h2 style="color: #ffffff; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">Servicios</h2>
-                    <p style="color: #ffffff; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; text-align: justify;">Descripción de los servicios de la biblioteca escolar.</p>
-                </div>
-                <div class="col-md-6 text-center">
-                    <img src="assets/img/morrosutez.jpg" alt="Imagen de la derecha" class="img-fluid" style="max-height: 200px; width: auto;">
+                <div class="col-md-6 d-flex justify-content-center">
+                    <div style="background-color: #003E70; padding: 20px; border-radius: 10px; text-align: center;">
+                        <h2 style="color: #ffffff; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">Servicios</h2>
+                        <p style="color: #ffffff; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; text-align: justify;">Prestamo de libros: Cualquier usuario UTEZ puede solicitar el prestamo de libros mediante este medio cumpliendo con todos los requisitos.<br>Prestamo de salas: Cualquier usuario UTEZ puede solictar el prestamo de la sala con elementos extras.</p>
+                        <img src="assets/img/morrosutez.jpg" alt="Imagen de la derecha" class="img-fluid" style="max-height: 200px; width: auto; margin-top: 20px;">
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+
+
+
+
+
+
+
+
+
     <div class="image-circles" style="justify-content: flex-end;">
         <div class="circle-image hvr-float">
             <a id="mostrarLibros" href="${pageContext.request.contextPath}/mostrarlibrosvista"
