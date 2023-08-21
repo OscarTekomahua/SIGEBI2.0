@@ -324,6 +324,12 @@
         <div class="table-container">
             <h2 class="text-center mb-4">Horarios</h2>
 
+            <h3>
+                <c:if test="${not empty vacios}">
+                    <h3>${vacios}</h3>
+                </c:if>
+            </h3>
+
             <table class="table table-bordered table-striped">
                 <thead>
                 <tr>

@@ -339,4 +339,13 @@ END;
 //
 DELIMITER ;
 
+-- Crear Vista donde únicamente las salas Prestadas --
+CREATE VIEW vista_salas_reservadas_prestadas AS
+SELECT s.nombre AS nombre_sala, ps.estado, ps.hora_inicio, ps.hora_fin
+FROM sala s
+         JOIN prestamosala ps ON s.id_sala = ps.id_sala
+WHERE ps.estado IN ('Prestada', 'Reservada');
+
+SELECT * FROM vista_sala_prestada;
+
 
