@@ -223,23 +223,23 @@
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <div class="d-flex justify-content-between">
-                    <img src="assets/img/carruselde.jpg" alt="Imagen izquierda" style="max-height: 300px; width: auto;">
-                    <img src="assets/img/carrusel1.jpg" class="d-block w-100 carousel-img" alt="Imagen de proyectos Meccri" style="max-height: 300px; width: auto;">
-                    <img src="assets/img/carruselde3.jpg" alt="Imagen derecha" style="max-height: 300px; width: auto;">
+                    <img src="assets/img/LibraryBooks.jpeg" alt="Imagen izquierda" style="max-height: 300px; width: auto;">
+                    <img src="assets/img/BooksAndBooks.jpeg" class="d-block w-100 carousel-img" alt="Imagen de proyectos Meccri" style="max-height: 300px; width: auto;">
+                    <img src="assets/img/MoreBooks.jpeg" alt="Imagen derecha" style="max-height: 300px; width: auto;">
                 </div>
             </div>
             <div class="carousel-item">
                 <div class="d-flex justify-content-between align-items-center">
-                    <img src="assets/img/inge.jpg" alt="Imagen izquierda" class="carousel-img">
-                    <img src="assets/img/quimica.jpg" alt="Imagen de en medio" class="carousel-img">
-                    <img src="assets/img/cisco.jpeg" alt="Imagen derecha" class="carousel-img">
+                    <img src="assets/img/SoftwareEngeneer.jpeg" alt="Imagen izquierda" class="carousel-img">
+                    <img src="assets/img/ChemistryBook.jpeg" alt="Imagen de en medio" class="carousel-img">
+                    <img src="assets/img/CISCOBook.jpeg" alt="Imagen derecha" class="carousel-img">
                 </div>
             </div>
             <div class="carousel-item">
                 <div class="d-flex justify-content-between align-items-center">
-                    <img src="assets/img/it.jpg" alt="Imagen de proyectos Meccri" class="carousel-img">
+                    <img src="assets/img/ItBook.jpeg" alt="Imagen de proyectos Meccri" class="carousel-img">
                     <img src="assets/img/imagen1.jpg" alt="Imagen derecha" class="carousel-img">
-                    <img src="assets/img/orgullo.jpg" alt="Imagen del medio" class="carousel-img">
+                    <img src="assets/img/OrgulloyPrejuicio.jpeg" alt="Imagen del medio" class="carousel-img">
                 </div>
             </div>
         </div>
@@ -294,7 +294,7 @@
         <div class="circle-image hvr-float">
             <a id="mostrarLibros" href="${pageContext.request.contextPath}/mostrarlibrosvista"
                style="position: absolute; margin-top: 65px; right: 15px; display: inline-block; padding: 10px 20px; background-color: #009475; color: white; text-decoration: none; border-radius: 5px;">Entrar</a>
-            <img src="assets/img/libros1.jpg" alt="Imagen 1">
+            <img src="assets/img/libros.jpg" alt="Imagen 1">
             <div class="circle-text">Libros <br> disponibles</div>
         </div>
     </div>

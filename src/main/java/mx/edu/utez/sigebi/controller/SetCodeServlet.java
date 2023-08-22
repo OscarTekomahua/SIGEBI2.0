@@ -3,6 +3,7 @@ package mx.edu.utez.sigebi.controller;
 import mx.edu.utez.sigebi.model.DAO.UsuarioDao;
 import mx.edu.utez.sigebi.model.Usuario;
 
+import javax.mail.Session;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,6 +25,8 @@ public class SetCodeServlet extends HttpServlet {
         UsuarioDao dao = new UsuarioDao();
 
         String codigoAlmacenado = dao.obtenerCodigoRestablecimiento(correo);
+
+        //Session session = req.getSession();
 
         if (codigoAlmacenado.equals(codigo)) {
             resp.sendRedirect("restablecer.jsp?correo=" + URLEncoder.encode(correo, "UTF-8"));

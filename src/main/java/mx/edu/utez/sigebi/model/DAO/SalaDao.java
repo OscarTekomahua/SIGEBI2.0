@@ -100,4 +100,29 @@ public class SalaDao implements DaoSala {
 
     }
 
+    public List<SalaConsulta> disponibilidadSalas() {
+        List<SalaConsulta> disponibilidadSalas = new ArrayList<>();
+
+        try {
+            String query = "SELECT * FROM vista_salas_reservadas_prestadas";
+            PreparedStatement statement = con.prepareStatement(query);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                String nombreSala = resultSet.getString("nombre_sala");
+                String salaState = resultSet.getString("estado");
+                String horadeInicio = resultSet.getString("hora_inicio");
+                String horadeFin = resultSet.getString("hora_fin");
+
+                SalaConsulta salas = new SalaConsulta(nombreSala, 0, "", "", "", salaState, horadeInicio, horadeFin, "");
+                disponibilidadSalas.add(salas);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return  disponibilidadSalas;
+    }
+
 }
