@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet (name = "LibroServlet", urlPatterns = {"/mostrarlibros", "/updateBook", "/deleteBook", "/mostrarlibrosadmin", "/mostrarlibrosvista" })
+@WebServlet (name = "LibroServlet", urlPatterns = {"/mostrarlibros", "/updateBook", "/deleteBook", "/deleteBookadmin","/mostrarlibrosadmin", "/mostrarlibrosvista" })
 public class LibroServlet extends HttpServlet {
 
 
@@ -50,6 +50,14 @@ public class LibroServlet extends HttpServlet {
                     LibroDao dao2 = new LibroDao();
                     dao2.delete(id);
                 resp.sendRedirect(req.getContextPath() + "/mostrarlibros?operacion=stocklibros");
+                break;
+
+            case "/deleteBookadmin":
+                id = Integer.parseInt(req.getParameter("id"));
+                System.out.println(id);
+                dao2 = new LibroDao();
+                dao2.delete(id);
+                resp.sendRedirect(req.getContextPath() + "/mostrarlibrosadmin?operacion=stocklibros");
                 break;
 
             case "/mostrarlibrosvista":

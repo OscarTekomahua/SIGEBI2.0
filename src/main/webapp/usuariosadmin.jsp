@@ -6,8 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="assets/css/estilos.css">
@@ -18,6 +18,7 @@
 <style>
 
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400&display=swap');
+
     body {
         font-family: 'Montserrat', sans-serif;
         background-color: #f2f2f2;
@@ -190,13 +191,13 @@
     }
 
     .btn-modificar {
-        background-color: #3498DB ;
+        background-color: #3498DB;
         color: #fff;
         transition: background-color 0.3s;
     }
 
     .btn-modificar:hover {
-        background-color: #AED6F1 ;
+        background-color: #AED6F1;
     }
 
     .buscador {
@@ -218,6 +219,20 @@
     .btnstock:hover {
         color: #009475; /* Color de letras ligeramente más claro */
     }
+    .btnusu {
+        background-color: transparent; /* Sin color de fondo */
+        color: #000;
+        border: none;
+        border-radius: 5px;
+        font-size: 18px;
+        cursor: pointer;
+        transition: color 0.3s;
+    }
+
+    /* Estilos para el aclarado al pasar el mouse */
+    .btnusu:hover {
+        color: #009475; /* Color de letras ligeramente más claro */
+    }
 </style>
 </head>
 <body>
@@ -228,7 +243,8 @@
         </a>
         <div class="nav-item">
             <form class="d-flex">
-                <input id="searchInput" class="form-control mr-2" type="search" placeholder="Buscar" aria-label="Buscar">
+                <input id="searchInput" class="form-control mr-2" type="search" placeholder="Buscar"
+                       aria-label="Buscar">
                 <button class="btn btn-outline-success buscador" type="button" id="searchButton">Buscar</button>
             </form>
         </div>
@@ -239,23 +255,27 @@
 </nav>
 
 <div class="sidebar hide">
-<ul>
-    <!-- Agregamos los iconos de Font Awesome a las opciones del menú -->
-    <li><a href="admin.jsp"><i class="fas fa-home"></i> Inicio</a></li>
-    <li><a href="revisarHistorial.jsp"><i class="fas fa-history"></i> Revisar Historial</a></li>
-    <!-- Botón con el efecto de aclarado en las letras -->
-    <li>
-        <form action="mostrarlibros" method="get">
-            <input type="hidden" name="operacion" value="stocklibros">
-            <button type="submit" class="btnstock">
-                <i class="fas fa-stream"></i> Stock de libros
-            </button>
-        </form>
-    </li>
-    <li><a href="usuarios.jsp"><i class="fas fa-users"></i> Revisar Usuarios</a></li>
-    <li><a href="#" id="botonCerrarSesion"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
-    <!-- Agrega más opciones de menú aquí -->
-</ul>
+    <ul>
+        <!-- Agregamos los iconos de Font Awesome a las opciones del menú -->
+        <li><a href="admin.jsp"><i class="fas fa-home"></i> Inicio</a></li>
+        <!-- Botón con el efecto de aclarado en las letras -->
+        <li>
+            <form action="mostrarlibrosadmin" method="get">
+                <input type="hidden" name="operacion" value="stocklibros">
+                <button type="submit" class="btnstock">
+                    <i class="fas fa-stream"></i> Stock de libros
+                </button>
+            </form>
+        </li>
+        <li>
+            <form action="readUsersAdmin" method="get">
+                <input type="hidden" name="operacion"  value="usuarios">
+                <button type="submit" class="btnusu"><i class="fas fa-users"> </i>Gestionar Usuarios</button>
+            </form>
+        </li>
+        <li><a href="#" id="botonCerrarSesion"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+        <!-- Agrega más opciones de menú aquí -->
+    </ul>
 </div>
 
 <form action="NewUserForAdmin" method="get">
@@ -289,7 +309,9 @@
                     <td>${u.correo_institucional}</td>
                     <td>${u.tipo_usuario}</td>
                     <td>
-                        <a class="btn btn-eliminar" href="${pageContext.request.contextPath}/deleteBook?id=${libro.id_libro}">Dar de baja Usuario</a>
+                        <a class="btn btn-eliminar"
+                           href="${pageContext.request.contextPath}/deleteBook?id=${libro.id_libro}">Dar de baja
+                            Usuario</a>
                     </td>
                 </tr>
                 </tbody>
@@ -336,6 +358,7 @@
                 }
             });
         }
+
         searchInput.addEventListener("input", filterTable);
     });
 

@@ -241,8 +241,6 @@
   <ul>
     <!-- Agregamos los iconos de Font Awesome a las opciones del menú -->
     <li><a href="admin.jsp"><i class="fas fa-home"></i> Inicio</a></li>
-    <li><a href="revisarHistorial.jsp"><i class="fas fa-history"></i> Revisar Historial</a></li>
-    <!-- Botón con el efecto de aclarado en las letras -->
     <li>
       <form action="mostrarlibros" method="get">
         <input type="hidden" name="operacion" value="stocklibros">
@@ -283,7 +281,7 @@
           <td>${libro.categoria}</td>
           <td>${libro.ejemplares}</td>
           <td>
-            <a class="btn btn-eliminar" href="${pageContext.request.contextPath}/deleteBook?id=${libro.id_libro}">Eliminar</a>
+            <a class="btn btn-eliminar" href="${pageContext.request.contextPath}/deleteBookadmin?id=${libro.id_libro}">Eliminar</a>
             <form action="modificar" method="get">
               <input type="hidden" name="operacion" value="modificar"/>
               <button type="submit" class="btn btn-modificar">Modificar</button>
