@@ -28,18 +28,19 @@ public class UsuarioDao implements DaoRepository {
     public List<UsuarioInter> findAll() {
         List<UsuarioInter> listausuarios = new ArrayList<>();
         try {
-            String query = "SELECT persona.id_persona, persona.nombres, persona.apellido1, persona.apellido2, usuario.correo_institucional, rol.tipo_usuario FROM persona INNER JOIN usuario ON persona.id_persona = usuario.id_persona INNER JOIN rol ON usuario.rol = rol.id_rol";
+            String query = "SELECT persona.id_persona, persona.nombres, persona.apellido1, persona.apellido2, usuario.id_usuario, usuario.correo_institucional, rol.tipo_usuario FROM persona INNER JOIN usuario ON persona.id_persona = usuario.id_persona INNER JOIN rol ON usuario.rol = rol.id_rol";
             PreparedStatement stmt = con.prepareStatement(query);
             ResultSet res = stmt.executeQuery();
             while (res.next()) {
                 int idPersona = res.getInt("id_persona");
+                int idUsuario = res.getInt("id_usuario");
                 String nombres = res.getString("nombres");
                 String apellidoP = res.getString("apellido1");
                 String apellidoM = res.getString("apellido2");
                 String correo = res.getString("correo_institucional");
                 String tipo_usuario = res.getString("tipo_usuario");
 
-                UsuarioInter usuario = new UsuarioInter(idPersona, nombres, apellidoP, apellidoM, correo, tipo_usuario);
+                UsuarioInter usuario = new UsuarioInter(idPersona, idUsuario, nombres, apellidoP, apellidoM, correo, tipo_usuario);
                 listausuarios.add(usuario);
             }
             res.close();
@@ -133,7 +134,30 @@ public class UsuarioDao implements DaoRepository {
 
     @Override
     public boolean delete(int id_usuario) {
+
+        try {
+            String PA = "CALL ELIMINAR_USUARIO(?)";
+            PreparedStatement stmt = con.prepareStatement(PA);
+            stmt.setInt(1, id_usuario);
+
+            return stmt.executeUpdate() == 1;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         return false;
+    }
+
+    public boolean deletePersona(int id_persona) {
+        try {
+            String PA = "CALL ELIMINAR_PERSONA(?)";
+            PreparedStatement statement = con.prepareStatement(PA);
+            statement.setInt(1, id_persona);
+
+            return statement.executeUpdate() == 1;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
