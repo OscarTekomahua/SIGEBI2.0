@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="assets/css/estilos.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Editoriales disponibles</title>
 </head>
 
@@ -221,6 +222,51 @@
     .addNewEdit:hover {
         background-color: #0048a6; /* Cambia el color cuando pasas el cursor sobre el botón */
     }
+
+    .btnstock {
+        background-color: transparent; /* Sin color de fondo */
+        color: #000;
+        border: none;
+        border-radius: 5px;
+        font-size: 18px;
+        cursor: pointer;
+        transition: color 0.3s;
+    }
+
+    /* Estilos para el aclarado al pasar el mouse */
+    .btnstock:hover {
+        color: #009475; /* Color de letras ligeramente más claro */
+    }
+
+    .btnusu {
+        background-color: transparent; /* Sin color de fondo */
+        color: #000;
+        border: none;
+        border-radius: 5px;
+        font-size: 18px;
+        cursor: pointer;
+        transition: color 0.3s;
+    }
+
+    /* Estilos para el aclarado al pasar el mouse */
+    .btnusu:hover {
+        color: #009475; /* Color de letras ligeramente más claro */
+    }
+
+    .btnsala {
+        background-color: transparent; /* Sin color de fondo */
+        color: #000;
+        border: none;
+        border-radius: 5px;
+        font-size: 18px;
+        cursor: pointer;
+        transition: color 0.3s;
+    }
+
+    /* Estilos para el aclarado al pasar el mouse */
+    .btnsala:hover {
+        color: #009475; /* Color de letras ligeramente más claro */
+    }
 </style>
 
 <body>
@@ -242,13 +288,37 @@
         </button>
     </div>
 </nav>
+
 <div class="sidebar hide">
     <ul>
-        <li><a href="admin.jsp" class="fas fa-home"> Inicio</a></li>
-        <li><a href="#" class="fas fa-users"> Revisar Usuarios</a></li>
-        <li><a href="#" class="fas fa-sign-out-alt"> Cerrar Sesión</a></li>
+        <!-- Agregamos los iconos de Font Awesome a las opciones del menú -->
+        <li><a href="admin.jsp"><i class="fas fa-home"></i> Inicio</a></li>
+        <!-- Botón con el efecto de aclarado en las letras -->
+        <li>
+            <form action="mostrarlibrosadmin" method="get">
+                <input type="hidden" name="operacion" value="stocklibros">
+                <button type="submit" class="btnstock">
+                    <i class="fas fa-stream"></i> Stock de libros
+                </button>
+            </form>
+        </li>
+        <li>
+            <form action="readUsersAdmin" method="get">
+                <input type="hidden" name="operacion" value="usuarios">
+                <button type="submit" class="btnusu"><i class="fas fa-users"> </i>Gestionar Usuarios</button>
+            </form>
+        </li>
+        <li>
+            <form action="salasAdmin" method="get">
+                <input type="hidden" name="operacion" value="tablasalas">
+                <button type="submit" class="btnsala"><i class="fas fa-door-open"> </i>Gestionar Salas</button>
+            </form>
+        </li>
+        <li><a href="#" id="botonCerrarSesion"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+        <!-- Agrega más opciones de menú aquí -->
     </ul>
 </div>
+
 <div class="container-tab">
     <div class="table-container">
         <h2 class="text-center mb-4">Editoriales</h2>
@@ -265,15 +335,13 @@
                 <tbody>
                 <tr>
                     <td>${e.nombre}
-                        <form action="updateEditorial" method="post" class="mb-3">
+                        <form action="updateEditorialadmin" method="post" class="mb-3">
                             <input type="hidden" name="idEditorial" value="${e.id_editorial}">
-                            <input type="text" id="nuevoNombre" name="nuevoNombre" class="form-control"
-                                   placeholder="Nuevo nombre">
-                            <button type="submit" onclick="return validarNombre(this.form);"
-                                    class="btn btn-primary mt-2">Actualizar
-                            </button>
-                            <a class="btn btn-eliminar" style=""${pageContext.request.contextPath}/deleteEditorial?idEditorial=${e.id_editorial}">Eliminar</a>
+                            <input type="text" id="nuevoNombre" name="nuevoNombre" class="form-control" placeholder="Nuevo nombre">
+                            <button type="submit" onclick="return validarNombre(this.form);" class="btn btn-primary mt-2">Actualizar</button>
+                        <a class="btn btn-eliminar" href="${pageContext.request.contextPath}/deleteEditorial?idEditorial=${e.id_editorial}">Eliminar</a>
                         </form>
+                    </td>
                 </tbody>
             </c:forEach>
         </table>
@@ -321,6 +389,29 @@
 
         searchInput.addEventListener("input", filterTable);
     });
+</script>
+<script type="text/javascript">
+    function validarNombre(form) {
+        var nuevoNombre = form.nuevoNombre.value;
+        if (nuevoNombre.trim() === '') {
+            // Mostrar una alerta con diseño
+            var alertDiv = document.createElement('div');
+            alertDiv.className = 'alert alert-danger';
+            alertDiv.textContent = 'Por favor, complete todos los campos.';
+            document.getElementById('mensajeAlerta').appendChild(alertDiv);
+
+            // Resaltar el campo de entrada en rojo
+            form.nuevoNombre.classList.add('is-invalid');
+
+            setTimeout(function () {
+                document.getElementById('mensajeAlerta').removeChild(alertDiv);
+                form.nuevoNombre.classList.remove('is-invalid');
+            }, 3000);
+
+            return false; // Detener el envío del formulario
+        }
+        return true; // Permitir el envío del formulario si el nombre no está vacío
+    }
 </script>
 </body>
 </html>
