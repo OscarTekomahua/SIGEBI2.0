@@ -325,6 +325,7 @@
         <a href="formularioeditorialmodAdmin.jsp">
             <button class="addNewEdit">Agregar Nueva Editorial</button>
         </a>
+        <div id="mensajeAlerta"></div>
         <table class="table table-bordered table-striped">
             <thead>
             <tr>

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="assets/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css"/>
     <link rel="stylesheet" type="text/css" href="assets/css/estilos.css"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css"/>
     <title>Categorias disponibles</title>
@@ -303,26 +304,22 @@
 <div class="container-tab">
     <div class="table-container">
         <h2 class="text-center mb-4">Categorias</h2>
-
+        <div id="mensajeAlerta"></div>
         <table class="table table-bordered table-striped">
             <thead>
             <tr>
-                <th>ID Editorial</th>
                 <th>Categoria</th>
-                <th>Acciones</th>
             </tr>
             </thead>
             <c:forEach items="${categorias}" var="c">
                 <tbody>
                 <tr>
-                    <td>${c.id_categoria}</td>
-                    <td>${c.nombre_categoria}</td>
-                    <td>
-                        <a class="btn btn-eliminar"
-                           href="${pageContext.request.contextPath}/deleteCategoria?idCategoria=${c.id_categoria}">Eliminar</a>
-                        <form action="modificar" method="get">
-                            <input type="hidden" name="operacion" value="modificar"/>
-                            <button type="submit" class="btn btn-modificar">Modificar</button>
+                    <td>${c.nombre_categoria}
+                        <form action="updateCategoriaAdmin" method="post" class="mb-3">
+                            <input type="hidden" name="idCategoria" value="${c.id_categoria}">
+                            <input type="text" id="nuevoNombre" name="nuevoNombre" class="form-control" placeholder="Nuevo nombre">
+                            <button type="submit" onclick="return validarNombre(this.form);" class="btn btn-primary mt-2">Actualizar</button>
+                            <a class="btn btn-eliminar" href="${pageContext.request.contextPath}/deleteCategoria?idCategoria=${c.id_categoria}">Eliminar</a>
                         </form>
                     </td>
                 </tr>
@@ -373,6 +370,30 @@
 
         searchInput.addEventListener("input", filterTable);
     });
+</script>
+
+<script type="text/javascript">
+    function validarNombre(form) {
+        var nuevoNombre = form.nuevoNombre.value;
+        if (nuevoNombre.trim() === '') {
+            // Mostrar una alerta con diseño
+            var alertDiv = document.createElement('div');
+            alertDiv.className = 'alert alert-danger';
+            alertDiv.textContent = 'Por favor, complete todos los campos.';
+            document.getElementById('mensajeAlerta').appendChild(alertDiv);
+
+            // Resaltar el campo de entrada en rojo
+            form.nuevoNombre.classList.add('is-invalid');
+
+            setTimeout(function () {
+                document.getElementById('mensajeAlerta').removeChild(alertDiv);
+                form.nuevoNombre.classList.remove('is-invalid');
+            }, 3000);
+
+            return false; // Detener el envío del formulario
+        }
+        return true; // Permitir el envío del formulario si el nombre no está vacío
+    }
 </script>
 </body>
 </html>
