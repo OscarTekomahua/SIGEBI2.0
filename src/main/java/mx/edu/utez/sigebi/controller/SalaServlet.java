@@ -55,6 +55,12 @@ public class SalaServlet extends HttpServlet {
                 session.setAttribute("tablasalas", listadesalas);
                 session.setAttribute("salashorarios", salasDisponibles);
 
+                if (salasDisponibles.isEmpty()) {
+                    session.setAttribute("vacios", "Todas las salas están disponibles, no hay salas reservadas");
+                } else {
+                    session.removeAttribute("vacios");
+                }
+
                 req.getRequestDispatcher("salasuser.jsp").forward(req, resp);
                 break;
         }
