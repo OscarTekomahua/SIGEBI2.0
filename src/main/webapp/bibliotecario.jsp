@@ -13,11 +13,15 @@
 
         body {
             font-family: 'Montserrat', sans-serif;
-            background-color: #009475;
+            background-image: url("assets/img/libros.jpg"); /* Ruta de la imagen de fondo */
+            background-size: cover; /* Ajusta la imagen de fondo para cubrir todo el contenedor */
+            background-position: center; /* Centra la imagen de fondo */
+            background-repeat: no-repeat; /* Evita que la imagen se repita */
         }
 
         .navbar {
-            background-color: #002E60 ;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #002E60;
             display: flex;
             flex-direction: row;
             padding-left: 20px;
@@ -120,7 +124,7 @@
         .botonCerrarSesion {
             background-image: url("assets/img/cerrarsesion.png");
             background-size: cover;
-            background-color: #002E60;
+            background-color: rgba(7, 7, 7, 0);
             width: 30px;
             height: 30px;
             border: none;
@@ -129,7 +133,7 @@
         }
 
         .sigebi {
-            font-family: "Source Code Pro";
+            font-family: 'Montserrat', sans-serif;
             color: white;
         }
 

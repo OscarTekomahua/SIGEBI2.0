@@ -30,11 +30,13 @@
       height: 100px;
       display: flex;
       align-items: center;
-      justify-content: flex-end;
+      justify-content: space-between; /* Para distribuir los elementos en la barra */
       padding: 0 20px;
       position: relative;
       z-index: 999;
     }
+
+
 
     .navbar a {
       color: #eee;
@@ -158,6 +160,13 @@
       border-bottom: 1px solid #ccc;
       white-space: nowrap;
     }
+    .fixed-menu-button {
+      position: absolute;
+      top: 0;
+      right: 20px; /* Puedes ajustar este valor para alinear el botón según tus necesidades */
+    }
+
+
 
     /* Estilo para oscurecer el fondo cuando el sidebar esté abierto */
     .sidebar-open {
@@ -234,11 +243,11 @@
 </head>
 <body>
 <nav class="navbar">
-  <div class="contenedor">
+  <div class="contenedor d-flex align-items-center">
     <a class="navbar-brand" href="admin.jsp">
       <img src="assets/img/sigebi%20logo2.png" alt="SIGEBI Logo">
     </a>
-    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidebarCollapse">
+    <button type="button" class="navbar-toggler fixed-menu-button" data-toggle="collapse" data-target="#sidebarCollapse">
       <i class="fas fa-bars"></i>
     </button>
   </div>

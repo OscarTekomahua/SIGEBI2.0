@@ -171,11 +171,20 @@
     }
 
     .btn-agregar {
-        background-color: #009475;
+        background-color: #005ec9;
+        margin-top: 20px;
+        margin-left: 20px;
+        padding: 10px 20px;
+        margin: 5px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        color: #ffffff;
+        transition: background-color 0.5s;
     }
-
     .btn-agregar:hover {
-        background-color: #2ECC71;
+        background-color: #0048a6; /* Cambia el color cuando pasas el cursor sobre el botón */
     }
 
     .sidebar-open {
@@ -262,7 +271,18 @@
 </div>
 <div class="container-tab">
     <div class="table-container">
-        <h2 class="text-center mb-4">Stock de libros</h2>
+        <center>
+            <div style="display: flex; align-items: center; justify-content: center;">
+                <h2 class="text-center mb-4" style="margin-right: 10px; margin-top: 20px;">Stock de libros</h2>
+                <form action="AddNewBookBiblio" method="get">
+                    <input type="hidden" name="operacion" value="nuevolibro">
+                    <button type="submit" class="btn btn-agregar">
+                        <i class="fas fa-book"></i> <!-- Icono de libro -->
+                        <i class="fas fa-plus"></i> <!-- Icono de más -->
+                    </button>
+                </form>
+            </div>
+        </center>
 
         <table class="table table-bordered table-striped">
             <thead>
@@ -297,13 +317,6 @@
             </c:forEach>
         </table>
 
-        <form style="text-align: center" action="AddNewBookBiblio" method="get">
-            <input type="hidden" name="operacion" value="nuevolibro">
-            <button type="submit" class="btn btn-agregar">
-                <i class="fas fa-book"></i> <!-- Icono de libro -->
-                <i class="fas fa-plus"></i> <!-- Icono de más -->
-            </button>
-        </form>
     </div>
 </div>
 <div class="sidebar-overlay"></div>

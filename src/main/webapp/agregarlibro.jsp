@@ -176,6 +176,16 @@
         transition: background-color 0.3s;
     }
 
+    .btnstock {
+        background-color: transparent; /* Sin color de fondo */
+        color: #000;
+        border: none;
+        border-radius: 5px;
+        font-size: 18px;
+        cursor: pointer;
+        transition: color 0.3s;
+    }
+
 </style>
 
 <body>
@@ -191,16 +201,33 @@
 </nav>
 <div class="sidebar hide">
     <ul>
-        <li><a href="bibliotecario.jsp" class="fas fa-home"> Inicio</a></li>
-        <li><a href="#" class="fas fa-users"> Revisar Usuarios</a></li>
-        <li><a href="#" class="fas fa-sign-out-alt"> Cerrar Sesión</a></li>
+        <!-- Agregamos los iconos de Font Awesome a las opciones del menú -->
+        <li><a href="bibliotecario.jsp"><i class="fas fa-home"></i> Inicio</a></li>
+        <li><a href="revisarHistorial.jsp"><i class="fas fa-history"></i> Revisar Historial</a></li>
+        <!-- Botón con el efecto de aclarado en las letras -->
+        <li>
+            <form action="mostrarlibros" method="get">
+                <input type="hidden" name="operacion" value="stocklibros">
+                <button type="submit" class="btnstock">
+                    <i class="fas fa-stream"></i> Stock de libros
+                </button>
+            </form>
+        </li>
+        <li><a href="usuarios.jsp"><i class="fas fa-users"></i> Revisar Usuarios</a></li>
+        <li><a href="#" id="botonCerrarSesion"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+        <!-- Agrega más opciones de menú aquí -->
     </ul>
 </div>
-<a href="formulariocategoria.jsp"><button class="addNewCat">Agregar Nueva Categoria</button></a><br>
-<a href="formularioeditorial.jsp"><button class="addNewEdit">Agregar Nueva Editorial</button></a>
+
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-lg-6">
+            <div class="d-flex justify-content-between mb-3">
+                <a class="addNewCat" href="formulariocategoria.jsp">
+                    Nueva Categoria <i class="fas fa-plus-circle fa-sm"></i></a>
+                <a class="addNewEdit" href="formularioeditorial.jsp">
+                    Nueva Editorial <i class="fas fa-plus-circle fa-sm"></i></a>
+            </div>
             <div class="card">
                 <div class="card-body">
                     <h3 class="card-title text-center mb-4">Registro de Libros</h3>
@@ -260,18 +287,20 @@
 <script>
 
     $(document).ready(function () {
-        // Función para mostrar/ocultar el menú lateral y el fondo con efecto de deslizamiento
         $(".navbar-toggler").click(function () {
             $(".sidebar").toggleClass("show hide");
-            $(".navbar-toggler").toggleClass("hidden"); // Agrega la clase 'hidden' al botón del icono
+            $(".navbar-toggler").toggleClass("hidden");
             $("body").toggleClass("sidebar-open");
         });
+        $(".btn-eliminar").click(function () {
+            var fila = $(this).closest("tr");
+            fila.remove();
+        });
 
-        // Cierra el menú cuando se hace clic fuera del menú
         $(document).click(function (event) {
             if (!$(event.target).closest(".sidebar, .navbar-toggler").length) {
                 $(".sidebar").removeClass("show").addClass("hide");
-                $(".navbar-toggler").removeClass("hidden"); // Elimina la clase 'hidden' del botón del icono
+                $(".navbar-toggler").removeClass("hidden");
                 $("body").removeClass("sidebar-open");
             }
         });

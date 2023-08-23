@@ -280,15 +280,16 @@
 
 <div class="container-tab">
     <div class="table-container">
-        <h2 class="text-center mb-4">Editoriales</h2>
-        <a href="formularioeditorialmod.jsp">
-            <button class="addNewEdit">Agregar Nueva Editorial</button>
-        </a>
+        <center><h2 class="text-center mb-4" style="display: inline-block;">Editoriales</h2>
+        <a href="formularioeditorialmod.jsp" class="addNewEdit">
+            <i class="fas fa-plus-circle fa-sm"></i>
+        </a></center>
+
+
         <div id="mensajeAlerta"></div>
         <table class="table table-bordered table-striped">
             <thead>
             <tr>
-                <th>ID Editorial</th>
                 <th>Editorial</th>
                 <th>Acciones</th>
             </tr>
@@ -296,8 +297,8 @@
             <c:forEach items="${editoriales}" var="e">
                 <tbody>
                 <tr>
-                    <td>${e.id_editorial}</td>
-                    <td>${e.nombre}
+                    <td>
+                            ${e.nombre}
                         <form action="updateEditorial" method="post" class="mb-3">
                             <input type="hidden" name="idEditorial" value="${e.id_editorial}">
                             <input type="text" id="nuevoNombre" name="nuevoNombre" class="form-control" placeholder="Nuevo nombre">
@@ -313,6 +314,7 @@
         </table>
     </div>
 </div>
+
 <div class="sidebar-overlay"></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>

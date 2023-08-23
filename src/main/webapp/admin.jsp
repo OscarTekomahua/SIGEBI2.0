@@ -22,7 +22,7 @@
 
         .navbar {
             font-family: 'Montserrat', sans-serif;
-            background-color: rgba(0, 49, 124, 0.59);
+            background-color: #002E60;
             display: flex;
             flex-direction: row;
             padding-left: 20px;
@@ -143,7 +143,7 @@
 </head>
 <body>
 <div class="navbar">
-    <a class="navbar-brand" href="admin.jsp"><img src="assets/img/logo%20sin%20letra.png"></a>
+    <a class="navbar-brand" href="admin.jsp"><img src="assets/img/sigebi%20logo2.png"></a>
     <h4 class="sigebi">Sistema de Gestión Bibliotecaria UTEZ</h4>
     <button class="botonCerrarSesion" id="botonCerrarSesion"></button>
 </div>

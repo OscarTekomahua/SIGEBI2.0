@@ -278,10 +278,10 @@
 </div>
 <div class="container-tab">
   <div class="table-container">
-    <h2 class="text-center mb-4">Categorias</h2>
-    <a href="formularioeditorialmod.jsp">
-      <button class="addNewEdit">Agregar Nueva Editorial</button>
-    </a>
+    <center><h2 class="text-center mb-4" style="display: inline-block;">Categorias</h2>
+      <a href="formularioeditorialmod.jsp" class="addNewEdit">
+        <i class="fas fa-plus-circle fa-sm"></i>
+      </a></center>
     <div id="mensajeAlerta"></div>
     <table class="table table-bordered table-striped">
       <thead>
