@@ -7,6 +7,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
+
     <title>Solicitar Libro</title>
 </head>
 
@@ -254,8 +257,37 @@
                         </div>
                         <button type="submit" class="btn btn-solicitar">Solicitar Sala</button>
                     </form>
+                    <c:if test="${not empty solicitudExitosa}">
+                        <script>
+                            Swal.fire({
+                                icon: 'success',
+                                title: '¡Solicitud realizada!',
+                                text: 'Su préstamo de sala se ha realizado con éxito.',
+                                confirmButtonText: 'Aceptar',
+                                customClass: {
+                                    popup: 'sweetalert-custom-popup',
+                                    title: 'sweetalert-custom-title',
+                                    confirmButton: 'sweetalert-custom-button'
+                                }
+                            });
+                            <c:remove var="solicitudExitosa" scope="session"></c:remove>
+                        </script>
+                    </c:if>
                     <c:if test="${not empty error}">
-                        <p>${error}</p>
+                        <script>
+                            Swal.fire({
+                                icon: 'error',
+                                title: '¡ERROR!',
+                                text: '${error}',
+                                confirmButtonText: 'Aceptar',
+                                customClass: {
+                                    popup: 'sweetalert-custom-popup',
+                                    title: 'sweetalert-custom-title',
+                                    confirmButton: 'sweetalert-custom-button'
+                                }
+                            });
+                            <c:remove var="error" scope="session"></c:remove>
+                        </script>
                     </c:if>
                 </div>
             </div>

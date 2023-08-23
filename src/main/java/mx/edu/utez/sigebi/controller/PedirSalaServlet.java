@@ -58,7 +58,8 @@ public class PedirSalaServlet extends HttpServlet {
                 if (!salareservada) {
                     boolean registrado = prestamosDao.registrarPrestamo(prestamoSalas);
                     if (registrado) {
-                        resp.sendRedirect(req.getContextPath() + "/inicio.jsp");
+                        req.getSession().setAttribute("solicitudExitosa", "¡Solicitud realizada con éxito!");
+                        resp.sendRedirect("solicitarsala.jsp");
                     } else {
                         req.getSession().setAttribute("error", "¡Hubo un problema con el registro de tu prestamo!");
                         resp.sendRedirect("/SIGEBI_war_exploded/PedirSalaServlet?id=" + id_sala + "&id_usuario=" + id_usuario);

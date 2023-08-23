@@ -277,14 +277,7 @@
                         <td>${s.capacidad_maxima}</td>
                         <td>${s.estadoTexto}</td>
                         <td>
-                            <c:choose>
-                                <c:when test="${s.estadoTexto eq 'Ocupada'}">
-                                    <a class="btn btn-solicitar disabled" href="#">Sala Ocupada</a>
-                                </c:when>
-                                <c:otherwise>
-                                    <a class="btn btn-solicitar" href="${pageContext.request.contextPath}/PedirSalaServlet?id=${s.id_sala}">Solicitar Sala</a>
-                                </c:otherwise>
-                            </c:choose>
+                            <a class="btn btn-solicitar" href="${pageContext.request.contextPath}/PedirSalaServlet?id=${s.id_sala}">Solicitar Sala</a>
                         </td>
                     </tr>
                     </tbody>
@@ -324,32 +317,33 @@
         <div class="table-container">
             <h2 class="text-center mb-4">Horarios</h2>
 
-            <h3>
-                <c:if test="${not empty vacios}">
-                    <h3>${vacios}</h3>
-                </c:if>
-            </h3>
-
-            <table class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                    <th>Sala</th>
-                    <th>Disponibilidad</th>
-                    <th>Hora de inicio</th>
-                    <th>Hora de fin</th>
-                </tr>
-                </thead>
-                <c:forEach items="${salashorarios}" var="sh">
-                    <tbody>
-                    <tr>
-                        <td>${sh.nombreSala}</td>
-                        <td>${sh.estado}</td>
-                        <td>${sh.hora_inicio}</td>
-                        <td>${sh.hora_fin}</td>
-                    </tr>
-                    </tbody>
-                </c:forEach>
-            </table>
+            <c:choose>
+                <c:when test="${not empty vacios}">
+                    <center><h3>${vacios}</h3></center>
+                </c:when>
+                <c:otherwise>
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th>Sala</th>
+                            <th>Disponibilidad</th>
+                            <th>Hora de inicio</th>
+                            <th>Hora de fin</th>
+                        </tr>
+                        </thead>
+                        <c:forEach items="${salashorarios}" var="sh">
+                            <tbody>
+                            <tr>
+                                <td>${sh.nombreSala}</td>
+                                <td>${sh.estado}</td>
+                                <td>${sh.hora_inicio}</td>
+                                <td>${sh.hora_fin}</td>
+                            </tr>
+                            </tbody>
+                        </c:forEach>
+                    </table>
+                </c:otherwise>
+            </c:choose>
         </div>
     </div>
 </div>
