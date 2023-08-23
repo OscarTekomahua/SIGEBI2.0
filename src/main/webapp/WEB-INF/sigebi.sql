@@ -99,6 +99,21 @@ values ('Alejandro', 'Hernandez', 'Diaz');
 insert into persona (nombres, apellido1, apellido2) 
 values ('Jose Antonio', 'Diaz', 'Garcia');
 select * from persona;
+-- PA para eliminar Persona --
+DELIMITER $$
+CREATE PROCEDURE ELIMINAR_PERSONA(in idPersona int)
+BEGIN
+DELETE FROM
+    usuario
+WHERE
+        id_persona = idPersona;
+DELETE FROM
+    persona
+WHERE
+        id_persona = idPersona;
+END
+$$
+DELIMITER ;
 
 -- Insercion de datos en la tabla Rol --
 insert into rol (tipo_usuario) 
@@ -120,6 +135,26 @@ insert into usuario (id_persona, rol, correo_institucional, contraseña, codigo)
 values (4, 3, '20223tn047@utez.edu.mx', sha2('antoine', 256), aes_encrypt('ant0in3', 'secret_keyForPas'));
 select * from usuario;
 ALTER TABLE usuario ADD COLUMN multa DECIMAL(10, 2) DEFAULT 0;
+-- PA para dar de baja a un usuario --
+DELIMITER $$
+CREATE PROCEDURE ELIMINAR_USUARIO(in idUser int)
+BEGIN
+
+DELETE FROM
+    usuario
+WHERE
+        id_usuario = idUser;
+delete from
+    prestamosala
+where
+        id_usuario = idUser;
+delete from
+    prestamolibro
+where
+        id_usuario = idUser;
+END
+$$
+DELIMITER ;
 
 -- Insercion de datos en la tabla Libro --
 insert into libro (titulo, autor, ejemplares, isbn, imagen) 
@@ -133,6 +168,7 @@ values ('Orgullo y Prejuicio', 'Jane Austen', 5, '456780', "img");
 insert into libro (titulo, autor, ejemplares, isbn, imagen) 
 values ('Yo, Robot', 'Isaac Asimov', 4, '902340', "img");
 select * from libro;
+-- PA para eliminar libro --
 DELIMITER $$
 CREATE PROCEDURE ELIMINAR_LIBRO(in id int )
 BEGIN
@@ -169,6 +205,22 @@ values ('Novelas');
 insert into categoria (nombre_categoria) 
 values ('Terror');
 select * from categoria;
+-- PA para eliminar categoria --
+DELIMITER $$
+CREATE PROCEDURE elimninarcategoria(in idCategoria int )
+BEGIN
+
+DELETE FROM
+    librohascategoria
+WHERE
+        id_categoria = idCategoria;
+delete from
+    categoria
+where
+        id_categoria = idCategoria;
+END
+$$
+DELIMITER ;
 
 -- Insercion de datos en la tabla Editorial --
 insert into editorial (nombre) 
@@ -182,6 +234,7 @@ values ('Planeta');
 insert into editorial (nombre) 
 values ('Alba');
 select * from editorial;
+-- PA para eliminar editorial --
 DELIMITER $$
 CREATE PROCEDURE ELIMINAR_EDITORIAL(in idEditorial int )
 BEGIN
@@ -194,22 +247,6 @@ delete from
     editorial
 where
         id_editorial = idEditorial;
-END
-$$
-DELIMITER ;
-
-DELIMITER $$
-CREATE PROCEDURE elimninarcategoria(in idCategoria int )
-BEGIN
-
-DELETE FROM
-    librohascategoria
-WHERE
-        id_categoria = idCategoria;
-delete from
-    categoria
-where
-        id_categoria = idCategoria;
 END
 $$
 DELIMITER ;

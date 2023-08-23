@@ -15,8 +15,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-@WebServlet (name = "EditorialServlet", urlPatterns = {"/createEditorial", "/createEditorialAdmin","/createEditorialModAdmin","/createEditorialMod", "/readEditorial", "/readEditorialAdmin", "/updateEditorial", "/deleteEditorial"})
-public class    EditorialServlet extends HttpServlet {
+@WebServlet(name = "EditorialServlet", urlPatterns = {"/createEditorial", "/createEditorialAdmin", "/createEditorialModAdmin", "/createEditorialMod", "/readEditorial", "/readEditorialAdmin", "/updateEditorial","/updateEditorialadmin","/deleteEditorial",})
+public class EditorialServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String opcion = req.getServletPath();
@@ -26,7 +26,6 @@ public class    EditorialServlet extends HttpServlet {
         EditorialDao editDao = new EditorialDao();
 
         boolean editExiste = editDao.editorialExiste(nuevaEditorial);
-
 
 
         switch (opcion) {
@@ -156,6 +155,27 @@ public class    EditorialServlet extends HttpServlet {
                 }
                 break;
 
+            case "/updateEditorialadmin":
+                idEditorial = Integer.parseInt(req.getParameter("idEditorial"));
+                System.out.println(idEditorial);
+                nuevoNombre = req.getParameter("nuevoNombre"); // Asegúrate de tener un campo en tu formulario con el nombre nuevo
+                if (nuevoNombre == null || nuevoNombre.trim().isEmpty()) {
+                    // Mostrar mensaje de error en caso de nombre vacío
+                    req.setAttribute("error", "Por favor, ingrese un nombre válido.");
+                    resp.sendRedirect(req.getContextPath() + "/readEditorialAdmin?operacion=editoriales");
+                    return;
+                }
+                editDao = new EditorialDao();
+                 editorial = new Editorial(idEditorial, nuevoNombre);
+                 actualizado = editDao.update(idEditorial, editorial);
+                if (actualizado) {
+                    // Realiza las acciones necesarias después de la actualización
+                    resp.sendRedirect(req.getContextPath() + "/readEditorialAdmin?operacion=editoriales");
+                } else {
+                    // Manejo de error si la actualización falla
+                    // Redirecciona a una página de error o muestra un mensaje de error
+                }
+                break;
         }
     }
 
@@ -190,15 +210,15 @@ public class    EditorialServlet extends HttpServlet {
                 req.getRequestDispatcher("editorialesAdmin.jsp").forward(req, resp);
                 break;
 
-            case "/deleteEditorial":
-                int idEditorial = Integer.parseInt(req.getParameter("idEditorial"));
-                System.out.println(idEditorial);
-                EditorialDao dao2 = new EditorialDao();
-                dao2.delete(idEditorial);
+                case "/deleteEditorial":
+                    int idEditorial = Integer.parseInt(req.getParameter("idEditorial"));
+                    System.out.println(idEditorial);
+                    EditorialDao dao2 = new EditorialDao();
+                    dao2.delete(idEditorial);
 
-                String referer = req.getHeader("referer");
-                resp.sendRedirect(referer);
-                break;
+                    String referer = req.getHeader("referer");
+                    resp.sendRedirect(referer);
+                    break;
 
 
         }

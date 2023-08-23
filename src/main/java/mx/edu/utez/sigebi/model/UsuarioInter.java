@@ -2,6 +2,7 @@ package mx.edu.utez.sigebi.model;
 
 public class UsuarioInter {
     private int id_persona;
+    private int id_usuario;
     private String nombres;
     private String apellido1;
     private String apellido2;
@@ -12,8 +13,9 @@ public class UsuarioInter {
 
     }
 
-    public UsuarioInter(int id_persona, String nombres, String apellido1, String apellido2, String correo_institucional, String tipo_usuario) {
+    public UsuarioInter(int id_persona, int id_usuario, String nombres, String apellido1, String apellido2, String correo_institucional, String tipo_usuario) {
         this.id_persona = id_persona;
+        this.id_usuario = id_usuario;
         this.nombres = nombres;
         this.apellido1 = apellido1;
         this.apellido2 = apellido2;
@@ -67,5 +69,13 @@ public class UsuarioInter {
 
     public void setTipo_usuario(String tipo_usuario) {
         this.tipo_usuario = tipo_usuario;
+    }
+
+    public int getId_usuario() {
+        return id_usuario;
+    }
+
+    public void setId_usuario(int id_usuario) {
+        this.id_usuario = id_usuario;
     }
 }

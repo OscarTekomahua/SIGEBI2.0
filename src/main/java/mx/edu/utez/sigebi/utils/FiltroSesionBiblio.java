@@ -16,7 +16,8 @@ import java.io.IOException;
         "/salas.jsp",
         "/formulariocategoria.jsp",
         "/formularioeditorial.jsp",
-        "/usuarios.jsp"
+        "/usuarios.jsp",
+        "/revisarHistorial.jsp"
 })
 public class FiltroSesionBiblio implements Filter {
     @Override
