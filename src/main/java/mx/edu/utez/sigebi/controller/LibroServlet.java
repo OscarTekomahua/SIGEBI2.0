@@ -2,12 +2,17 @@ package mx.edu.utez.sigebi.controller;
 
 import mx.edu.utez.sigebi.model.DAO.LibroDao;
 import mx.edu.utez.sigebi.model.ResultadosConsulta;
+import mx.edu.utez.sigebi.model.Usuario;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @WebServlet (name = "LibroServlet", urlPatterns = {"/mostrarlibros", "/updateBook", "/deleteBook", "/deleteBookadmin","/mostrarlibrosadmin", "/mostrarlibrosvista" })
@@ -63,11 +68,18 @@ public class LibroServlet extends HttpServlet {
             case "/mostrarlibrosvista":
                 LibroDao dao = new LibroDao();
 
+                HttpSession session = req.getSession();
+
+                Usuario user = (Usuario) session.getAttribute("sesion");
+
+                int userId = user.getId_usuario();
+
                 List<ResultadosConsulta> listalibro = dao.getAllAttributes();
 
+                req.setAttribute("id_usuario", userId);
                 req.setAttribute("tablalibros", listalibro);
 
-                req.getRequestDispatcher("catalogoLibros.jsp").forward(req, resp);
+                req.getRequestDispatcher("/catalogoLibros.jsp").forward(req, resp);
                 break;
         }
 

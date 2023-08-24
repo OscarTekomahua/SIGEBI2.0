@@ -4,23 +4,24 @@ import java.util.Date;
 
 public class PrestamoLibros {
     private int idPrestamo;
-    private Libro idLibro;
-    private Usuario idUsuario;
+    private int idLibro;
+    private int idUsuario;
     private Date fecha_prestamo;
     private Date fecha_devolcion;
     private String estadoPrestamo;
-
+    private double multa;
     public PrestamoLibros() {
 
     }
 
-    public PrestamoLibros(int idPrestamo, Libro idLibro, Usuario idUsuario, Date fecha_prestamo, Date fecha_devolcion, String estadoPrestamo) {
+    public PrestamoLibros(int idPrestamo, int idLibro, int idUsuario, Date fecha_prestamo, Date fecha_devolcion, String estadoPrestamo, double multa) {
         this.idPrestamo = idPrestamo;
         this.idLibro = idLibro;
         this.idUsuario = idUsuario;
         this.fecha_prestamo = fecha_prestamo;
         this.fecha_devolcion = fecha_devolcion;
         this.estadoPrestamo = estadoPrestamo;
+        this.multa = multa;
     }
 
     public int getIdPrestamo() {
@@ -31,19 +32,19 @@ public class PrestamoLibros {
         this.idPrestamo = idPrestamo;
     }
 
-    public Libro getIdLibro() {
+    public int getIdLibro() {
         return idLibro;
     }
 
-    public void setIdLibro(Libro idLibro) {
+    public void setIdLibro(int idLibro) {
         this.idLibro = idLibro;
     }
 
-    public Usuario getIdUsuario() {
+    public int getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(Usuario idUsuario) {
+    public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
     }
 
@@ -69,5 +70,13 @@ public class PrestamoLibros {
 
     public void setEstadoPrestamo(String estadoPrestamo) {
         this.estadoPrestamo = estadoPrestamo;
+    }
+
+    public double getMulta() {
+        return multa;
+    }
+
+    public void setMulta(double multa) {
+        this.multa = multa;
     }
 }
