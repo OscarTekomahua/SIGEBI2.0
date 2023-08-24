@@ -493,15 +493,16 @@
     }
     document.getElementById("Tab1").style.display = "block";
 
-    document.getElementById("cerrarSesion").addEventListener("click", function () {
+    document.getElementById("botonCerrarSesion").addEventListener("click", function () {
+
         var xhr = new XMLHttpRequest();
         xhr.open("GET", "CloseSession", true);
         xhr.send();
+
         window.location.href = "index.jsp";
 
     });
-
-    document.getElementById("botonCerrarSesion").addEventListener("click", function () {
+    document.getElementById("botonCerrarSesion2").addEventListener("click", function () {
 
         var xhr = new XMLHttpRequest();
         xhr.open("GET", "CloseSession", true);

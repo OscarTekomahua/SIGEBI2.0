@@ -54,8 +54,8 @@ public class RegistrarUsuarioServlet extends HttpServlet {
         } else {
             boolean registroHecho = dao.insert(newperson, newusr);
             if (registroHecho) {
-                req.getSession().setAttribute("sesion", newusr);
-                resp.sendRedirect("inicio.jsp");
+
+                resp.sendRedirect("index.jsp");
             } else {
                 resp.sendRedirect("failedAccess.jsp");
             }

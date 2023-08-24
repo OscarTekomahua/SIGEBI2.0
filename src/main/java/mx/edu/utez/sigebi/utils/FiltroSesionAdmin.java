@@ -22,7 +22,12 @@ import java.io.IOException;
         "/readCategoriaAdmin",
         "/formularioeditorialmodAdmin.jsp",
         "/nuevousuario.jsp",
-        "/agregarlibroAdmin.jsp"
+        "/agregarlibroAdmin.jsp",
+        "/readUsersAdmin",
+        "/mostrarlibrosadmin",
+        "/updateBook",
+        "/agregarlibroAdmin.jsp",
+        "/salasAdmin",
 })
 public class FiltroSesionAdmin implements Filter {
 
