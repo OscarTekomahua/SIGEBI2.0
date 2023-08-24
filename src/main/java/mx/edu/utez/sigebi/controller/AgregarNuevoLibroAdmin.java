@@ -50,6 +50,7 @@ public class AgregarNuevoLibroAdmin extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
         String isbn = req.getParameter("isbn");
         String titulo = req.getParameter("titulo");
         String autor = req.getParameter("autor");

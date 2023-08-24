@@ -85,6 +85,38 @@ public class LibroServlet extends HttpServlet {
 
                 req.getRequestDispatcher("/catalogoLibros.jsp").forward(req, resp);
                 break;
+
+            case "/updateBook":
+                LibroDao dao1 = new LibroDao();
+                int id_libro = Integer.parseInt(req.getParameter("id"));
+
+                ResultadosConsulta libro =  dao1.MostrarLibroid(id_libro);
+                System.out.println(libro.getId_libro());
+                System.out.println(libro.getTitulo());
+                req.getSession().setAttribute("libro", libro);
+                req.getRequestDispatcher("modificarLibroAdmin.jsp").forward(req, resp);
+
+                break;
+            case "/updateBookRegreso":
+                System.out.println("Entro para modificar el lbro");
+                LibroDao dao11 = new LibroDao();
+                int id_libro1 = Integer.parseInt(req.getParameter("id"));
+                String isbn =req.getParameter("isbn");
+                String titulo =req.getParameter("titulo");
+                String autor =req.getParameter("autor");
+                int ejemplares = Integer.parseInt(req.getParameter("stock"));
+                boolean envio = dao11.updateLibro(new ResultadosConsulta(id_libro1,isbn,titulo,autor,ejemplares));
+                if(envio){
+                    LibroDao dao111 = new LibroDao();
+                    List<ResultadosConsulta> listalibroo = dao111.getAllAttributes();
+                    req.setAttribute("tablalibros", listalibroo);
+                    req.getRequestDispatcher("administrarStockAdmin.jsp").forward(req, resp);
+                }
+                break;
+
+            default:
+                System.out.println("No entro a ninguna sentencia");
+
         }
 
 
@@ -92,6 +124,7 @@ public class LibroServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
 
     }
 }

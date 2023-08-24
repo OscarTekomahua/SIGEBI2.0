@@ -36,6 +36,7 @@ public class NewUserAdminServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
         String correo = req.getParameter("correo");
         String contra = req.getParameter("contra");
         String nombre =  req.getParameter("nombre");

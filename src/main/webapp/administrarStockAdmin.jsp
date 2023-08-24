@@ -169,11 +169,11 @@
     }
 
     .btn-agregar {
-        background-color:   #005ec9;
+        background-color: #009475;
     }
 
     .btn-agregar:hover {
-        background-color: #AED6F1;
+        background-color: #2ECC71;
     }
 
     .sidebar-open {
@@ -255,11 +255,8 @@
             <img src="assets/img/sigebi%20logo2.png" alt="SIGEBI Logo">
         </a>
         <div class="nav-item">
-            <form class="d-flex">
                 <input id="searchInput" class="form-control mr-2" type="search" placeholder="Buscar"
                        aria-label="Buscar">
-                <button class="btn btn-outline-success buscador" type="button" id="searchButton">Buscar</button>
-            </form>
         </div>
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidebarCollapse">
             <i class="fas fa-bars"></i>
@@ -297,18 +294,15 @@
 
 <div class="container-tab">
     <div class="table-container">
-        <center>
-            <div style="display: flex; align-items: center; justify-content: center;">
-                <h2 class="text-center mb-4" style="margin-right: 10px; margin-top: 20px;">Stock de libros</h2>
-                <form action="AddNewBookBiblio" method="get">
+        <h2 class="text-center mb-4">Stock de libros
+            <form style="text-align: center" action="AddNewBookAdmin" method="get">
+                <button class="btn btn-agregar">
                     <input type="hidden" name="operacion" value="nuevolibro">
-                    <button type="submit" class="btn btn-agregar">
-                        <i class="fas fa-book"></i> <!-- Icono de libro -->
-                        <i class="fas fa-plus"></i> <!-- Icono de más -->
-                    </button>
-                </form>
-            </div>
-        </center>
+                    <i class="fas fa-book"></i> <!-- Icono de libro -->
+                    <i class="fas fa-plus"></i> <!-- Icono de más -->
+                </button>
+            </form></h2>
+
         <table class="table table-bordered table-striped">
             <thead>
             <tr>
@@ -333,16 +327,16 @@
                     <td>
                         <a class="btn btn-eliminar"
                            href="${pageContext.request.contextPath}/deleteBookadmin?id=${libro.id_libro}">Eliminar</a>
-                        <form action="modificar" method="get">
-                            <input type="hidden" name="operacion" value="modificar"/>
+                        <form action="updateBook" method="get">
                             <button type="submit" class="btn btn-modificar">Modificar</button>
+                            <input type="hidden" name="opcion" value="updateBook"/>
+                            <input type="hidden" name="id" value="${libro.id_libro}"/>
                         </form>
                     </td>
                 </tr>
                 </tbody>
             </c:forEach>
         </table>
-
     </div>
 </div>
 <div class="sidebar-overlay"></div>

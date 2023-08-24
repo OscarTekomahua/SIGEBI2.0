@@ -277,11 +277,8 @@
             <img src="assets/img/sigebi%20logo2.png" alt="SIGEBI Logo">
         </a>
         <div class="nav-item">
-            <form class="d-flex">
                 <input id="searchInput" class="form-control mr-2" type="search" placeholder="Buscar"
                        aria-label="Buscar">
-                <button class="btn btn-outline-success buscador" type="button" id="searchButton">Buscar</button>
-            </form>
         </div>
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidebarCollapse">
             <i class="fas fa-bars"></i>
@@ -340,7 +337,7 @@
                             <input type="hidden" name="idEditorial" value="${e.id_editorial}">
                             <input type="text" id="nuevoNombre" name="nuevoNombre" class="form-control" placeholder="Nuevo nombre">
                             <button type="submit" onclick="return validarNombre(this.form);" class="btn btn-primary mt-2">Actualizar</button>
-                        <a class="btn btn-eliminar" href="${pageContext.request.contextPath}/deleteEditorial?idEditorial=${e.id_editorial}">Eliminar</a>
+                            <a class="btn btn-eliminar" href="${pageContext.request.contextPath}/deleteEditorial?idEditorial=${e.id_editorial}">Eliminar</a>
                         </form>
                     </td>
                 </tbody>

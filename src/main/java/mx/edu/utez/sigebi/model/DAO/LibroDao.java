@@ -130,6 +130,64 @@ public class LibroDao implements DaoLibro {
         return tablalibros;
     }
 
+
+    public ResultadosConsulta MostrarLibroid(int id_Libro) {
+        ResultadosConsulta libro= new ResultadosConsulta();
+        try {
+            String query = "SELECT * FROM libro WHERE id_libro = ?";
+            PreparedStatement stmt = con.prepareStatement(query);
+            stmt.setInt(1, id_Libro);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                libro.setId_libro(rs.getInt("id_libro"));
+                libro.setTitulo(rs.getString("titulo"));
+                libro.setAutor(rs.getString("autor"));
+                libro.setEjemplares(rs.getInt("ejemplares"));
+                libro.setIsbn(rs.getString("isbn"));
+            }
+            stmt.close();
+            rs.close();
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return libro;
+    }
+
+    public boolean updateLibro(ResultadosConsulta libro) {
+        try {
+            String query = "UPDATE libro SET titulo=?, autor=?, ejemplares=?, isbn=? WHERE id_libro=?";
+            PreparedStatement stmt = con.prepareStatement(query);
+
+            stmt.setString(1,libro.getTitulo());
+            stmt.setString(2,libro.getAutor());
+            stmt.setInt(3,libro.getEjemplares());
+            stmt.setString(4,libro.getIsbn());
+            stmt.setInt(5,libro.getId_libro());
+
+            // Ejecutar la consulta de actualización
+            int filasActualizadas = stmt.executeUpdate();
+
+            // Si la consulta se ejecutó con éxito y actualizó al menos una fila, devolver true
+            return filasActualizadas > 0;
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al actualizar el artículo", e);
+        } finally {
+            // Cerrar la conexión y liberar recursos
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                // Manejar el error al cerrar la conexión (opcional)
+                e.printStackTrace();
+            }
+        }
+    }
+
     @Override
     public Libro findOne(int id_libro) {
         return null;

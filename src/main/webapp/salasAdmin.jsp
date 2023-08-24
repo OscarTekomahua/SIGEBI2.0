@@ -230,11 +230,8 @@
             <img src="assets/img/sigebi%20logo2.png" alt="SIGEBI Logo">
         </a>
         <div class="nav-item">
-            <form class="d-flex">
                 <input id="searchInput" class="form-control mr-2" type="search" placeholder="Buscar"
                        aria-label="Buscar">
-                <button class="btn btn-outline-success buscador" type="button" id="searchButton">Buscar</button>
-            </form>
         </div>
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidebarCollapse">
             <i class="fas fa-bars"></i>
@@ -280,7 +277,6 @@
         <table class="table table-bordered table-striped">
             <thead>
             <tr>
-                <th>ID Sala</th>
                 <th>Sala</th>
                 <th>Capacidad Maxima</th>
                 <th>Estado</th>
@@ -289,7 +285,6 @@
             <c:forEach items="${tablasalas}" var="s">
                 <tbody>
                 <tr>
-                    <td>${s.id_sala}</td>
                     <td>${s.nombre}</td>
                     <td>${s.capacidad_maxima}</td>
                     <td>${s.estadoTexto}</td>
