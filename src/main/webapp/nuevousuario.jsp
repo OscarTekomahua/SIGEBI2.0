@@ -395,6 +395,15 @@
       var fila = $(this).closest("tr");
       fila.remove();
     });
+    document.getElementById("botonCerrarSesion").addEventListener("click", function () {
+
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", "CloseSession", true);
+      xhr.send();
+
+      window.location.href = "index.jsp";
+
+    });
 
     // Cierra el menú cuando se hace clic fuera del menú
     $(document).click(function (event) {
