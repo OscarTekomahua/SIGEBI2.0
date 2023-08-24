@@ -25,11 +25,11 @@
 
             .navbar {
                 background-color: #009475;
-                height: 100px;
+                height: auto; /* Cambiar de 100px a auto para adaptarse al contenido */
+                padding: 20px; /* Ajustar el padding para centrar verticalmente */
                 display: flex;
                 align-items: center;
                 justify-content: flex-end; /* Alinea los elementos del navbar a la derecha */
-                padding: 0 20px;
                 position: relative;
                 z-index: 999;
             }
@@ -43,8 +43,10 @@
                 position: absolute;
                 top: 0;
                 left: 0;
-                margin: 20px;
+                margin: 0; /* Quitar el margen que agregaba espacio innecesario */
             }
+
+
 
             .navbar-brand img {
                 height: 40px;
@@ -289,10 +291,12 @@
                 background-color: rgb(0, 17, 108);
                 color: #ffffff;
                 padding: 30px 0;
+                margin: 0;
 
                  }
             .footer h4 {
                 color: #71dbca;
+                margin: 0;
             }
             .footer p {
                 margin: 0;
@@ -418,17 +422,7 @@
             }
 
             /* Estilos para responsive */
-            @media (max-width: 768px) {
-                .paquetes-group {
-                    flex-direction: column;
-                    align-items: center;
-                }
 
-                .col-md-4 {
-                    width: 100%;
-                    max-width: 400px;
-                }
-            }
             .seccion-container {
                 background-color: #f7f7f7;
                 padding: 30px;
@@ -475,7 +469,9 @@
                 background-color: #ccc;
                 margin: 20px 0;
             }
-
+span{
+    margin-top: 20px;
+}
         </style>
     </head>
     <body style="overflow-x: hidden;">
@@ -483,7 +479,7 @@
         <div class="container d-flex justify-content-between align-items-center">
             <a class="navbar-brand" href="inicio.jsp">
                 <img src="assets/img/sigebi%20logo2.png" alt="SIGEBI Logo">
-                <span style="margin-left: 300px" class="d-none d-md-inline-block">Bienvenido a SIGEBI</span>
+                <span style="margin-left: 370px"  class="d-none d-md-inline-block">Bienvenido a SIGEBI</span>
             </a>
         </div>
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidebarCollapse">
@@ -617,6 +613,7 @@
          </div>
      </div>
  !-->
+    <div class="sidebar-overlay"></div>
     <script src="assets/js/bootstrap.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
