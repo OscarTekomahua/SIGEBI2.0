@@ -306,6 +306,15 @@
       var fila = $(this).closest("tr");
       fila.remove();
     });
+    document.getElementById("botonCerrarSesion").addEventListener("click", function () {
+
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", "CloseSession", true);
+      xhr.send();
+
+      window.location.href = "index.jsp";
+
+    });
 
     $(document).click(function (event) {
       if (!$(event.target).closest(".sidebar, .navbar-toggler").length) {
