@@ -8,6 +8,8 @@ public class Persona implements Serializable {
     private String apellido1;
     private String apellido2;
 
+    private String libroPrestado;
+
     public Persona() {
     }
 
@@ -16,6 +18,14 @@ public class Persona implements Serializable {
         this.nombre = nombre;
         this.apellido1 = apellido1;
         this.apellido2 = apellido2;
+    }
+
+    public Persona(int id_persona, String nombre, String apellido1, String apellido2, String libroPrestado) {
+        this.id_persona = id_persona;
+        this.nombre = nombre;
+        this.apellido1 = apellido1;
+        this.apellido2 = apellido2;
+        this.libroPrestado = libroPrestado;
     }
 
     public int getId_persona() {
@@ -48,5 +58,13 @@ public class Persona implements Serializable {
 
     public void setApellido2(String apellido2) {
         this.apellido2 = apellido2;
+    }
+
+    public String getLibroPrestado() {
+        return libroPrestado;
+    }
+
+    public void setLibroPrestado(String libroPrestado) {
+        this.libroPrestado = libroPrestado;
     }
 }

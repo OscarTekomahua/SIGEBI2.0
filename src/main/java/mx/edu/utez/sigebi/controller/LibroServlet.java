@@ -76,8 +76,12 @@ public class LibroServlet extends HttpServlet {
 
                 List<ResultadosConsulta> listalibro = dao.getAllAttributes();
 
+                //Definir fecha actual solo dia mes y año
+                LocalDate fechaActual = LocalDate.now();
+
                 req.setAttribute("id_usuario", userId);
                 req.setAttribute("tablalibros", listalibro);
+                req.setAttribute("fechaActual", fechaActual);
 
                 req.getRequestDispatcher("/catalogoLibros.jsp").forward(req, resp);
                 break;

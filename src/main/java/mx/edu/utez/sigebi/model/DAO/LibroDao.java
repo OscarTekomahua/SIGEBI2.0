@@ -19,6 +19,19 @@ public class LibroDao implements DaoLibro {
         this.l = new Libro();
         this.resp = false;
     }
+    public Libro libroPrestado(int idUsr) {
+        try {
+            PreparedStatement stmt = con.prepareStatement("SELECT titulo FROM vista_usuario_libro WHERE id_usuario = ?;");
+            stmt.setInt(1, idUsr);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                l.setTitulo(rs.getString("titulo"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return l;
+    }
 
     @Override
     public boolean insert (Libro libro, List<Integer> idEditoriales, List<Integer> idCategorias) {

@@ -24,6 +24,26 @@ public class UsuarioDao implements DaoRepository {
         this.resp = false;
     }
 
+    public List<Persona> usuariosConPrestamo(){
+        List<Persona> usrs = new ArrayList<>();
+        try {
+            PreparedStatement stmt = con.prepareStatement("SELECT * FROM vista_usuario_libro");
+            ResultSet res = stmt.executeQuery();
+            while (res.next()) {
+                Persona usr = new Persona();
+                usr.setId_persona(res.getInt("id_usuario"));
+                usr.setNombre(res.getString("nombres"));
+                usr.setApellido1(res.getString("apellido1"));
+                usr.setApellido2(res.getString("apellido2"));
+                usr.setLibroPrestado(res.getString("titulo"));
+                usrs.add(usr);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return usrs;
+    }
+
     @Override
     public List<UsuarioInter> findAll() {
         List<UsuarioInter> listausuarios = new ArrayList<>();

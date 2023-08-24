@@ -2,6 +2,7 @@ package mx.edu.utez.sigebi.model.DAO;
 
 import mx.edu.utez.sigebi.model.PrestamoLibros;
 import mx.edu.utez.sigebi.utils.MysqlConector;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,6 +15,21 @@ public class PrestamosLibrosDao implements DaoPrestamosLibros {
     private List<PrestamoLibros> prestamoLibros;
     private PrestamoLibros librosprestados;
     private boolean resp;
+
+    public boolean solicitarLibro(int idUsr, int idBook, String fecha_actual) {
+        try {
+            PreparedStatement stmt = con.prepareStatement("INSERT INTO prestamolibro (id_libro, id_usuario, fecha_prestamo, estado_prestamo) VALUES (?, ?, ?, ?)");
+            stmt.setInt(1, idBook);
+            stmt.setInt(2, idUsr);
+            stmt.setString(3, fecha_actual);
+            stmt.setString(4, "Prestado");
+            stmt.executeUpdate();
+            resp = true;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return true;
+    }
 
     public PrestamosLibrosDao() {
         this.con = new MysqlConector().connect();

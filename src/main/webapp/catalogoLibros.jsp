@@ -297,7 +297,7 @@
                         <p class="libro-titulo">${libro.titulo}</p>
                         <p class="libro-autor">Autor: ${libro.autor}</p>
                         <p class="libro-isbn">ISBN: ${libro.isbn}</p>
-                        <a class="btn btn-solicitar" href="${pageContext.request.contextPath}/PedirLibroServlet?idLibro=${libro.id_libro}&idUsuario=${id_usuario}&fecha_actual=${fecha_actual}">Solicitar Libro</a>
+                        <a class="btn btn-solicitar" href="${pageContext.request.contextPath}/PedirLibroServlet?idLibro=${libro.id_libro}&idUsuario=${id_usuario}&fecha_actual=${fechaActual}">Solicitar Libro</a>
                     </div>
                 </div>
             </div>

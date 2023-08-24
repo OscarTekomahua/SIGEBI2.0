@@ -1,3 +1,4 @@
+drop database if exists sigebi;
 create database sigebi;
 use sigebi;
 
@@ -383,6 +384,35 @@ FROM sala s
          JOIN prestamosala ps ON s.id_sala = ps.id_sala
 WHERE ps.estado IN ('Prestada', 'Reservada');
 
-SELECT * FROM vista_sala_prestada;
+SELECT * FROM vista_salas_reservadas_prestadas;
+-- PA de:
+-- Vista para usuarios nombres, apellidos, libros prestados, devueltos y multas
+-- Los libros prestados y devultos puede ser con COUNT
+-- Toda la vista por segun id_usuario
+DELIMITER $$
+CREATE PROCEDURE vista_usuario_libros_prestados_devueltos( in idUser int)
+BEGIN
+SELECT p.id_usuario, pe.nombres, pe.apellido1, pe.apellido2, COUNT(p.id_prestamo) AS prestados, COUNT(p.estado_prestamo) AS devueltos, SUM(u.multa) AS multas
+FROM prestamolibro p
+         JOIN usuario u ON p.id_usuario = u.id_usuario
+         JOIN persona pe ON u.id_persona = pe.id_persona
+         JOIN prestamosala ps ON u.id_usuario = ps.id_usuario
+         JOIN sala s ON ps.id_sala = s.id_sala
+WHERE p.id_usuario = idUser
+GROUP BY p.id_usuario;
+END
+$$
+DELIMITER ;
 
+CALL vista_usuario_libros_prestados_devueltos(4);
 
+-- Vista se imprima de que en la tabla el nombre del usuario, sus apellidos, el libro que tiene en préstamo, el titulo,
+CREATE VIEW vista_usuario_libro AS
+SELECT p.id_usuario, pe.nombres, pe.apellido1, pe.apellido2, l.titulo
+FROM prestamolibro p
+         JOIN usuario u ON p.id_usuario = u.id_usuario
+         JOIN persona pe ON u.id_persona = pe.id_persona
+         JOIN libro l ON p.id_libro = l.id_libro
+WHERE p.estado_prestamo = 'Prestado';
+
+SELECT * FROM vista_usuario_libro;

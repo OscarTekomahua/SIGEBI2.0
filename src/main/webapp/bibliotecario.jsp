@@ -147,7 +147,7 @@
 </div>
 <div class="hero-text-box">
     <h1>Bibliotecario</h1>
-    <a class="btn btn-ghost" href="usuarios.jsp"><i class="fas fa-users"> </i>Revisar Usuarios</a>
+    <a class="btn btn-ghost" href="${pageContext.request.contextPath}/BibliotecarioUsuarios"><i class="fas fa-users"> </i>Revisar Usuarios</a>
     <form action="mostrarlibros" method="get">
         <input type="hidden" name="operacion" value="stocklibros">
         <button type="submit" class="btn btn-ghost"><i class="fas fa-stream"> </i>Gestionar libros</button>
