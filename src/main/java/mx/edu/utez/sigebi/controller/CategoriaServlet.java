@@ -18,6 +18,7 @@ import java.util.List;
 public class CategoriaServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
         String opcion = req.getServletPath();
 
         String nombreCategoria = req.getParameter("categoria");

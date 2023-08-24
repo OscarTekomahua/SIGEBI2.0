@@ -239,10 +239,7 @@
             <img src="assets/img/sigebi%20logo2.png" alt="SIGEBI Logo">
         </a>
         <div class="nav-item">
-            <form class="d-flex">
                 <input id="searchInput" class="form-control mr-2" type="search" placeholder="Buscar" aria-label="Buscar">
-                <button class="btn btn-outline-success buscador" type="button" id="searchButton">Buscar</button>
-            </form>
         </div>
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidebarCollapse">
             <i class="fas fa-bars"></i>
@@ -307,9 +304,10 @@
                     <td>${libro.ejemplares}</td>
                     <td>
                         <a class="btn btn-eliminar" href="${pageContext.request.contextPath}/deleteBook?id=${libro.id_libro}">Eliminar</a>
-                        <form action="modificar" method="get">
-                            <input type="hidden" name="operacion" value="modificar"/>
-                        <button type="submit" class="btn btn-modificar">Modificar</button>
+                        <form action="updateBookAdmin" method="get">
+                            <button type="submit" class="btn btn-modificar">Modificar</button>
+                            <input type="hidden" name="opcion" value="updateBook"/>
+                            <input type="hidden" name="id" value="${libro.id_libro}"/>
                         </form>
                     </td>
                 </tr>

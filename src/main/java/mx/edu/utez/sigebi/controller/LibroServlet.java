@@ -15,7 +15,7 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
-@WebServlet (name = "LibroServlet", urlPatterns = {"/mostrarlibros", "/updateBook", "/updateBookRegreso", "/deleteBook", "/deleteBookadmin","/mostrarlibrosadmin", "/mostrarlibrosvista" })
+@WebServlet (name = "LibroServlet", urlPatterns = {"/mostrarlibros", "/updateBook", "/updateBookRegreso", "/updateBookAdmin","/updateBookRegresoAdmin","/deleteBook", "/deleteBookadmin","/mostrarlibrosadmin", "/mostrarlibrosvista" })
 public class LibroServlet extends HttpServlet {
 
 
@@ -109,6 +109,36 @@ public class LibroServlet extends HttpServlet {
                     req.getRequestDispatcher("administrarStockAdmin.jsp").forward(req, resp);
                 }
                 break;
+
+
+            case "/updateBookAdmin":
+                dao1 = new LibroDao();
+                id_libro = Integer.parseInt(req.getParameter("id"));
+
+                libro =  dao1.MostrarLibroid(id_libro);
+                System.out.println(libro.getId_libro());
+                System.out.println(libro.getTitulo());
+                req.getSession().setAttribute("libro", libro);
+                req.getRequestDispatcher("modificarLibro.jsp").forward(req, resp);
+
+                break;
+            case "/updateBookRegresoAdmin":
+                System.out.println("Entro para modificar el lbro");
+                dao11 = new LibroDao();
+                id_libro1 = Integer.parseInt(req.getParameter("id"));
+                isbn =req.getParameter("isbn");
+                titulo =req.getParameter("titulo");
+                autor =req.getParameter("autor");
+                ejemplares = Integer.parseInt(req.getParameter("stock"));
+                envio = dao11.updateLibro(new ResultadosConsulta(id_libro1,isbn,titulo,autor,ejemplares));
+                if(envio){
+                    LibroDao dao111 = new LibroDao();
+                    List<ResultadosConsulta> listalibroo = dao111.getAllAttributes();
+                    req.setAttribute("tablalibros", listalibroo);
+                    req.getRequestDispatcher("administrarStok.jsp").forward(req, resp);
+                }
+                break;
+
 
             default:
                 System.out.println("No entro a ninguna sentencia");

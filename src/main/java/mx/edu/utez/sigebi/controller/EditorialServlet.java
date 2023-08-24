@@ -19,6 +19,7 @@ import java.util.List;
 public class EditorialServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
         String opcion = req.getServletPath();
 
         String nuevaEditorial = req.getParameter("editorial");
