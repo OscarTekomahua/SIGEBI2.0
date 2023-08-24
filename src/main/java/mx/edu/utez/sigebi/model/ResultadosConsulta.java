@@ -88,4 +88,15 @@ public class ResultadosConsulta {
     public void setImagen(String imagen) {
         this.imagen = imagen;
     }
+
+
+    public ResultadosConsulta(int id_libro, String isbn, String titulo, String autor, int ejemplares) {
+        this.id_libro = id_libro;
+        this.isbn = isbn;
+        this.titulo = titulo;
+        this.autor = autor;
+        this.ejemplares = ejemplares;
+    }
+
+
 }

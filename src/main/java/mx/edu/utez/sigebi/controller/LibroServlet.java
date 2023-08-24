@@ -15,7 +15,7 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
-@WebServlet (name = "LibroServlet", urlPatterns = {"/mostrarlibros", "/updateBook", "/deleteBook", "/deleteBookadmin","/mostrarlibrosadmin", "/mostrarlibrosvista" })
+@WebServlet (name = "LibroServlet", urlPatterns = {"/mostrarlibros", "/updateBook", "/updateBookRegreso", "/deleteBook", "/deleteBookadmin","/mostrarlibrosadmin", "/mostrarlibrosvista" })
 public class LibroServlet extends HttpServlet {
 
 
@@ -39,13 +39,9 @@ public class LibroServlet extends HttpServlet {
             case "/mostrarlibrosadmin":
                 if (req.getParameter("operacion").equals("stocklibros")) {
                     LibroDao dao = new LibroDao();
-
                     List<ResultadosConsulta> listalibro = dao.getAllAttributes();
-
                     req.setAttribute("tablalibros", listalibro);
                 }
-
-
                 req.getRequestDispatcher("administrarStockAdmin.jsp").forward(req, resp);
                 break;
 
