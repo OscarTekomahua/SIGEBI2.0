@@ -148,7 +148,7 @@
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
-            color: #ffffff;
+            color: #ccc;
             transition: background-color 0.3s;
         }
 
@@ -215,6 +215,7 @@
 
         .tabcontent {
             display: none;
+
         }
     </style>
 </head>
@@ -227,8 +228,8 @@
                 <img src="assets/img/sigebi%20logo2.png" alt="SIGEBI Logo">
             </a>
             <div class="tabs">
-                <button class="tablink active-tab" onclick="openTab(event, 'Tab1')">Salas</button>
-                <button class="tablink inactive-tab" onclick="openTab(event, 'Tab2')">Disponibilidad de salas</button>
+                <button class="tablink active-tab" style="background-color: #009475; border-radius: 10px" onclick="openTab(event, 'Tab1')">Historial de préstamos</button>
+                <button class="tablink inactive-tab" style="background-color: #009475; border-radius: 10px" onclick="openTab(event, 'Tab2')"> Historial de préstamos devueltos</button>
             </div>
             <div class="nav-item">
                 <form class="d-flex" id="searchForm">
@@ -346,8 +347,10 @@
                 <img src="assets/img/sigebi%20logo2.png" alt="SIGEBI Logo">
             </a>
             <div class="tabs">
-                <button class="tablink active-tab" onclick="openTab(event, 'Tab1')">Salas</button>
-                <button class="tablink inactive-tab" onclick="openTab(event, 'Tab2')">Disponibilidad de salas</button>
+                <button class="tablink active-tab" style="border-radius: 10px; background-color: #009475" onclick="openTab(event, 'Tab1')">Historial de préstamos
+                </button>
+                <button class="tablink inactive-tab" style="border-radius: 10px; background-color: #009475" onclick="openTab(event, 'Tab2')">Historial de préstamos devueltos
+                </button>
             </div>
             <div class="nav-item">
                 <form class="d-flex" id="searchForm2">
