@@ -76,7 +76,7 @@
 
 <form action="createCategoria" method="post">
     <h1>Categoría de libro</h1>
-    <label for="categoria">Ingresa el nombre de la nueva Categoria:</label><br>
+    <label for="categoria">Ingresa el nombre de la nueva Categoria: <span class="required">*</span></label><br>
     <input type="text" id="categoria" name="categoria" required><br>
     <br>
     <input type="submit" value="Agregar categoría">
@@ -86,4 +86,11 @@
 </form>
 
 </body>
+<style>
+    .required {
+        color: red;
+        font-size: 16px;
+        margin-left: 5px;
+    }
+</style>
 </html>

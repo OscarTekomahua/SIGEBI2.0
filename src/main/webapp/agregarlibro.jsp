@@ -256,7 +256,7 @@
                                     <input type="checkbox" id="editoriales" name="editoriales" value="${e.id_editorial}"> ${e.nombre} <br>
                                 </c:forEach>
                             </label> <br>
-                            <label for="categorias"><strong>Categoría:</strong></label>
+                            <label for="categorias"><strong>Categoría: </strong><span class="required">*</span></label>
                         </div>
                         <div class="form-group">
                             <label>

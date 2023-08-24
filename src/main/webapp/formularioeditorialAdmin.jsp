@@ -66,7 +66,7 @@
 
 <form action="createEditorialAdmin" method="post">
   <h1>Editorial</h1>
-  <label for="editorial">Ingresa el nombre de la nueva Editorial:</label><br>
+  <label for="editorial">Ingresa el nombre de la nueva Editorial: <span class="required">*</span></label><br>
   <input type="text" id="editorial" name="editorial" required><br>
   <br>
   <input type="submit" value="Agregar editorial">
@@ -76,4 +76,11 @@
 </form>
 
 </body>
+<style>
+  .required {
+    color: red;
+    font-size: 16px;
+    margin-left: 5px;
+  }
+</style>
 </html>

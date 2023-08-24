@@ -270,9 +270,9 @@
     <div class="col-lg-6">
       <div class="d-flex justify-content-between mb-3">
         <a class="addNewCat" href="formulariocategoriaAdmin.jsp">
-          Nueva Categoria <i class="fas fa-plus-circle fa-sm"></i></a>
+         Nueva Categoria <i class="fas fa-plus-circle fa-sm"></i></a>
         <a class="addNewEdit" href="formularioeditorialAdmin.jsp">
-          Nueva Editorial <i class="fas fa-plus-circle fa-sm"></i></a>
+         Nueva Editorial <i class="fas fa-plus-circle fa-sm"></i></a>
       </div>
       <div class="card">
         <div class="card-body">

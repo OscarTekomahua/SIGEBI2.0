@@ -264,6 +264,24 @@
       transition: color 0.3s;
     }
 
+    .btn-agregar{
+      background-color: #005ec9;
+      margin-top: 20px;
+      margin-left: 20px;
+      padding: 10px 20px;
+      margin: 5px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      color: #ffffff;
+      transition: background-color 0.3s;
+    }
+
+    .btn-agregar:hover{
+      background-color: #AED6F1;
+    }
+
 
     /* Estilos para el aclarado al pasar el mouse */
     .btnsala:hover {
@@ -318,23 +336,23 @@
   <h1>Alta de Usuario</h1>
   <form id="altaUsuarioForm" method="post" action="NewUserForAdmin">
     <div class="form-group">
-      <label for="nombre">Nombre:</label>
+      <label for="nombre">Nombre: <span class="required">*</span></label>
       <input type="text" id="nombre" name="nombre" required>
     </div>
     <div class="form-group">
-      <label for="apellidoPaterno">Apellido Paterno:</label>
+      <label for="apellidoPaterno">Apellido Paterno: <span class="required">*</span></label>
       <input type="text" id="apellidoPaterno" name="apellidoPaterno" required>
     </div>
     <div class="form-group">
-      <label for="apellidoMaterno">Apellido Materno:</label>
+      <label for="apellidoMaterno">Apellido Materno: <span class="required">*</span></label>
       <input type="text" id="apellidoMaterno" name="apellidoMaterno" required>
     </div>
     <div class="form-group">
-      <label for="correo">Correo electrónico:</label>
+      <label for="correo">Correo electrónico: <span class="required">*</span></label>
       <input type="email" id="correo" name="correo" required>
     </div>
     <div class="form-group">
-      <label for="rol">Rol:</label>
+      <label for="rol">Rol: <span class="required">*</span></label>
       <select id="rol" name="rol" required>
         <c:forEach items="${roles}" var="rol">
           <option value="${rol.id_rol}">${rol.tipo_usuario}</option>
@@ -342,15 +360,15 @@
       </select>
     </div>
     <div class="form-group">
-      <label for="contra"><b>Contraseña: </b></label>
+      <label for="contra"><b>Contraseña: <span class="required">*</span></b></label>
       <input type="password" name="contra" id="contra" placeholder="Ingrese su contraseña" required>
     </div>
     <div class="form-group">
-      <label for="recontrasena"><b>Repetir Contraseña: </b></label>
+      <label for="recontrasena"><b>Repetir Contraseña: <span class="required">*</span></b></label>
       <input type="password" name="recontrasena" id="recontrasena" value="" placeholder="Confirme su contraseña" required>
     </div>
 
-    <button type="submit">Registrar</button>
+    <button class="btn-agregar" type="submit">Registrar</button>
   </form>
   <c:if test="${not empty error}">
     <p>${error}</p>
@@ -418,4 +436,11 @@
 
 
 </body>
+<style>
+  .required {
+    color: red;
+    font-size: 16px;
+    margin-left: 5px;
+  }
+</style>
 </html>
