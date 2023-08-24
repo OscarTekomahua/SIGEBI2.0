@@ -257,11 +257,8 @@
             <img src="assets/img/sigebi%20logo2.png" alt="SIGEBI Logo">
         </a>
         <div class="nav-item">
-            <form class="d-flex">
-                <input id="searchInput" class="form-control mr-2" type="search" placeholder="Buscar"
-                       aria-label="Buscar">
-                <button class="btn btn-outline-success buscador" type="button" id="searchButton">Buscar</button>
-            </form>
+            <input id="searchInput" class="form-control mr-2" type="search" placeholder="Buscar"
+                   aria-label="Buscar">
         </div>
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidebarCollapse">
             <i class="fas fa-bars"></i>
@@ -299,19 +296,21 @@
     </ul>
 </div>
 
-<form action="NewUserForAdmin" method="get">
-    <input type="hidden" name="operacion" value="nuevousuario">
-    <button type="submit" class="btn btn-agregar">Registrar Nuevo Usuario</button>
-</form>
-
 <div class="container-tab">
     <div class="table-container">
-        <h2 class="text-center mb-4">Gestion usuarios</h2>
+        <h2 class="text-center mb-4">Gestion usuarios
+            <form action="NewUserForAdmin" method="get">
+                <input type="hidden" name="operacion" value="nuevousuario">
+                <button type="submit" class="btn btn-agregar">
+                    <i class="fas fa-user"></i> <!-- Icono de usuario -->
+                    <i class="fas fa-plus"></i> <!-- Icono de más -->
+                </button>
+            </form>
+        </h2>
 
         <table class="table table-bordered table-striped">
             <thead>
             <tr>
-                <th>ID</th>
                 <th>Nombre(s)</th>
                 <th>Apellido Paterno</th>
                 <th>Apellido Materno</th>
@@ -323,16 +322,13 @@
             <c:forEach items="${users}" var="u">
                 <tbody>
                 <tr>
-                    <td>${u.id_persona}</td>
                     <td>${u.nombres}</td>
                     <td>${u.apellido1}</td>
                     <td>${u.apellido2}</td>
                     <td>${u.correo_institucional}</td>
                     <td>${u.tipo_usuario}</td>
                     <td>
-                        <a class="btn btn-eliminar"
-                           href="${pageContext.request.contextPath}/deleteBook?id=${libro.id_libro}">Dar de baja
-                            Usuario</a>
+                        <a class="btn btn-eliminar" href="${pageContext.request.contextPath}/BajaUsuarioServlet?idUser=${u.id_usuario}&idPersona=${u.id_persona}">Dar de baja Usuario</a>
                     </td>
                 </tr>
                 </tbody>
