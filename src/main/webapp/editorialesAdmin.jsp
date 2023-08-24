@@ -220,7 +220,7 @@
     }
 
     .addNewEdit:hover {
-        background-color: #0048a6; /* Cambia el color cuando pasas el cursor sobre el botón */
+        background-color: #AED6F1; /* Cambia el color cuando pasas el cursor sobre el botón */
     }
 
     .btnstock {
@@ -321,10 +321,10 @@
 
 <div class="container-tab">
     <div class="table-container">
-        <h2 class="text-center mb-4">Editoriales</h2>
-        <a href="formularioeditorialmodAdmin.jsp">
-            <button class="addNewEdit">Agregar Nueva Editorial</button>
-        </a>
+        <center><h2 class="text-center mb-4" style="display: inline-block;">Editoriales</h2>
+            <a href="formularioeditorialmodAdmin.jsp" class="addNewEdit">
+                <i class="fas fa-plus-circle fa-sm"></i>
+            </a></center>
         <div id="mensajeAlerta"></div>
         <table class="table table-bordered table-striped">
             <thead>
@@ -413,6 +413,15 @@
         }
         return true; // Permitir el envío del formulario si el nombre no está vacío
     }
+    document.getElementById("botonCerrarSesion").addEventListener("click", function () {
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "CloseSession", true);
+        xhr.send();
+
+        window.location.href = "index.jsp";
+
+    });
 </script>
 </body>
 </html>

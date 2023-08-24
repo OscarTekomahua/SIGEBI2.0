@@ -234,18 +234,21 @@
                     <form method="post" action="AddNewBookBiblio" enctype="multipart/form-data">
                         <div class="form-group">
                         </div>
+                        <!-- Resto del código -->
                         <div class="form-group">
-                            <label><strong>ISBN:</strong></label>
-                            <input type="text" class="form-control" id="isbn" name="isbn" placeholder="Ingresa ISBN del Libro" >
+                            <label for="isbn"><strong>ISBN:</strong> <span class="required">*</span></label>
+                            <input type="text" class="form-control" id="isbn" name="isbn" placeholder="Ingresa ISBN del Libro" required>
                         </div>
                         <div class="form-group">
-                            <label><strong>Título:</strong></label>
-                            <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Ingresa Nombre del Libro" >
+                            <label for="titulo"><strong>Título:</strong> <span class="required">*</span></label>
+                            <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Ingresa Nombre del Libro" required>
                         </div>
                         <div class="form-group">
-                            <label><strong>Autor:</strong></label>
-                            <input type="text" class="form-control" id="autor" name="autor" placeholder="Ingresa Autor del Libro" >
-                            <label for="editoriales"><strong>Editorial:</strong></label>
+                            <label for="autor"><strong>Autor:</strong> <span class="required">*</span></label>
+                            <input type="text" class="form-control" id="autor" name="autor" placeholder="Ingresa Autor del Libro" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editoriales"><strong>Editorial: </strong><span class="required">*</span></label>
                         </div>
                         <div class="form-group">
                             <label>
@@ -263,14 +266,14 @@
                             </label>
                         </div>
                         <div class="form-group">
-                            <label><strong>Ejemplares:</strong></label>
-                            <input type="number" class="form-control" id="ejemplares" name="ejemplares" placeholder="Ingresa Ejemplares del Libro" min="1">
+                            <label for="ejemplares"><strong>Ejemplares:</strong> <span class="required">*</span></label>
+                            <input type="number" class="form-control" id="ejemplares" name="ejemplares" placeholder="Ingresa Ejemplares del Libro" min="1" required>
                         </div>
                         <div class="form-group">
-                            <label><strong>Imagen:</strong></label>
-                            <input type="file" class="form-control" id="imagen" name="imagen" accept="image/*">
+                            <label for="imagen"><strong>Imagen:</strong> <span class="required">*</span></label>
+                            <input type="file" class="form-control" id="imagen" name="imagen" accept="image/*" required>
                         </div>
-                        <button type="submit" class="btn btn-agregar" name="accion ">Agregar Libro</button>
+                        <button type="submit" class="btn btn-agregar" name="accion">Agregar Libro</button>
                     </form>
                 </div>
             </div>
@@ -278,6 +281,13 @@
     </div>
 </div>
 </body>
+<style>
+    .required {
+        color: red;
+        font-size: 16px;
+        margin-left: 5px;
+    }
+</style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
