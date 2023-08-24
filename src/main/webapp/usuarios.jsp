@@ -214,87 +214,177 @@
 </head>
 
 <body>
-<nav class="navbar">
-    <div class="container d-flex justify-content-between align-items-center">
-        <a class="navbar-brand" href="bibliotecario.jsp">
-            <img src="assets/img/sigebi%20logo2.png" alt="SIGEBI Logo">
-        </a>
-        <div class="nav-item">
-            <form class="d-flex" id="searchForm">
-                <input class="form-control me-2 buscador" type="search"
-                       placeholder="Buscar por Nombre, apellido, matrícula"
-                       aria-label="Buscar" id="searchInput">
-                <button class="btn btn-outline-success" type="submit">Buscar</button>
-            </form>
+<div id="Tab1" class="tabcontent">
+    <nav class="navbar">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a class="navbar-brand" href="bibliotecario.jsp">
+                <img src="assets/img/sigebi%20logo2.png" alt="SIGEBI Logo">
+            </a>
+            <div class="tabs">
+                <button class="tablink active-tab" onclick="openTab(event, 'Tab1')">Salas</button>
+                <button class="tablink inactive-tab" onclick="openTab(event, 'Tab2')">Disponibilidad de salas</button>
+            </div>
+            <div class="nav-item">
+                <form class="d-flex" id="searchForm">
+                    <input class="form-control me-2 buscador" type="search"
+                           placeholder="Buscar por Nombre, apellido, matrícula"
+                           aria-label="Buscar" id="searchInput">
+                    <button class="btn btn-outline-success" type="submit">Buscar</button>
+                </form>
+            </div>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidebarCollapse">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
-        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidebarCollapse">
-            <i class="fas fa-bars"></i>
-        </button>
-    </div>
-</nav>
+    </nav>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
-<div class="sidebar hide">
-    <ul>
-        <!-- Agregamos los iconos de Font Awesome a las opciones del menú -->
-        <li><a href="bibliotecario.jsp"><i class="fas fa-home"></i> Inicio</a></li>
-        <li><a href="revisarHistorial.jsp"><i class="fas fa-history"></i> Revisar Historial</a></li>
-        <!-- Botón con el efecto de aclarado en las letras -->
-        <li>
-            <form action="mostrarlibros" method="get">
-                <input type="hidden" name="operacion" value="stocklibros">
-                <button type="submit" class="btnstock">
-                    <i class="fas fa-stream"></i> Stock de libros
-                </button>
-            </form>
-        </li>
-        <li><a href="usuarios.jsp"><i class="fas fa-users"></i> Revisar Usuarios</a></li>
-        <li><a href="#" id="botonCerrarSesion"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
-        <!-- Agrega más opciones de menú aquí -->
-    </ul>
-</div>
-<h2 class="text-center mb-4">
-    <center>Revisión de Usuarios</center>
-</h2>
-<div class="container-tab">
-    <div class="table-container">
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Nombre(s)</th>
-                <th>Apellido Paterno</th>
-                <th>Apellido Materno</th>
-                <th>Libro prestado</th>
-                <th>Fecha de prestamo</th>
-                <th>Fecha de devolucion</th>
-                <th>Estado del prestamo</th>
-                <th>Multa</th>
-            </tr>
-            </thead>
-            <tbody>
-            <c:forEach items="${historial}" var="pre">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+    <div class="sidebar hide">
+        <ul>
+            <!-- Agregamos los iconos de Font Awesome a las opciones del menú -->
+            <li><a href="bibliotecario.jsp"><i class="fas fa-home"></i> Inicio</a></li>
+            <li><a href="revisarHistorial.jsp"><i class="fas fa-history"></i> Revisar Historial</a></li>
+            <!-- Botón con el efecto de aclarado en las letras -->
+            <li>
+                <form action="mostrarlibros" method="get">
+                    <input type="hidden" name="operacion" value="stocklibros">
+                    <button type="submit" class="btnstock">
+                        <i class="fas fa-stream"></i> Stock de libros
+                    </button>
+                </form>
+            </li>
+            <li><a href="usuarios.jsp"><i class="fas fa-users"></i> Revisar Usuarios</a></li>
+            <li><a href="#" id="botonCerrarSesion"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+            <!-- Agrega más opciones de menú aquí -->
+        </ul>
+    </div>
+    <h2 class="text-center mb-4">
+        <center>Revisión de Usuarios</center>
+    </h2>
+    <div class="container-tab">
+        <div class="table-container">
+            <table class="table">
+                <thead>
                 <tr>
-                    <td>${pre.nombres}</td>
-                    <td>${pre.apellidoPaterno}</td>
-                    <td>${pre.apellidoMaterno}</td>
-                    <td>${pre.tituloLibro}</td>
-                    <td>${pre.fechaPrestamo}</td>
-                    <td>${pre.fechaDevolucion}</td>
-                    <td>${pre.estadoPrestamo}</td>
-                    <td>${pre.multa}</td>
-                    <td>
-                        <button type="button" class="btn btn-modificar">Ir</button>
-                    </td>
+                    <th>Nombre(s)</th>
+                    <th>Apellido Paterno</th>
+                    <th>Apellido Materno</th>
+                    <th>Libro prestado</th>
+                    <th>Fecha de prestamo</th>
+                    <th>Fecha de devolucion</th>
+                    <th>Estado del prestamo</th>
+                    <th>Multa</th>
                 </tr>
-            </c:forEach>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                <c:forEach items="${historial}" var="pre">
+                    <tr>
+                        <td>${pre.nombres}</td>
+                        <td>${pre.apellidoPaterno}</td>
+                        <td>${pre.apellidoMaterno}</td>
+                        <td>${pre.tituloLibro}</td>
+                        <td>${pre.fechaPrestamo}</td>
+                        <td>${pre.fechaDevolucion}</td>
+                        <td>${pre.estadoPrestamo}</td>
+                        <td>${pre.multa}</td>
+                        <td>
+                            <button type="button" class="btn btn-modificar">Ir</button>
+                        </td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+        </div>
     </div>
+
+    <!-- Agrega un div que servirá como fondo cuando el menú esté abierto -->
+    <div class="sidebar-overlay"></div>
 </div>
+<div id="Tab2" class="tabcontent">
+    <nav class="navbar">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a class="navbar-brand" href="bibliotecario.jsp">
+                <img src="assets/img/sigebi%20logo2.png" alt="SIGEBI Logo">
+            </a>
+            <div class="tabs">
+                <button class="tablink active-tab" onclick="openTab(event, 'Tab1')">Salas</button>
+                <button class="tablink inactive-tab" onclick="openTab(event, 'Tab2')">Disponibilidad de salas</button>
+            </div>
+            <div class="nav-item">
+                <form class="d-flex" id="searchForm2">
+                    <input class="form-control me-2 buscador" type="search"
+                           placeholder="Buscar por Nombre, apellido, matrícula"
+                           aria-label="Buscar" id="searchInput2">
+                    <button class="btn btn-outline-success" type="submit">Buscar</button>
+                </form>
+            </div>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidebarCollapse">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
 
-<!-- Agrega un div que servirá como fondo cuando el menú esté abierto -->
-<div class="sidebar-overlay"></div>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+    <div class="sidebar hide">
+        <ul>
+            <!-- Agregamos los iconos de Font Awesome a las opciones del menú -->
+            <li><a href="bibliotecario.jsp"><i class="fas fa-home"></i> Inicio</a></li>
+            <li><a href="revisarHistorial.jsp"><i class="fas fa-history"></i> Revisar Historial</a></li>
+            <!-- Botón con el efecto de aclarado en las letras -->
+            <li>
+                <form action="mostrarlibros" method="get">
+                    <input type="hidden" name="operacion" value="stocklibros">
+                    <button type="submit" class="btnstock">
+                        <i class="fas fa-stream"></i> Stock de libros
+                    </button>
+                </form>
+            </li>
+            <li><a href="usuarios.jsp"><i class="fas fa-users"></i> Revisar Usuarios</a></li>
+            <li><a href="#" id="botonCerrarSesion2"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+            <!-- Agrega más opciones de menú aquí -->
+        </ul>
+    </div>
+    <h2 class="text-center mb-4">
+        <center>Revisión de Usuarios</center>
+    </h2>
+    <div class="container-tab">
+        <div class="table-container">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Nombre(s)</th>
+                    <th>Apellido Paterno</th>
+                    <th>Apellido Materno</th>
+                    <th>Libro prestado</th>
+                    <th>Fecha de prestamo</th>
+                    <th>Fecha de devolucion</th>
+                    <th>Estado del prestamo</th>
+                    <th>Multa</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach items="${historial}" var="pre">
+                    <tr>
+                        <td>${pre.nombres}</td>
+                        <td>${pre.apellidoPaterno}</td>
+                        <td>${pre.apellidoMaterno}</td>
+                        <td>${pre.tituloLibro}</td>
+                        <td>${pre.fechaPrestamo}</td>
+                        <td>${pre.fechaDevolucion}</td>
+                        <td>${pre.estadoPrestamo}</td>
+                        <td>${pre.multa}</td>
+                        <td>
+                            <button type="button" class="btn btn-modificar">Ir</button>
+                        </td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- Agrega un div que servirá como fondo cuando el menú esté abierto -->
+    <div class="sidebar-overlay"></div>
+</div>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
