@@ -176,6 +176,52 @@
     transition: background-color 0.3s;
   }
 
+  .btnstock {
+    background-color: transparent; /* Sin color de fondo */
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+
+  /* Estilos para el aclarado al pasar el mouse */
+  .btnstock:hover {
+    color: #009475; /* Color de letras ligeramente más claro */
+  }
+
+  .btnusu {
+    background-color: transparent; /* Sin color de fondo */
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+
+  /* Estilos para el aclarado al pasar el mouse */
+  .btnusu:hover {
+    color: #009475; /* Color de letras ligeramente más claro */
+  }
+
+  .btnsala {
+    background-color: transparent; /* Sin color de fondo */
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+
+  /* Estilos para el aclarado al pasar el mouse */
+  .btnsala:hover {
+    color: #009475; /* Color de letras ligeramente más claro */
+  }
+
+
 </style>
 
 <body>
@@ -191,16 +237,43 @@
 </nav>
 <div class="sidebar hide">
   <ul>
-    <li><a href="admin.jsp" class="fas fa-home"> Inicio</a></li>
-    <li><a href="#" class="fas fa-users"> Revisar Usuarios</a></li>
-    <li><a href="#" class="fas fa-sign-out-alt"> Cerrar Sesión</a></li>
+    <!-- Agregamos los iconos de Font Awesome a las opciones del menú -->
+    <li><a href="admin.jsp"><i class="fas fa-home"></i> Inicio</a></li>
+    <!-- Botón con el efecto de aclarado en las letras -->
+    <li>
+      <form action="mostrarlibrosadmin" method="get">
+        <input type="hidden" name="operacion" value="stocklibros">
+        <button type="submit" class="btnstock">
+          <i class="fas fa-stream"></i> Stock de libros
+        </button>
+      </form>
+    </li>
+    <li>
+      <form action="readUsersAdmin" method="get">
+        <input type="hidden" name="operacion" value="usuarios">
+        <button type="submit" class="btnusu"><i class="fas fa-users"> </i>Gestionar Usuarios</button>
+      </form>
+    </li>
+    <li>
+      <form action="salasAdmin" method="get">
+        <input type="hidden" name="operacion" value="tablasalas">
+        <button type="submit" class="btnsala"><i class="fas fa-door-open"> </i>Gestionar Salas</button>
+      </form>
+    </li>
+    <li><a href="#" id="botonCerrarSesion"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+    <!-- Agrega más opciones de menú aquí -->
   </ul>
 </div>
-<a href="formulariocategoriaAdmin.jsp"><button class="addNewCat">Agregar Nueva Categoria</button></a><br>
-<a href="formularioeditorialAdmin.jsp"><button class="addNewEdit">Agregar Nueva Editorial</button></a>
+
 <div class="container mt-5">
   <div class="row justify-content-center">
     <div class="col-lg-6">
+      <div class="d-flex justify-content-between mb-3">
+        <a class="addNewCat" href="formulariocategoriaAdmin.jsp">
+          Nueva Categoria <i class="fas fa-plus-circle fa-sm"></i></a>
+        <a class="addNewEdit" href="formularioeditorialAdmin.jsp">
+          Nueva Editorial <i class="fas fa-plus-circle fa-sm"></i></a>
+      </div>
       <div class="card">
         <div class="card-body">
           <h3 class="card-title text-center mb-4">Registro de Libros</h3>

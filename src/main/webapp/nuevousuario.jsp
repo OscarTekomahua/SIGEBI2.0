@@ -162,7 +162,7 @@
     }
     .fixed-menu-button {
       position: absolute;
-      top: 0;
+      top: 40px;
       right: 20px; /* Puedes ajustar este valor para alinear el botón según tus necesidades */
     }
 
@@ -218,26 +218,56 @@
       border-radius: 4px;
     }
 
-    button {
-      display: block;
-      width: 100%;
-      padding: 10px;
-      background-color: #007bff;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #0056b3;
-    }
-
-    button:active {
-      background-color: #004080;
-    }
     .navbar-toggler{
       width: 40px;
+    }
+
+    /* Estilos para el botón */
+    .btnstock {
+      background-color: transparent; /* Sin color de fondo */
+      color: #000;
+      border: none;
+      border-radius: 5px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+
+    /* Estilos para el aclarado al pasar el mouse */
+    .btnstock:hover {
+      color: #009475; /* Color de letras ligeramente más claro */
+    }
+
+    .btnusu {
+      background-color: transparent; /* Sin color de fondo */
+      color: #000;
+      border: none;
+      border-radius: 5px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    /* Estilos para el aclarado al pasar el mouse */
+    .btnusu:hover {
+      color: #009475; /* Color de letras ligeramente más claro */
+    }
+
+    .btnsala {
+      background-color: transparent; /* Sin color de fondo */
+      color: #000;
+      border: none;
+      border-radius: 5px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+
+    /* Estilos para el aclarado al pasar el mouse */
+    .btnsala:hover {
+      color: #009475; /* Color de letras ligeramente más claro */
     }
   </style>
 </head>
@@ -252,14 +282,36 @@
     </button>
   </div>
 </nav>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+
 <div class="sidebar hide">
   <ul>
-    <li><a href="usuariosadmin.jsp">Gestionar Usuarios</a></li>
-    <li><a href="agregarlibroAdmin.jsp">Gestionar Libros</a></li>
-    <li><a href="editorialesAdmin.jsp">Editoriales</a></li>
-    <li><a href="categoriasAdmin.jsp">Categorias</a></li>
-    <li><a href="salasAdmin.jsp">Gestionar Salas</a></li>
-    <li><a href="#">Cerrar Sesión</a></li>
+    <!-- Agregamos los iconos de Font Awesome a las opciones del menú -->
+    <li><a href="admin.jsp"><i class="fas fa-home"></i> Inicio</a></li>
+    <!-- Botón con el efecto de aclarado en las letras -->
+    <li>
+      <form action="mostrarlibrosadmin" method="get">
+        <input type="hidden" name="operacion" value="stocklibros">
+        <button type="submit" class="btnstock">
+          <i class="fas fa-stream"></i> Stock de libros
+        </button>
+      </form>
+    </li>
+    <li>
+      <form action="readUsersAdmin" method="get">
+        <input type="hidden" name="operacion" value="usuarios">
+        <button type="submit" class="btnusu"><i class="fas fa-users"> </i>Gestionar Usuarios</button>
+      </form>
+    </li>
+    <li>
+      <form action="salasAdmin" method="get">
+        <input type="hidden" name="operacion" value="tablasalas">
+        <button type="submit" class="btnsala"><i class="fas fa-door-open"> </i>Gestionar Salas</button>
+      </form>
+    </li>
+    <li><a href="#" id="botonCerrarSesion"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+    <!-- Agrega más opciones de menú aquí -->
   </ul>
 </div>
 <div class="container">
