@@ -170,11 +170,21 @@
     }
 
     .btn-agregar {
-        background-color: #009475;
+        background-color: #005ec9;
+        margin-top: 20px;
+        margin-left: 20px;
+        padding: 10px 20px;
+        margin: 5px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        color: #ffffff;
+        transition: background-color 0.5s;
     }
 
     .btn-agregar:hover {
-        background-color: #2ECC71;
+        background-color: #AED6F1;
     }
 
     .sidebar-open {
@@ -303,7 +313,10 @@
 
 <div class="container-tab">
     <div class="table-container">
-        <h2 class="text-center mb-4">Categorias</h2>
+        <center><h2 class="text-center mb-4" style="display: inline-block;">Categorias</h2>
+            <a href="formulariocategoriaAdmin.jsp" class="btn btn-agregar">
+                <i class="fas fa-plus-circle fa-sm"></i>
+            </a></center>
         <div id="mensajeAlerta"></div>
         <table class="table table-bordered table-striped">
             <thead>
@@ -351,7 +364,15 @@
             }
         });
     });
+    document.getElementById("botonCerrarSesion").addEventListener("click", function () {
 
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "CloseSession", true);
+        xhr.send();
+
+        window.location.href = "index.jsp";
+
+    });
     document.addEventListener("DOMContentLoaded", function () {
         const searchInput = document.getElementById("searchInput");
         const tableRows = document.querySelectorAll(".table tbody tr");

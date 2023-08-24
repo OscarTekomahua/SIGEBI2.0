@@ -286,7 +286,7 @@
     <table class="table table-bordered table-striped">
       <thead>
       <tr>
-        <th>ID Categoria</th>
+
         <th>Categoria</th>
         <th>Acciones</th>
       </tr>
@@ -294,7 +294,7 @@
       <c:forEach items="${categorias}" var="e">
         <tbody>
         <tr>
-          <td>${e.id_categoria}</td>
+
           <td>${e.nombre_categoria}
             <form action="updateCategoria" method="post" class="mb-3">
               <input type="hidden" name="idCategoria" value="${e.id_categoria}">
