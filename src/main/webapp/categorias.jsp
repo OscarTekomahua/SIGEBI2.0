@@ -276,7 +276,7 @@
 <div class="container-tab">
   <div class="table-container">
     <center><h2 class="text-center mb-4" style="display: inline-block;">Categorias</h2>
-      <a href="formularioeditorialmod.jsp" class="addNewEdit">
+      <a href="formulariocategoria.jsp" class="addNewEdit">
         <i class="fas fa-plus-circle fa-sm"></i>
       </a></center>
     <div id="mensajeAlerta"></div>

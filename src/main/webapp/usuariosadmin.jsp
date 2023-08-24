@@ -168,11 +168,11 @@
     }
 
     .btn-agregar {
-        background-color: #009475;
+        background-color:#005ec9;
     }
 
     .btn-agregar:hover {
-        background-color: #2ECC71;
+        background-color: #AED6F1;
     }
 
     .sidebar-open {
@@ -297,8 +297,9 @@
 
 <div class="container-tab">
     <div class="table-container">
-        <h2 class="text-center mb-4">Gestion usuarios
+
             <form action="NewUserForAdmin" method="get">
+                <h2 class="text-center mb-4">Gestion usuarios
                 <input type="hidden" name="operacion" value="nuevousuario">
                 <button type="submit" class="btn btn-agregar">
                     <i class="fas fa-user"></i> <!-- Icono de usuario -->

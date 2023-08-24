@@ -12,7 +12,7 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #fcfcfc;
+            background-color: #009475;
             font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; /* Fuente delgada y sin negritas */
             font-weight: normal;
             font-size: 16px; /* Tamaño de fuente para todos los elementos */
@@ -24,6 +24,16 @@
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            max-width: 80%;
+        }
+
+        form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border: 6px solid #002E60; /* Cambiamos el contorno al color #002E60 y lo hacemos aún más ancho */
             width: 400px;
             max-width: 80%;
         }

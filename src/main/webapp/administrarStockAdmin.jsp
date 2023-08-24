@@ -169,11 +169,11 @@
     }
 
     .btn-agregar {
-        background-color: #009475;
+        background-color: #005ec9;
     }
 
     .btn-agregar:hover {
-        background-color: #2ECC71;
+        background-color: #AED6F1;
     }
 
     .sidebar-open {
@@ -294,14 +294,16 @@
 
 <div class="container-tab">
     <div class="table-container">
-        <h2 class="text-center mb-4">Stock de libros
+
             <form style="text-align: center" action="AddNewBookAdmin" method="get">
+                <h2 class="text-center mb-4">Stock de libros
                 <button class="btn btn-agregar">
                     <input type="hidden" name="operacion" value="nuevolibro">
                     <i class="fas fa-book"></i> <!-- Icono de libro -->
                     <i class="fas fa-plus"></i> <!-- Icono de más -->
                 </button>
-            </form></h2>
+                </h2>
+            </form>
 
         <table class="table table-bordered table-striped">
             <thead>
