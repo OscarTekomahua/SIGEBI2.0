@@ -1,5 +1,6 @@
 package mx.edu.utez.sigebi.model.DAO;
 
+import mx.edu.utez.sigebi.model.HistorialLibrosPrestados;
 import mx.edu.utez.sigebi.model.PrestamoLibros;
 import mx.edu.utez.sigebi.utils.MysqlConector;
 
@@ -16,21 +17,6 @@ public class PrestamosLibrosDao implements DaoPrestamosLibros {
     private PrestamoLibros librosprestados;
     private boolean resp;
 
-    public boolean solicitarLibro(int idUsr, int idBook, String fecha_actual) {
-        try {
-            PreparedStatement stmt = con.prepareStatement("INSERT INTO prestamolibro (id_libro, id_usuario, fecha_prestamo, estado_prestamo) VALUES (?, ?, ?, ?)");
-            stmt.setInt(1, idBook);
-            stmt.setInt(2, idUsr);
-            stmt.setString(3, fecha_actual);
-            stmt.setString(4, "Prestado");
-            stmt.executeUpdate();
-            resp = true;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return true;
-    }
-
     public PrestamosLibrosDao() {
         this.con = new MysqlConector().connect();
         this.prestamoLibros = new ArrayList<>();
@@ -39,9 +25,9 @@ public class PrestamosLibrosDao implements DaoPrestamosLibros {
     }
 
     @Override
-    public boolean registrarPrestamo(int idUsuario, int idLibro) {
+    public boolean registrarPrestamo(int idUsuario, int idLibro, String fecha_actual, String fecha_devolucion) {
         try {
-            String insertQuery = "INSERT INTO prestamolibro (id_libro, id_usuario, fecha_prestamo, estado_prestamo) VALUES (?, ?, NOW(), ?)";
+            String insertQuery = "INSERT INTO prestamolibro (id_libro, id_usuario, fecha_prestamo, fecha_devolucion, estado_prestamo) VALUES (?, ?, ?, ?, ?)";
             String updateStockQuery = "UPDATE libro SET ejemplares = ejemplares - 1 WHERE id_libro = ?";
 
             PreparedStatement insertStmt = con.prepareStatement(insertQuery);
@@ -49,7 +35,9 @@ public class PrestamosLibrosDao implements DaoPrestamosLibros {
 
             insertStmt.setInt(1, idLibro);
             insertStmt.setInt(2, idUsuario);
-            insertStmt.setString(3, "Prestado");
+            insertStmt.setString(3, fecha_actual);
+            insertStmt.setString(4, fecha_devolucion);
+            insertStmt.setString(5, "Prestado");
 
             updateStockStmt.setInt(1, idLibro);
 
@@ -77,29 +65,60 @@ public class PrestamosLibrosDao implements DaoPrestamosLibros {
     }
 
     @Override
-    public List<PrestamoLibros> obtenerPrestamosPendientes() {
-        List<PrestamoLibros> prestamos = new ArrayList<>();
+    public List<HistorialLibrosPrestados> obtenerHistorialPrestamos() {
+        List<HistorialLibrosPrestados> prestamos = new ArrayList<>();
         try {
-            String selectQuery = "SELECT * FROM prestamolibro WHERE estado_prestamo = 'Prestado'";
+            String selectQuery = "select * from historialPrestamosLibros";
             PreparedStatement stmt = con.prepareStatement(selectQuery);
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-                PrestamoLibros prestamo = new PrestamoLibros();
-                prestamo.setIdPrestamo(rs.getInt("id_prestamo"));
-                prestamo.setIdLibro(rs.getInt("id_libro"));
-                prestamo.setIdUsuario(rs.getInt("id_usuario"));
-                prestamo.setFecha_prestamo(rs.getDate("fecha_prestamo"));
-                prestamo.setFecha_devolcion(rs.getDate("fecha_devolucion"));
-                prestamo.setEstadoPrestamo(rs.getString("estado_prestamo"));
-                prestamo.setMulta(rs.getDouble("multa"));
-                prestamos.add(prestamo);
+                HistorialLibrosPrestados historial = new HistorialLibrosPrestados();
+                historial.setIdPrestamo(rs.getInt("id_prestamo"));
+                historial.setNombres(rs.getString("nombre_usuario"));
+                historial.setApellidoPaterno(rs.getString("apellido1"));
+                historial.setApellidoMaterno(rs.getString("apellido2"));
+                historial.setTituloLibro(rs.getString("titulo_libro"));
+                historial.setFechaPrestamo(rs.getString("fecha_prestamo"));
+                historial.setFechaDevolucion(rs.getString("fecha_devolucion"));
+                historial.setEstadoPrestamo(rs.getString("estado_prestamo"));
+                historial.setMulta(rs.getDouble("multa"));
+                prestamos.add(historial);
+
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return prestamos;
     }
+
+    public List<HistorialLibrosPrestados> obtenerHistorialDevueltos() {
+        List<HistorialLibrosPrestados> prestamos = new ArrayList<>();
+        try {
+            String selectQuery = "select * from historialLibrosDevueltos";
+            PreparedStatement stmt = con.prepareStatement(selectQuery);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                HistorialLibrosPrestados historial = new HistorialLibrosPrestados();
+                historial.setIdPrestamo(rs.getInt("id_prestamo"));
+                historial.setNombres(rs.getString("nombre_usuario"));
+                historial.setApellidoPaterno(rs.getString("apellido1"));
+                historial.setApellidoMaterno(rs.getString("apellido2"));
+                historial.setTituloLibro(rs.getString("titulo_libro"));
+                historial.setFechaPrestamo(rs.getString("fecha_prestamo"));
+                historial.setFechaDevolucion(rs.getString("fecha_devolucion"));
+                historial.setEstadoPrestamo(rs.getString("estado_prestamo"));
+                historial.setMulta(rs.getDouble("multa"));
+                prestamos.add(historial);
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return prestamos;
+    }
+
 
     @Override
     public boolean actualizarEstadoPrestamo(int idPrestamo, String nuevoEstado) {

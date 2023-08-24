@@ -15,6 +15,8 @@
     <link rel="stylesheet" type="text/css" href="css/estilos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
     <title>Libros</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400&display=swap');
@@ -303,6 +305,24 @@
             </div>
         </c:forEach>
     </div>
+
+    <c:if test="${not empty mensaje}">
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: '¡Solicitud realizada!',
+                text: '${mensaje}',
+                confirmButtonText: 'Aceptar',
+                customClass: {
+                    popup: 'sweetalert-custom-popup',
+                    title: 'sweetalert-custom-title',
+                    confirmButton: 'sweetalert-custom-button'
+                }
+            });
+            <c:remove var="mensaje" scope="session"></c:remove>
+        </script>
+    </c:if>
+
 </div>
 
 <script src="assets/js/bootstrap.js"></script>

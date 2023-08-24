@@ -1,9 +1,7 @@
 package mx.edu.utez.sigebi.controller;
 
-import mx.edu.utez.sigebi.model.DAO.LibroDao;
-import mx.edu.utez.sigebi.model.DAO.UsuarioDao;
-import mx.edu.utez.sigebi.model.Libro;
-import mx.edu.utez.sigebi.model.Persona;
+import mx.edu.utez.sigebi.model.DAO.PrestamosLibrosDao;
+import mx.edu.utez.sigebi.model.HistorialLibrosPrestados;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,15 +16,16 @@ import java.util.List;
 public class BibliotecarioUsuarios extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Persona> usrs = new UsuarioDao().usuariosConPrestamo();
-        for (Persona usr: usrs) {
-            System.out.println(usr.getNombre());
-            System.out.println(usr.getLibroPrestado());
-            System.out.println(usr.getApellido1());
-            System.out.println(usr.getApellido2());
+        if (req.getParameter("operacion").equals("usuarios")) {
+            PrestamosLibrosDao prestamosDao = new PrestamosLibrosDao();
+            List<HistorialLibrosPrestados> historialPrestamos = prestamosDao.obtenerHistorialPrestamos();
+            List<HistorialLibrosPrestados> historialDevueltos = prestamosDao.obtenerHistorialDevueltos();
+
+            req.getSession().setAttribute("historial2", historialDevueltos);
+            req.getSession().setAttribute("historial", historialPrestamos);
         }
-        req.setAttribute("usrLibPres", usrs);
-        resp.sendRedirect("usuarios.jsp");
+
+        req.getRequestDispatcher("/usuarios.jsp").forward(req, resp);
     }
 
     @Override

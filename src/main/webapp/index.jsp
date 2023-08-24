@@ -5,6 +5,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
   <title>Login</title>
 </head>
 <style>
@@ -316,7 +318,20 @@
         <input type="submit" class="fadeIn fourth" value="Log In">
       </form>
       <c:if test="${not empty mensaje}">
-        <p>${mensaje}</p>
+        <script>
+          Swal.fire({
+            icon: 'error',
+            title: '¡ERROR!',
+            text: '${mensaje}',
+            confirmButtonText: 'Aceptar',
+            customClass: {
+              popup: 'sweetalert-custom-popup',
+              title: 'sweetalert-custom-title',
+              confirmButton: 'sweetalert-custom-button'
+            }
+          });
+          <c:remove var="mensaje" scope="session"></c:remove>
+        </script>
       </c:if>
     </c:if>
     <!-- Remind Passowrd -->

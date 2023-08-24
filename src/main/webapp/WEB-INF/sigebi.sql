@@ -416,3 +416,62 @@ FROM prestamolibro p
 WHERE p.estado_prestamo = 'Prestado';
 
 SELECT * FROM vista_usuario_libro;
+
+-- Trigger que actualice la multa con base a la fecha limite del prestamo --
+DELIMITER //
+
+CREATE TRIGGER actualizar_multa AFTER UPDATE ON prestamolibro FOR EACH ROW
+BEGIN
+    DECLARE dias_pasados INT;
+    DECLARE multa_nueva DECIMAL(10, 2);
+
+    IF NEW.estado_prestamo = 'Prestado' AND NEW.fecha_devolucion IS NOT NULL AND NEW.fecha_devolucion < CURDATE() THEN
+        SET dias_pasados = DATEDIFF(CURDATE(), NEW.fecha_devolucion);
+        SET multa_nueva = NEW.multa + (dias_pasados * 10);
+
+    UPDATE prestamolibro SET multa = multa_nueva WHERE id_prestamo = NEW.id_prestamo;
+
+    UPDATE usuario SET multa = multa_nueva WHERE id_usuario = NEW.id_usuario;
+END IF;
+END;
+//
+
+DELIMITER ;
+
+-- Vista del historial de prestamos de libros --
+CREATE VIEW historialPrestamosLibros AS
+SELECT
+    pl.id_prestamo,
+    p.nombres AS nombre_usuario,
+    p.apellido1,
+    p.apellido2,
+    l.titulo AS titulo_libro,
+    pl.fecha_prestamo,
+    pl.fecha_devolucion,
+    pl.estado_prestamo,
+    pl.multa
+FROM prestamolibro pl
+         JOIN usuario u ON pl.id_usuario = u.id_usuario
+         JOIN persona p ON u.id_persona = p.id_persona
+         JOIN libro l ON pl.id_libro = l.id_libro
+WHERE pl.estado_prestamo = 'Prestado';
+select * from historialPrestamosLibros;
+
+-- Historial de libros devueltos vista --
+CREATE VIEW historialLibrosDevueltos AS
+SELECT
+    pl.id_prestamo,
+    p.nombres AS nombre_usuario,
+    p.apellido1,
+    p.apellido2,
+    l.titulo AS titulo_libro,
+    pl.fecha_prestamo,
+    pl.fecha_devolucion,
+    pl.estado_prestamo,
+    pl.multa
+FROM prestamolibro pl
+         JOIN usuario u ON pl.id_usuario = u.id_usuario
+         JOIN persona p ON u.id_persona = p.id_persona
+         JOIN libro l ON pl.id_libro = l.id_libro
+WHERE pl.estado_prestamo = 'Devuelto';
+select * from historialLibrosDevueltos;

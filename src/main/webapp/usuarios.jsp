@@ -264,16 +264,24 @@
                 <th>Nombre(s)</th>
                 <th>Apellido Paterno</th>
                 <th>Apellido Materno</th>
-                <th>Titulo</th>
+                <th>Libro prestado</th>
+                <th>Fecha de prestamo</th>
+                <th>Fecha de devolucion</th>
+                <th>Estado del prestamo</th>
+                <th>Multa</th>
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${usrLibPres}" var="usrLP">
+            <c:forEach items="${historial}" var="pre">
                 <tr>
-                    <td>${usrLP.nombre}</td>
-                    <td>${usrLP.apellido1}</td>
-                    <td>${usrLP.apellido2}</td>
-                    <td>${usrLP.libroPrestado}</td>
+                    <td>${pre.nombres}</td>
+                    <td>${pre.apellidoPaterno}</td>
+                    <td>${pre.apellidoMaterno}</td>
+                    <td>${pre.tituloLibro}</td>
+                    <td>${pre.fechaPrestamo}</td>
+                    <td>${pre.fechaDevolucion}</td>
+                    <td>${pre.estadoPrestamo}</td>
+                    <td>${pre.multa}</td>
                     <td>
                         <button type="button" class="btn btn-modificar">Ir</button>
                     </td>
