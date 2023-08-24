@@ -439,6 +439,29 @@
         }
     });
 
+    function openTab(evt, tabName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablink");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].style.backgroundColor = "#009475";
+        }
+        document.getElementById(tabName).style.display = "block";
+        evt.currentTarget.style.backgroundColor = "#2ECC71";
+    }
+    document.getElementById("Tab1").style.display = "block";
+
+    document.getElementById("cerrarSesion").addEventListener("click", function () {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "CloseSession", true);
+        xhr.send();
+        window.location.href = "index.jsp";
+
+    });
+
     document.getElementById("botonCerrarSesion").addEventListener("click", function () {
 
         var xhr = new XMLHttpRequest();
