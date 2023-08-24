@@ -6,6 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
     <title>Administrar Usuarios</title>
     <style>
 
@@ -109,7 +111,7 @@
         }
 
         .table-container {
-            max-width: 800px;
+            align-content: center;
             border-collapse: collapse;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
             border-radius: 10px;
@@ -210,6 +212,10 @@
         .btnstock:hover {
             color: #009475; /* Color de letras ligeramente más claro */
         }
+
+        .tabcontent {
+            display: none;
+        }
     </style>
 </head>
 
@@ -259,7 +265,7 @@
         </ul>
     </div>
     <h2 class="text-center mb-4">
-        <center>Revisión de Usuarios</center>
+        <center>Historial de préstamos</center>
     </h2>
     <div class="container-tab">
         <div class="table-container">
@@ -274,6 +280,7 @@
                     <th>Fecha de devolucion</th>
                     <th>Estado del prestamo</th>
                     <th>Multa</th>
+                    <th>Devolver Libro</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -288,13 +295,45 @@
                         <td>${pre.estadoPrestamo}</td>
                         <td>${pre.multa}</td>
                         <td>
-                            <button type="button" class="btn btn-modificar">Ir</button>
+                            <a class="btn btn-eliminar" href="${pageContext.request.contextPath}/ReturnBook?idPrestamo=${pre.idPrestamo}">Devolver Libro</a>
                         </td>
                     </tr>
                 </c:forEach>
                 </tbody>
             </table>
         </div>
+        <c:if test="${not empty exito}">
+            <script>
+                Swal.fire({
+                    icon: 'success',
+                    title: '${exito}',
+                    text: 'Su préstamo de sala se ha realizado con éxito.',
+                    confirmButtonText: 'Aceptar',
+                    customClass: {
+                        popup: 'sweetalert-custom-popup',
+                        title: 'sweetalert-custom-title',
+                        confirmButton: 'sweetalert-custom-button'
+                    }
+                });
+                <c:remove var="solicitudExitosa" scope="session"></c:remove>
+            </script>
+        </c:if>
+        <c:if test="${not empty error}">
+            <script>
+                Swal.fire({
+                    icon: 'error',
+                    title: '¡ERROR!',
+                    text: '${error}',
+                    confirmButtonText: 'Aceptar',
+                    customClass: {
+                        popup: 'sweetalert-custom-popup',
+                        title: 'sweetalert-custom-title',
+                        confirmButton: 'sweetalert-custom-button'
+                    }
+                });
+                <c:remove var="error" scope="session"></c:remove>
+            </script>
+        </c:if>
     </div>
 
     <!-- Agrega un div que servirá como fondo cuando el menú esté abierto -->
@@ -345,7 +384,7 @@
         </ul>
     </div>
     <h2 class="text-center mb-4">
-        <center>Revisión de Usuarios</center>
+        <center>Historial de préstamos devueltos</center>
     </h2>
     <div class="container-tab">
         <div class="table-container">
@@ -363,7 +402,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${historial}" var="pre">
+                <c:forEach items="${historial2}" var="pre">
                     <tr>
                         <td>${pre.nombres}</td>
                         <td>${pre.apellidoPaterno}</td>
@@ -373,9 +412,6 @@
                         <td>${pre.fechaDevolucion}</td>
                         <td>${pre.estadoPrestamo}</td>
                         <td>${pre.multa}</td>
-                        <td>
-                            <button type="button" class="btn btn-modificar">Ir</button>
-                        </td>
                     </tr>
                 </c:forEach>
                 </tbody>

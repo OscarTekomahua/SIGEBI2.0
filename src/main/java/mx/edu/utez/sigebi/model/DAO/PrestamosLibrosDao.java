@@ -138,7 +138,7 @@ public class PrestamosLibrosDao implements DaoPrestamosLibros {
     @Override
     public boolean registrarDevolucion(int idPrestamo) {
         try {
-            String updateQuery = "UPDATE prestamolibro SET estado_prestamo = 'Devuelto', fecha_devolucion = NOW() WHERE id_prestamo = ?";
+            String updateQuery = "UPDATE prestamolibro SET estado_prestamo = 'Devuelto' WHERE id_prestamo = ?";
             String updateStockQuery = "UPDATE libro SET ejemplares = ejemplares + 1 WHERE id_libro = (SELECT id_libro FROM prestamolibro WHERE id_prestamo = ?)";
 
             PreparedStatement updateStmt = con.prepareStatement(updateQuery);

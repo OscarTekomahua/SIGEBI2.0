@@ -21,27 +21,40 @@ public class PedirLibroServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int idUsuario = Integer.parseInt(req.getParameter("idUsuario"));
         int idLibro = Integer.parseInt(req.getParameter("idLibro"));
+        int ejemplares = Integer.parseInt(req.getParameter("ejemplares"));
+        double multa = Double.parseDouble(req.getParameter("multa"));
         String fecha_actual = req.getParameter("fecha_actual");
         String fecha_devolucion = calcularFechaDevolucion();
         PrestamosLibrosDao psDAO = new PrestamosLibrosDao();
-        psDAO.registrarPrestamo(idUsuario, idLibro, fecha_actual, fecha_devolucion);
-        req.getSession().setAttribute("mensaje", "Libro Solicitado");
-        LibroDao dao = new LibroDao();
 
-        HttpSession session = req.getSession();
+        if (ejemplares > 1) {
+            if (multa == 0) {
+                psDAO.registrarPrestamo(idUsuario, idLibro, fecha_actual, fecha_devolucion);
+                req.getSession().setAttribute("mensaje", "Libro Solicitado");
+                LibroDao dao = new LibroDao();
 
-        Usuario user = (Usuario) session.getAttribute("sesion");
+                HttpSession session = req.getSession();
 
-        int userId = user.getId_usuario();
+                Usuario user = (Usuario) session.getAttribute("sesion");
 
-        List<ResultadosConsulta> listalibro = dao.getAllAttributes();
+                int userId = user.getId_usuario();
 
-        //Definir fecha actual solo dia mes y año
-        LocalDate fechaActual = LocalDate.now();
+                List<ResultadosConsulta> listalibro = dao.getAllAttributes();
 
-        req.setAttribute("id_usuario", userId);
-        req.setAttribute("tablalibros", listalibro);
-        req.setAttribute("fechaActual", fechaActual);
+                //Definir fecha actual solo dia mes y año
+                LocalDate fechaActual = LocalDate.now();
+
+                req.setAttribute("id_usuario", userId);
+                req.setAttribute("tablalibros", listalibro);
+                req.setAttribute("fechaActual", fechaActual);
+            } else {
+                req.getSession().setAttribute("error", "No puedes pedir prestado libros si tienes un adeudo");
+            }
+        } else {
+            req.getSession().setAttribute("error", "No quedan ejemplares de ese titulo en el inventario");
+        }
+
+
 
         req.getRequestDispatcher("/catalogoLibros.jsp").forward(req, resp);
     }

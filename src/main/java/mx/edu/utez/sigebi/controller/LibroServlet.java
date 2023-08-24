@@ -69,12 +69,14 @@ public class LibroServlet extends HttpServlet {
                 Usuario user = (Usuario) session.getAttribute("sesion");
 
                 int userId = user.getId_usuario();
+                double multaAcumulada = user.getMulta();
 
                 List<ResultadosConsulta> listalibro = dao.getAllAttributes();
 
                 //Definir fecha actual solo dia mes y año
                 LocalDate fechaActual = LocalDate.now();
 
+                req.setAttribute("multa", multaAcumulada);
                 req.setAttribute("id_usuario", userId);
                 req.setAttribute("tablalibros", listalibro);
                 req.setAttribute("fechaActual", fechaActual);

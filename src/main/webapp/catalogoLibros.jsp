@@ -299,7 +299,7 @@
                         <p class="libro-titulo">${libro.titulo}</p>
                         <p class="libro-autor">Autor: ${libro.autor}</p>
                         <p class="libro-isbn">ISBN: ${libro.isbn}</p>
-                        <a class="btn btn-solicitar" href="${pageContext.request.contextPath}/PedirLibroServlet?idLibro=${libro.id_libro}&idUsuario=${id_usuario}&fecha_actual=${fechaActual}">Solicitar Libro</a>
+                        <a class="btn btn-solicitar" href="${pageContext.request.contextPath}/PedirLibroServlet?idLibro=${libro.id_libro}&idUsuario=${id_usuario}&fecha_actual=${fechaActual}&ejemplares=${libro.ejemplares}&multa=${multa}">Solicitar Libro</a>
                     </div>
                 </div>
             </div>
@@ -320,6 +320,23 @@
                 }
             });
             <c:remove var="mensaje" scope="session"></c:remove>
+        </script>
+    </c:if>
+
+    <c:if test="${not empty error}">
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: '¡ERROR!',
+                text: '${error}',
+                confirmButtonText: 'Aceptar',
+                customClass: {
+                    popup: 'sweetalert-custom-popup',
+                    title: 'sweetalert-custom-title',
+                    confirmButton: 'sweetalert-custom-button'
+                }
+            });
+            <c:remove var="error" scope="session"></c:remove>
         </script>
     </c:if>
 

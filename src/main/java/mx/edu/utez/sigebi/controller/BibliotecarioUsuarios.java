@@ -25,7 +25,7 @@ public class BibliotecarioUsuarios extends HttpServlet {
             req.getSession().setAttribute("historial", historialPrestamos);
         }
 
-        req.getRequestDispatcher("/usuarios.jsp").forward(req, resp);
+        req.getRequestDispatcher("usuarios.jsp").forward(req, resp);
     }
 
     @Override
