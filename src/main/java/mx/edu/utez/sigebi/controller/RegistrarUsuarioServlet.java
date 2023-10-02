@@ -46,16 +46,17 @@ public class RegistrarUsuarioServlet extends HttpServlet {
         if (!matcher.matches()) {
             String mensajeError = "¡Correo Inválido!";
             req.getSession().setAttribute("error", mensajeError);
-            resp.sendRedirect("registro.jsp");
+            //resp.sendRedirect("registro.jsp");
         } else if (correoExiste) {
             String mensajeError = "¡Ya existe una cuenta con ese correo!";
             req.getSession().setAttribute("error", mensajeError);
-            resp.sendRedirect("registro.jsp");
+            //resp.sendRedirect("registro.jsp");
         } else {
             boolean registroHecho = dao.insert(newperson, newusr);
             if (registroHecho) {
-
-                resp.sendRedirect("index.jsp");
+                String mensajeError = "¡Registro realizado con éxito!";
+                req.getSession().setAttribute("error", mensajeError);
+                resp.sendRedirect(" index.jsp");
             } else {
                 resp.sendRedirect("failedAccess.jsp");
             }

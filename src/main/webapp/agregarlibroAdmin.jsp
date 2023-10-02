@@ -350,5 +350,15 @@
     });
   });
 
+
+  document.getElementById("botonCerrarSesion").addEventListener("click", function () {
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "CloseSession", true);
+    xhr.send();
+
+    window.location.href = "index.jsp";
+
+  });
 </script>
 </html>

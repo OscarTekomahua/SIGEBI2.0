@@ -341,7 +341,6 @@
     <ul>
         <!-- Agregamos los iconos de Font Awesome a las opciones del menú -->
         <li><a href="bibliotecario.jsp"><i class="fas fa-home"></i> Inicio</a></li>
-        <li><a href="revisarHistorial.jsp"><i class="fas fa-history"></i> Revisar Historial</a></li>
         <!-- Botón con el efecto de aclarado en las letras -->
         <li>
             <form action="mostrarlibros" method="get">
@@ -352,7 +351,7 @@
             </form>
         </li>
         <li><a href="usuarios.jsp"><i class="fas fa-users"></i> Revisar Usuarios</a></li>
-        <li><a href="#" id="botonCerrarSesion"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+        <li><a href="index.jsp" id="botonCerrarSesion"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
         <!-- Agrega más opciones de menú aquí -->
     </ul>
 </div>
@@ -420,6 +419,8 @@
 
 </script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 <script>
     // Función para manejar la búsqueda de libros por título
     document.getElementById('searchForm').addEventListener('submit', function (event) {
@@ -439,13 +440,16 @@
             }
         }
     });
-    document.getElementById("cerrarSesion").addEventListener("click", function () {
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", "CloseSession", true);
-        xhr.send();
-        window.location.href = "index.jsp";
-    });
 
+    document.getElementById("botonCerrarSesion").addEventListener("click", function () {
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "/CloseSession", true);
+        xhr.send();
+
+        window.location.href = "index.jsp";
+
+    });
 
 </script>
 </body>

@@ -21,7 +21,10 @@ import java.io.IOException;
         "/BibliotecarioUsuarios",
         "/mostrarlibros",
         "/salasBiblio",
-        "/readCategoria"
+        "/readCategoria",
+        "/readEditorial",
+        "/ReturnBook",
+        "/updateBookAdmin"
 })
 public class FiltroSesionBiblio implements Filter {
     @Override

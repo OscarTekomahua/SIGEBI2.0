@@ -333,6 +333,22 @@
           <c:remove var="mensaje" scope="session"></c:remove>
         </script>
       </c:if>
+      <c:if test="${not empty error}">
+        <script>
+          Swal.fire({
+            icon: 'success',
+            title: '¡Registro realizado con éxito!',
+            text: '${error}',
+            confirmButtonText: 'Aceptar',
+            customClass: {
+              popup: 'sweetalert-custom-popup',
+              title: 'sweetalert-custom-title',
+              confirmButton: 'sweetalert-custom-button'
+            }
+          });
+          <c:remove var="error" scope="session"></c:remove>
+        </script>
+      </c:if>
     </c:if>
     <!-- Remind Passowrd -->
     <div id="formFooter">

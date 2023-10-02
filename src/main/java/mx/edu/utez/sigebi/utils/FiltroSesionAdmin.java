@@ -27,6 +27,7 @@ import java.io.IOException;
         "/mostrarlibrosadmin",
         "/updateBook",
         "/agregarlibroAdmin.jsp",
+        "/updateBook",
         "/salasAdmin",
 })
 public class FiltroSesionAdmin implements Filter {
