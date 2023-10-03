@@ -509,16 +509,9 @@ span{
             </div>
             <div class="carousel-item">
                 <div class="d-flex justify-content-between align-items-center">
-                    <img src="assets/img/LibraryBooks.jpeg" alt="Imagen izquierda" style="max-height: 300px; width: auto;">
-                    <img src="assets/img/BooksAndBooks.jpeg" class="d-block w-100 carousel-img" alt="Imagen de proyectos Meccri" style="max-height: 300px; width: auto;">
-                    <img src="assets/img/MoreBooks.jpeg" alt="Imagen derecha" style="max-height: 300px; width: auto;">
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="d-flex justify-content-between align-items-center">
-                    <img src="assets/img/LibraryBooks.jpeg" alt="Imagen izquierda" style="max-height: 300px; width: auto;">
-                    <img src="assets/img/BooksAndBooks.jpeg" class="d-block w-100 carousel-img" alt="Imagen de proyectos Meccri" style="max-height: 300px; width: auto;">
-                    <img src="assets/img/MoreBooks.jpeg" alt="Imagen derecha" style="max-height: 300px; width: auto;">
+                    <img src="assets/img/servicioLibros1.jpg" alt="Imagen izquierda" style="max-height: 300px; width: auto;">
+                    <img src="assets/img/servicioLibros3.png" class="d-block w-100 carousel-img" alt="Imagen de proyectos Meccri" style="max-height: 300px; width: auto;">
+                    <img src="assets/img/servicioLibros2.png" alt="Imagen derecha" style="max-height: 300px; width: auto;">
                 </div>
             </div>
         </div>
@@ -557,7 +550,7 @@ span{
                 <div class="col-md-4 col-sm-6 paquetes-1">
                     <div class="tarjeta">
                         <div class="imagen-container">
-                            <img src="assets/img/bibli.jpg" alt="" class="paquetes">
+                            <img src="assets/img/bibli2.jpg" alt="" class="paquetes">
                             <div class="image-overlay"></div>
                         </div>
                         <div class="contenido-tarjeta">
@@ -569,7 +562,7 @@ span{
                 <div class="col-md-4 col-sm-6 paquetes-1">
                     <div class="tarjeta">
                         <div class="imagen-container">
-                            <img src="assets/img/bibli.jpg" alt="" class="paquetes">
+                            <img src="assets/img/libros.jpg" alt="" class="paquetes">
                             <div class="image-overlay"></div>
                         </div>
                         <div class="contenido-tarjeta">

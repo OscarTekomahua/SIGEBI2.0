@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="stylesheet" href="assets/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="assets/css/estilos.css" />
@@ -227,12 +228,38 @@
     .tabcontent {
         display: none;
     }
+
+    /* Estilo para el botón de regresar con ícono */
+    .btn-secondary {
+        background-color: #2ECC71; /* Color de fondo */
+        color: #ffffff; /* Color del ícono */
+        padding: 10px; /* Espaciado interior del botón */
+        text-decoration: none; /* Elimina subrayado del ícono */
+        border: none; /* Elimina el borde del botón */
+        cursor: pointer; /* Cambia el cursor al pasar por encima */
+        border-radius: 5px; /* Bordes redondeados */
+        transition: background-color 0.3s, color 0.3s; /* Transición de color al pasar el mouse */
+    }
+
+    /* Estilo para el botón de regresar al pasar el mouse */
+    .btn-secondary:hover {
+        background-color: rgba(46, 204, 113, 0.55); /* Cambia el color de fondo al pasar el mouse */
+        color: #fff; /* Cambia el color del ícono al pasar el mouse */
+    }
+
+    /* Estilo para el ícono */
+    .btn-secondary i {
+        margin-right: 5px; /* Espacio entre el ícono y el texto (en este caso, el ícono y el botón) */
+    }
 </style>
 
 <body>
 
 <div id="Tab1" class="tabcontent">
     <nav class="navbar">
+        <a href="javascript:history.go(-1)" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> <!-- Icono de flecha hacia atrás -->
+        </a>
         <div class="container d-flex justify-content-between align-items-center">
             <a class="navbar-brand" href="inicio.jsp">
                 <img src="assets/img/sigebi%20logo2.png" alt="SIGEBI Logo">
