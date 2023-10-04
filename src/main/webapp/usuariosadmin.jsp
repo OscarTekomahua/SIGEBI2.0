@@ -294,7 +294,6 @@
         <!-- Agrega más opciones de menú aquí -->
     </ul>
 </div>
-
 <div class="container-tab">
     <div class="table-container">
 
@@ -305,9 +304,8 @@
                     <i class="fas fa-user"></i> <!-- Icono de usuario -->
                     <i class="fas fa-plus"></i> <!-- Icono de más -->
                 </button>
+                </h2>
             </form>
-        </h2>
-
         <table class="table table-bordered table-striped">
             <thead>
             <tr>

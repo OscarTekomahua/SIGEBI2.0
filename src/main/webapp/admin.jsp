@@ -148,6 +148,23 @@
     <button class="botonCerrarSesion" id="botonCerrarSesion"></button>
 </div>
 <br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <% Boolean eliminacionExitosa = (Boolean) request.getAttribute("eliminacionExitosa"); %>
+            <% if (eliminacionExitosa != null) { %>
+            <div class="alert <% if (eliminacionExitosa) { %>alert-success<% } else { %>alert-danger<% } %>">
+                <% if (eliminacionExitosa) { %>
+                El usuario se eliminó correctamente.
+                <% } else { %>
+                No se pueden eliminar usuarios en prestamos o citas.
+                <% } %>
+            </div>
+            <% } %>
+        </div>
+    </div>
+</div>
+
 <br>
 <div class="hero-text-box">
     <h1>Administrador</h1>

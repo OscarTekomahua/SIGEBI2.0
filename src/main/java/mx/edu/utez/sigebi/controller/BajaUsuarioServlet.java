@@ -20,18 +20,31 @@ public class BajaUsuarioServlet extends HttpServlet {
 
         UsuarioDao userdao = new UsuarioDao();
 
-        userdao.delete(idUsuario);
-        userdao.deletePersona(idPersona);
+        // Intenta eliminar al usuario y guarda el resultado
+        boolean usuarioEliminado = userdao.delete(idUsuario);
 
+        // Verifica si se eliminó el usuario y muestra un mensaje en la consola
+        if (userdao.delete(idUsuario) == usuarioEliminado && userdao.getErrorMessage()==0) {
+            System.out.println("Usuario eliminado correctamente.");
+            req.setAttribute("eliminacionExitosa", usuarioEliminado);
+            req.setAttribute("eliminacionExitosa", true);// o false
+        } else {
+            System.out.println("No se pudo eliminar el usuario.");
+            req.setAttribute("eliminacionExitosa",false);
+        }
+
+        // Independientemente del resultado, recarga la lista de usuarios
         List<UsuarioInter> usuarios = userdao.findAll();
-
         req.setAttribute("users", usuarios);
 
-        req.getRequestDispatcher("usuariosadmin.jsp").forward(req, resp);
+        req.getRequestDispatcher("admin.jsp").forward(req, resp);
+
+
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
 
     }
 }

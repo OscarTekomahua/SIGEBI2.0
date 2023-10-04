@@ -17,13 +17,19 @@ public class UsuarioDao implements DaoRepository {
     private Usuario usr;
     private boolean resp;
 
+    private int errorMessage; // Añade esta línea
+
     public UsuarioDao() {
         this.con = new MysqlConector().connect();
         this.listaUsuario = new ArrayList<>();
         this.usr = new Usuario();
         this.resp = false;
+        this.errorMessage = 0;  // Inicializa el mensaje de error
     }
 
+    public int getErrorMessage() {
+        return errorMessage;
+    }
     public List<Persona> usuariosConPrestamo(){
         List<Persona> usrs = new ArrayList<>();
         try {
@@ -73,6 +79,7 @@ public class UsuarioDao implements DaoRepository {
 
     @Override
     public boolean findOne(int id_usuario) {
+
         try {
             String query = "SELECT * FROM usuario WHERE id_usuario = ?";
             PreparedStatement stmt = con.prepareStatement(query);
@@ -159,13 +166,20 @@ public class UsuarioDao implements DaoRepository {
             String PA = "CALL ELIMINAR_USUARIO(?)";
             PreparedStatement stmt = con.prepareStatement(PA);
             stmt.setInt(1, id_usuario);
-
+            System.out.println("Exito");
             return stmt.executeUpdate() == 1;
+        } catch (java.sql.SQLIntegrityConstraintViolationException ex) {
+            // Si ocurre un error de clave externa, puedes configurar un mensaje de error
+            // en un atributo de clase en lugar de en la solicitud.
+            System.out.println("Error");
+            errorMessage = 1;
+            return false; // Si la eliminación falló
         } catch (SQLException e) {
             e.printStackTrace();
+            System.out.println("Error2");
+            errorMessage = 1;;
+            return false; // Si la eliminación falló
         }
-
-        return false;
     }
 
     public boolean deletePersona(int id_persona) {
