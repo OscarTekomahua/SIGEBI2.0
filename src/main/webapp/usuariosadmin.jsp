@@ -169,6 +169,8 @@
 
     .btn-agregar {
         background-color:#005ec9;
+        margin-left: 725px;
+        margin-top: 10px;
     }
 
     .btn-agregar:hover {
