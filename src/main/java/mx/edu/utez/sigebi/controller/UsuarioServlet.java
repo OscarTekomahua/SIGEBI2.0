@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet (name = "UserDao", value = "/login")
@@ -19,7 +20,7 @@ public class UsuarioServlet extends HttpServlet {
         String contra = req.getParameter("contra");
 
         UsuarioDao dao = new UsuarioDao();
-
+        HttpSession session = req.getSession();
         req.getSession().removeAttribute("mensaje");
         Usuario usr = (Usuario) dao.findOne(correo, contra);
 
@@ -45,8 +46,8 @@ public class UsuarioServlet extends HttpServlet {
     }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getSession().removeAttribute("sesion");
+        HttpSession session = req.getSession();
+        session.removeAttribute("sesion");
         resp.sendRedirect("inicio.jsp");
     }
-
 }

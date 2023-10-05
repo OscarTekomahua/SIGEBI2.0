@@ -248,9 +248,35 @@
     .btnsala:hover {
         color: #009475; /* Color de letras ligeramente más claro */
     }
+
+    /* Estilo para el botón de regresar con ícono */
+    .btn-secondary {
+        background-color: rgba(0, 74, 148, 0.58); /* Color de fondo416da9 002E60 */
+        color: #ffffff; /* Color del ícono */
+        padding: 10px; /* Espaciado interior del botón */
+        text-decoration: none; /* Elimina subrayado del ícono */
+        border: none; /* Elimina el borde del botón */
+        cursor: pointer; /* Cambia el cursor al pasar por encima */
+        border-radius: 5px; /* Bordes redondeados */
+        transition: background-color 0.3s, color 0.3s; /* Transición de color al pasar el mouse */
+    }
+
+    /* Estilo para el botón de regresar al pasar el mouse */
+    .btn-secondary:hover {
+        background-color: #384664; /* Cambia el color de fondo al pasar el mouse */
+        color: #fff; /* Cambia el color del ícono al pasar el mouse */
+    }
+
+    /* Estilo para el ícono */
+    .btn-secondary i {
+        margin-right: 5px; /* Espacio entre el ícono y el texto (en este caso, el ícono y el botón) */
+    }
 </style>
 <body>
 <nav class="navbar">
+    <a href="javascript:history.go(-1)" class="btn btn-secondary">
+        <i class="fas fa-arrow-left"></i> <!-- Icono de flecha hacia atrás -->
+    </a>
     <div class="container d-flex justify-content-between align-items-center">
         <a class="navbar-brand" href="admin.jsp">
             <img src="assets/img/sigebi%20logo2.png" alt="SIGEBI Logo">
@@ -294,18 +320,20 @@
         <!-- Agrega más opciones de menú aquí -->
     </ul>
 </div>
+
 <div class="container-tab">
     <div class="table-container">
 
             <form action="NewUserForAdmin" method="get">
-                <h2 class="text-center mb-4">Gestion usuarios
+                <h2 class="text-center mb-4">Gestion usuarios</h2>
                 <input type="hidden" name="operacion" value="nuevousuario">
                 <button type="submit" class="btn btn-agregar">
                     <i class="fas fa-user"></i> <!-- Icono de usuario -->
                     <i class="fas fa-plus"></i> <!-- Icono de más -->
                 </button>
-                </h2>
             </form>
+
+
         <table class="table table-bordered table-striped">
             <thead>
             <tr>
@@ -326,7 +354,14 @@
                     <td>${u.correo_institucional}</td>
                     <td>${u.tipo_usuario}</td>
                     <td>
-                        <a class="btn btn-eliminar" href="${pageContext.request.contextPath}/BajaUsuarioServlet?idUser=${u.id_usuario}&idPersona=${u.id_persona}">Dar de baja Usuario</a>
+                        <c:choose>
+                            <c:when test="${u.id_usuario != sessionScope.sesion.id_usuario}">
+                                <a class="btn btn-eliminar" href="${pageContext.request.contextPath}/BajaUsuarioServlet?idUser=${u.id_usuario}&idPersona=${u.id_persona}">Dar de baja Usuario</a>
+                            </c:when>
+                            <c:otherwise>
+                                <!-- Puedes agregar aquí un mensaje o simplemente dejarlo en blanco para el usuario actual -->
+                            </c:otherwise>
+                        </c:choose>
                     </td>
                 </tr>
                 </tbody>
