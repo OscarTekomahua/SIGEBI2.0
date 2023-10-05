@@ -153,7 +153,7 @@
         <div class="col-md-12">
             <% Boolean eliminacionExitosa = (Boolean) request.getAttribute("eliminacionExitosa"); %>
             <% if (eliminacionExitosa != null) { %>
-            <div class="alert <% if (eliminacionExitosa) { %>alert-success<% } else { %>alert-danger<% } %>">
+            <div class="alert <% if (eliminacionExitosa) { %>alert-success<% } else { %>alert-danger<% } %>" id="alerta">
                 <% if (eliminacionExitosa) { %>
                 El usuario se eliminó correctamente.
                 <% } else { %>
@@ -164,8 +164,8 @@
         </div>
     </div>
 </div>
-
 <br>
+
 <div class="hero-text-box">
     <h1>Administrador</h1>
     <form action="readUsersAdmin" method="get">
@@ -190,8 +190,6 @@
     </form>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
 <script>
 
     document.getElementById("botonCerrarSesion").addEventListener("click", function () {
@@ -205,3 +203,12 @@
     });
 
 </script>
+<script>
+    // Función para ocultar la alerta después de 5 segundos (5000 milisegundos)
+    setTimeout(function() {
+        var alerta = document.getElementById("alerta");
+        alerta.style.display = "none";
+    }, 5000); // Cambia 5000 a la cantidad de milisegundos que desees
+</script>
+</body>
+</html>
