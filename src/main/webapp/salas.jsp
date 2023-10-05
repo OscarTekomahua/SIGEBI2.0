@@ -273,7 +273,6 @@
         </button>
       </form>
     </li>
-    <li><a href="usuarios.jsp"><i class="fas fa-users"></i> Revisar Usuarios</a></li>
     <li><a href="#" id="botonCerrarSesion"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
     <!-- Agrega más opciones de menú aquí -->
   </ul>

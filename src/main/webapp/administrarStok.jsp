@@ -274,17 +274,20 @@
     <ul>
         <!-- Agregamos los iconos de Font Awesome a las opciones del menú -->
         <li><a href="bibliotecario.jsp"><i class="fas fa-home"></i> Inicio</a></li>
-        <li><a href="revisarHistorial.jsp"><i class="fas fa-history"></i> Revisar Historial</a></li>
-        <!-- Botón con el efecto de aclarado en las letras -->
         <li>
-            <form action="mostrarlibros" method="get">
-                <input type="hidden" name="operacion" value="stocklibros">
+            <form action="BibliotecarioUsuarios" method="get">
+                <input type="hidden" name="operacion" value="usuarios">
+                <button type="submit" class="btnstock"><i class="fas fa-history"></i> Revisar Historial</button>
+            </form>
+        </li>
+        <li>
+            <form action="salasBiblio" method="get">
+                <input type="hidden" name="operacion" value="tablasalas">
                 <button type="submit" class="btnstock">
-                    <i class="fas fa-stream"></i> Stock de libros
+                    <i class="fas fa-door-open"></i> Salas
                 </button>
             </form>
         </li>
-        <li><a href="usuarios.jsp"><i class="fas fa-users"></i> Revisar Usuarios</a></li>
         <li><a href="#" id="botonCerrarSesion"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
         <!-- Agrega más opciones de menú aquí -->
     </ul>
