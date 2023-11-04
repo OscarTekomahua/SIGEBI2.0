@@ -281,8 +281,8 @@
             <img src="assets/img/sigebi%20logo2.png" alt="SIGEBI Logo">
         </a>
         <div class="nav-item">
-                <input id="searchInput" class="form-control mr-2" type="search" placeholder="Buscar"
-                       aria-label="Buscar">
+            <input id="searchInput" class="form-control mr-2" type="search" placeholder="Buscar"
+                   aria-label="Buscar">
         </div>
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidebarCollapse">
             <i class="fas fa-bars"></i>
@@ -318,18 +318,20 @@
     </ul>
 </div>
 
+
 <div class="container-tab">
     <div class="table-container">
 
-            <form style="text-align: center" action="AddNewBookAdmin" method="get">
-                <h2 class="text-center mb-4">Stock de libros
+        <form style="text-align: center" action="AddNewBookAdmin" method="get">
+            <h2 class="text-center mb-4">Stock de libros
                 <button class="btn btn-agregar">
                     <input type="hidden" name="operacion" value="nuevolibro">
                     <i class="fas fa-book"></i> <!-- Icono de libro -->
                     <i class="fas fa-plus"></i> <!-- Icono de más -->
                 </button>
-                </h2>
-            </form>
+            </h2>
+        </form>
+
 
         <table class="table table-bordered table-striped">
             <thead>
@@ -353,8 +355,7 @@
                     <td>${libro.categoria}</td>
                     <td>${libro.ejemplares}</td>
                     <td>
-                        <a class="btn btn-eliminar"
-                           href="${pageContext.request.contextPath}/deleteBookadmin?id=${libro.id_libro}">Eliminar</a>
+                        <a class="btn btn-eliminar" onclick="checkPrestamo('${libro.titulo}', '${libro.id_libro}')">Eliminar</a>
                         <form action="updateBook" method="get">
                             <button type="submit" class="btn btn-modificar">Modificar</button>
                             <input type="hidden" name="opcion" value="updateBook"/>
@@ -365,21 +366,20 @@
                 </tbody>
             </c:forEach>
         </table>
+
+
     </div>
 </div>
 <div class="sidebar-overlay"></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 <script>
+
     $(document).ready(function () {
         $(".navbar-toggler").click(function () {
             $(".sidebar").toggleClass("show hide");
             $(".navbar-toggler").toggleClass("hidden");
             $("body").toggleClass("sidebar-open");
-        });
-        $(".btn-eliminar").click(function () {
-            var fila = $(this).closest("tr");
-            fila.remove();
         });
 
         $(document).click(function (event) {
@@ -391,7 +391,6 @@
         });
     });
 
-
     document.getElementById("botonCerrarSesion").addEventListener("click", function () {
 
         var xhr = new XMLHttpRequest();
@@ -402,6 +401,29 @@
 
     });
 
+    function checkPrestamo(LibroTitulo, libroID) {
+        let prestamo = []
+        <c:forEach items="${estadolibros}" var="prestamo">
+        prestamo.push({titulo:"${prestamo.tituloLibro}", estado:"${prestamo.estadoPrestamo}"})
+        </c:forEach>
+
+        if (prestamo.length === 0) {
+            window.location.href =  "${pageContext.request.contextPath}/deleteBookadmin?id="+libroID;
+        }
+
+        for (let index = 0; index < prestamo.length; index++) {
+            const element = prestamo[index];
+            if (LibroTitulo === element.titulo) {
+                return alert(LibroTitulo+" esta en prestamo actualmente, no se puede borrar")
+            }else {
+                $(".btn-eliminar").click(function () {
+                    var fila = $(this).closest("tr");
+                    fila.remove();
+                });
+                window.location.href =  "${pageContext.request.contextPath}/deleteBookadmin?id="+libroID;
+            }
+        }
+    }
     document.addEventListener("DOMContentLoaded", function () {
         const searchInput = document.getElementById("searchInput");
         const tableRows = document.querySelectorAll(".table tbody tr");
@@ -420,6 +442,7 @@
 
         searchInput.addEventListener("input", filterTable);
     });
+
 </script>
 </body>
 

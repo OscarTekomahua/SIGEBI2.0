@@ -262,7 +262,7 @@
             <img src="assets/img/sigebi%20logo2.png" alt="SIGEBI Logo">
         </a>
         <div class="nav-item">
-                <input id="searchInput" class="form-control mr-2" type="search" placeholder="Buscar" aria-label="Buscar">
+            <input id="searchInput" class="form-control mr-2" type="search" placeholder="Buscar" aria-label="Buscar">
         </div>
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidebarCollapse">
             <i class="fas fa-bars"></i>
@@ -329,7 +329,8 @@
                     <td>${libro.categoria}</td>
                     <td>${libro.ejemplares}</td>
                     <td>
-                        <a class="btn btn-eliminar" href="${pageContext.request.contextPath}/deleteBook?id=${libro.id_libro}">Eliminar</a>
+
+                        <a class="btn btn-eliminar" onclick="checkPrestamo('${libro.titulo}', '${libro.id_libro}')">Eliminar</a>
                         <form action="updateBookAdmin" method="get">
                             <button type="submit" class="btn btn-modificar">Modificar</button>
                             <input type="hidden" name="opcion" value="updateBook"/>
@@ -353,10 +354,6 @@
             $(".navbar-toggler").toggleClass("hidden");
             $("body").toggleClass("sidebar-open");
         });
-        $(".btn-eliminar").click(function () {
-            var fila = $(this).closest("tr");
-            fila.remove();
-        });
 
         $(document).click(function (event) {
             if (!$(event.target).closest(".sidebar, .navbar-toggler").length) {
@@ -365,18 +362,38 @@
                 $("body").removeClass("sidebar-open");
             }
         });
-    });
-
-
-    document.getElementById("botonCerrarSesion").addEventListener("click", function () {
-
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", "CloseSession", true);
-        xhr.send();
-
-        window.location.href = "index.jsp";
 
     });
+
+
+    function checkPrestamo(LibroTitulo, libroID) {
+        let prestamo = []
+        console.log(libroID)
+        <c:forEach items="${estadolibros}" var="prestamo">
+
+        prestamo.push({titulo:"${prestamo.tituloLibro}", estado:"${prestamo.estadoPrestamo}"})
+        </c:forEach>
+
+
+        if (prestamo.length === 0) {
+            window.location.href =  "${pageContext.request.contextPath}/deleteBook?id="+libroID;
+        }
+
+
+        for (let index = 0; index < prestamo.length; index++) {
+            const element = prestamo[index];
+            if (LibroTitulo === element.titulo) {
+                return alert(LibroTitulo+" esta en prestamo actualmente, no se puede borrar")
+            }else {
+                $(".btn-eliminar").click(function () {
+                    var fila = $(this).closest("tr");
+                    fila.remove();
+                });
+
+                window.location.href =  "${pageContext.request.contextPath}/deleteBook?id="+libroID;
+            }
+        }
+    }
 
     document.addEventListener("DOMContentLoaded", function () {
         const searchInput = document.getElementById("searchInput");
@@ -393,7 +410,19 @@
                 }
             });
         }
+
         searchInput.addEventListener("input", filterTable);
+    });
+
+
+    document.getElementById("botonCerrarSesion").addEventListener("click", function () {
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "CloseSession", true);
+        xhr.send();
+
+        window.location.href = "index.jsp";
+
     });
 </script>
 </body>

@@ -3,6 +3,7 @@ package mx.edu.utez.sigebi.controller;
 import mx.edu.utez.sigebi.model.DAO.LibroDao;
 import mx.edu.utez.sigebi.model.DAO.PrestamosLibrosDao;
 import mx.edu.utez.sigebi.model.ResultadosConsulta;
+import mx.edu.utez.sigebi.model.HistorialLibrosPrestados;
 import mx.edu.utez.sigebi.model.Usuario;
 
 import javax.servlet.ServletException;
@@ -27,30 +28,35 @@ public class LibroServlet extends HttpServlet {
             case "/mostrarlibros":
                 if (req.getParameter("operacion").equals("stocklibros")) {
                     LibroDao dao = new LibroDao();
-
+                    PrestamosLibrosDao daoprestamos = new PrestamosLibrosDao();
                     List<ResultadosConsulta> listalibro = dao.getAllAttributes();
-
+                    List<HistorialLibrosPrestados> prestamolibro = daoprestamos.obtenerHistorialPrestamos();
                     req.setAttribute("tablalibros", listalibro);
+                    req.setAttribute("estadolibros", prestamolibro);
                 }
 
 
                 req.getRequestDispatcher("administrarStok.jsp").forward(req, resp);
-              break;
+                break;
 
             case "/mostrarlibrosadmin":
                 if (req.getParameter("operacion").equals("stocklibros")) {
                     LibroDao dao = new LibroDao();
+                    PrestamosLibrosDao daoprestamos = new PrestamosLibrosDao();
                     List<ResultadosConsulta> listalibro = dao.getAllAttributes();
+                    List<HistorialLibrosPrestados> prestamolibro = daoprestamos.obtenerHistorialPrestamos();
                     req.setAttribute("tablalibros", listalibro);
+                    req.setAttribute("estadolibros", prestamolibro);
+
                 }
                 req.getRequestDispatcher("administrarStockAdmin.jsp").forward(req, resp);
                 break;
 
             case "/deleteBook":
-                 int id = Integer.parseInt(req.getParameter("id"));
-                    System.out.println(id);
-                    LibroDao dao2 = new LibroDao();
-                    dao2.delete(id);
+                int id = Integer.parseInt(req.getParameter("id"));
+                System.out.println(id);
+                LibroDao dao2 = new LibroDao();
+                dao2.delete(id);
                 resp.sendRedirect(req.getContextPath() + "/mostrarlibros?operacion=stocklibros");
                 break;
 
