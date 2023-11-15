@@ -29,8 +29,71 @@ public class PedirLibroServlet extends HttpServlet {
 
         if (ejemplares > 1) {
             if (multa == 0) {
-                psDAO.registrarPrestamo(idUsuario, idLibro, fecha_actual, fecha_devolucion);
-                req.getSession().setAttribute("mensaje", "Libro Solicitado");
+                if (!(psDAO.verificarRelacion(idUsuario, idLibro))) {
+                    if (psDAO.limitePrestamos(idUsuario) >= 3) {
+                        LibroDao dao = new LibroDao();
+
+                        HttpSession session = req.getSession();
+
+                        Usuario user = (Usuario) session.getAttribute("sesion");
+
+                        int userId = user.getId_usuario();
+                        double multaAcumulada = user.getMulta();
+
+                        List<ResultadosConsulta> listalibro = dao.getAllAttributes();
+
+                        //Definir fecha actual solo dia mes y año
+                        LocalDate fechaActual = LocalDate.now();
+
+                        req.setAttribute("multa", multaAcumulada);
+                        req.setAttribute("id_usuario", userId);
+                        req.setAttribute("tablalibros", listalibro);
+                        req.setAttribute("fechaActual", fechaActual);
+                        req.getSession().setAttribute("error", "Unicamente puedes tener tres libros en prestamo");
+                    } else {
+                        psDAO.registrarPrestamo(idUsuario, idLibro, fecha_actual, fecha_devolucion);
+                        req.getSession().setAttribute("mensaje", "Libro Solicitado");
+                        LibroDao dao = new LibroDao();
+
+                        HttpSession session = req.getSession();
+
+                        Usuario user = (Usuario) session.getAttribute("sesion");
+
+                        int userId = user.getId_usuario();
+                        double multaAcumulada = user.getMulta();
+
+                        List<ResultadosConsulta> listalibro = dao.getAllAttributes();
+
+                        //Definir fecha actual solo dia mes y año
+                        LocalDate fechaActual = LocalDate.now();
+
+                        req.setAttribute("multa", multaAcumulada);
+                        req.setAttribute("id_usuario", userId);
+                        req.setAttribute("tablalibros", listalibro);
+                        req.setAttribute("fechaActual", fechaActual);
+                    }
+                } else {
+                    LibroDao dao = new LibroDao();
+
+                    HttpSession session = req.getSession();
+
+                    Usuario user = (Usuario) session.getAttribute("sesion");
+
+                    int userId = user.getId_usuario();
+                    double multaAcumulada = user.getMulta();
+
+                    List<ResultadosConsulta> listalibro = dao.getAllAttributes();
+
+                    //Definir fecha actual solo dia mes y año
+                    LocalDate fechaActual = LocalDate.now();
+
+                    req.setAttribute("multa", multaAcumulada);
+                    req.setAttribute("id_usuario", userId);
+                    req.setAttribute("tablalibros", listalibro);
+                    req.setAttribute("fechaActual", fechaActual);
+                    req.getSession().setAttribute("error", "Ese libro ya lo tienes en préstamo");
+                }
+            } else {
                 LibroDao dao = new LibroDao();
 
                 HttpSession session = req.getSession();
@@ -38,19 +101,38 @@ public class PedirLibroServlet extends HttpServlet {
                 Usuario user = (Usuario) session.getAttribute("sesion");
 
                 int userId = user.getId_usuario();
+                double multaAcumulada = user.getMulta();
 
                 List<ResultadosConsulta> listalibro = dao.getAllAttributes();
 
                 //Definir fecha actual solo dia mes y año
                 LocalDate fechaActual = LocalDate.now();
 
+                req.setAttribute("multa", multaAcumulada);
                 req.setAttribute("id_usuario", userId);
                 req.setAttribute("tablalibros", listalibro);
                 req.setAttribute("fechaActual", fechaActual);
-            } else {
                 req.getSession().setAttribute("error", "No puedes pedir prestado libros si tienes un adeudo");
             }
         } else {
+            LibroDao dao = new LibroDao();
+
+            HttpSession session = req.getSession();
+
+            Usuario user = (Usuario) session.getAttribute("sesion");
+
+            int userId = user.getId_usuario();
+            double multaAcumulada = user.getMulta();
+
+            List<ResultadosConsulta> listalibro = dao.getAllAttributes();
+
+            //Definir fecha actual solo dia mes y año
+            LocalDate fechaActual = LocalDate.now();
+
+            req.setAttribute("multa", multaAcumulada);
+            req.setAttribute("id_usuario", userId);
+            req.setAttribute("tablalibros", listalibro);
+            req.setAttribute("fechaActual", fechaActual);
             req.getSession().setAttribute("error", "No quedan ejemplares de ese titulo en el inventario");
         }
 

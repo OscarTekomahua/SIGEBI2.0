@@ -246,4 +246,59 @@ public class PrestamosLibrosDao implements DaoPrestamosLibros {
         }
         return false;
     }
+
+    public boolean verificarRelacion(int idUsuario, int idLibro) {
+
+        try {
+            String query = "SELECT * FROM prestamolibro WHERE id_usuario = ? AND id_libro = ? AND estado_prestamo = 'Prestado'";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setInt(1, idUsuario);
+            statement.setInt(2, idLibro);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                return true;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return false;
+    }
+
+    public int limitePrestamos(int idUser) {
+        int limitedelibros = 0;
+        try {
+            String query = "SELECT COUNT(*) AS libros FROM prestamolibro WHERE id_usuario = ? AND estado_prestamo = 'Prestado'";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setInt(1, idUser);
+            ResultSet rs = statement.executeQuery();
+
+            if (rs.next()) {
+                limitedelibros = rs.getInt("libros");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return limitedelibros;
+    }
+
+    public double multas(int idUser) {
+        double limitedelibros = 0;
+        try {
+            String query = "SELECT SUM(multa) AS multas FROM prestamolibro WHERE id_usuario = ?";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setInt(1, idUser);
+            ResultSet rs = statement.executeQuery();
+
+            if (rs.next()) {
+                limitedelibros = rs.getInt("multas");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return limitedelibros;
+    }
 }

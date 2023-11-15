@@ -1,6 +1,7 @@
 package mx.edu.utez.sigebi.controller;
 
 import mx.edu.utez.sigebi.model.DAO.LibroDao;
+import mx.edu.utez.sigebi.model.DAO.PrestamosLibrosDao;
 import mx.edu.utez.sigebi.model.ResultadosConsulta;
 import mx.edu.utez.sigebi.model.Usuario;
 
@@ -67,9 +68,10 @@ public class LibroServlet extends HttpServlet {
                 HttpSession session = req.getSession();
 
                 Usuario user = (Usuario) session.getAttribute("sesion");
+                PrestamosLibrosDao daoprestamos = new PrestamosLibrosDao();
 
                 int userId = user.getId_usuario();
-                double multaAcumulada = user.getMulta();
+                double multaAcumulada = daoprestamos.multas(userId);
 
                 List<ResultadosConsulta> listalibro = dao.getAllAttributes();
 
